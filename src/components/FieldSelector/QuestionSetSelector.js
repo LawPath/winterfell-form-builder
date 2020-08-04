@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button } from 'react-bootstrap';
 import QuestionSelector from './QuestionSelector';
 
 const QuestionSetSelector = (props) => {
@@ -8,15 +7,15 @@ const QuestionSetSelector = (props) => {
 
   const displayQuestionSet = () => currentQuestionSets.map(
     currentQuestionSet => (
-      questionSets.map(
+      questionSets ? questionSets.map(
         (questionSet, questionSetIndex) => {
           if (currentQuestionSet.questionSetId === questionSet.questionSetId
           ) {
             return (
-              <span>
+              <span key={questionSetIndex}>
                 { questionSet.questionSetHeader &&
                 <button
-                  className="winterfell-form-builder-selector btn-block"
+                  className="winterfell-form-builder-selector btn-default btn-block"
                   onClick={() => onClick('questionSet', questionSetIndex, currentQuestionIndex)}
                 >
                   <div>
@@ -36,7 +35,7 @@ const QuestionSetSelector = (props) => {
           }
           return null;
         },
-      )
+      ) : null
     ),
   );
 

@@ -92,7 +92,7 @@ export const INPUT_TYPE_OPTIONS = [{
   text: 'text',
   value: 'textInput',
 }, {
-  text: 'textArea',
+  text: 'textarea',
   value: 'textAreaInput',
 }, {
   text: 'select',
@@ -114,3 +114,4 @@ export const INPUT_TYPE_OPTIONS = [{
   value: 'checkboxInput',
 }];
 
+export const DATE_FORMAT = "dd/MM/yyyy";

@@ -1,18 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, FormGroup } from 'react-bootstrap';
 import { RadioButtonOptionsInput, CheckboxOptionsInput, SelectInput } from '../InputTypes/';
 
 const FormQuestionEditor = (props) => {
   const { questionSetIndex, questions, onClick } = props;
 
   const displayQuestionButtons = () => questions.map((question, questionIndex) => (
-    <Button
-      className="winterfell-form-builder-selector btn-block"
+    <button
+      type="button"
+      className="winterfell-form-builder-selector btn-default btn-block"
       onClick={() => onClick('question', questionSetIndex, questionIndex)}
       key={`${question.questionId}`}
     >
-      <FormGroup>
+      <div className="form-group">
         <label htmlFor={question.questionId}>{question.question}</label>
         {
           question.text &&
@@ -80,8 +80,8 @@ const FormQuestionEditor = (props) => {
           question.postText &&
           <p>{question.postText}</p>
         }
-      </FormGroup>
-    </Button>
+      </div>
+    </button>
   ));
 
   return (

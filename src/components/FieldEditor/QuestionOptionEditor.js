@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Button, InputGroup, FormControl, Glyphicon } from 'react-bootstrap';
 import DeleteQuestionOptionButton from '../FormMenu/DeleteQuestionOptionButton';
 import ConditionalPageEditor from './ConditionalPageEditor';
 import ConditionalQuestionEditor from './ConditionalQuestionEditor';
@@ -18,18 +17,6 @@ import {
 } from '../../actions/winterfellFormBuilderActions';
 
 class QuestionOptionEditor extends PureComponent {
-  static propTypes = {
-    questionInputOptions: PropTypes.object.isRequired,
-    questionId: PropTypes.string.isRequired,
-    currentQuestionPanelIndex: PropTypes.number.isRequired,
-    currentQuestionSetIndex: PropTypes.number.isRequired,
-    currentQuestionIndex: PropTypes.number.isRequired,
-    editQuestionOptionText: PropTypes.func.isRequired,
-    editQuestionOptionValue: PropTypes.func.isRequired,
-    deleteQuestionOption: PropTypes.func.isRequired,
-    addQuestionOption: PropTypes.func.isRequired,
-  };
-
   constructor(props) {
     super(props);
 
@@ -137,106 +124,114 @@ class QuestionOptionEditor extends PureComponent {
       currentQuestionIndex,
     } = this.props;
     return (
-      <div>
-        { questionInputOptions &&
-          <b>Options</b>
-        }
-        {/* { questionInputOptions &&
-          questionInputOptions.toJS().map((option, ix) => ( */}
-        {this.state.questionInputOptions &&
-          this.state.questionInputOptions.map((option, ix) => {
-            const currentPath = ['schema', 'questionSets', currentQuestionSetIndex, 'questions', currentQuestionIndex, 'input', 'options', ix];
-            return (
-              <div key={`${ix}`} >
-                <InputGroup className="winterfell-form-builder-conditional-question">
-                  <FormControl
-                    type="text"
-                    name={this.state.questionInputOptions[ix].text}
-                    value={this.state.questionInputOptions[ix].text}
-                    onChange={event => this.onOptionTextChange(event, ix)}
-                  />
-                  <FormControl
-                    type="text"
-                    name={this.state.questionInputOptions[ix].value}
-                    value={this.state.questionInputOptions[ix].value}
-                    onChange={event => this.onOptionValueChange(event, ix)}
-                  />
-                  <InputGroup.Button>
-                    <DeleteQuestionOptionButton
-                      questionOptionIndex={ix}
-                      onDeleteQuestionOption={() => this.onDeleteQuestionOption(ix)}
-                    />
-                  </InputGroup.Button>
-                  <InputGroup.Button>
-                    <Button
-                      onClick={event => this.onShowConditonalClick(ix, event)}
-                      className="btn btn-warning"
-                      id="showConditionalPageButton"
-                    >
-                      {this.state.showConditionalPage && !this.state.showConditionalPage[ix] &&
-                      <Glyphicon glyph="glyphicon glyphicon-share-alt" id="showConditionalPage" />}
-                      {this.state.showConditionalPage && this.state.showConditionalPage[ix] &&
-                      <Glyphicon
-                        glyph="glyphicon glyphicon glyphicon-minus-sign"
-                        id="showConditionalPage"
-                      />}
-                    </Button>
-                  </InputGroup.Button>
-                  <InputGroup.Button>
-                    <Button
-                      id="showConditionalQuestionButton"
-                      onClick={event => this.onShowConditonalClick(ix, event)}
-                      className="btn btn-dark"
-                    >
-                      {this.state.showConditionalQuestions &&
-                      !this.state.showConditionalQuestions[ix] &&
-                      <Glyphicon
-                        glyph="glyphicon glyphicon-menu-hamburger"
-                        id="showConditionalQuestion"
-                      />
-                      }
-                      {this.state.showConditionalQuestions &&
-                      this.state.showConditionalQuestions[ix] &&
-                      <Glyphicon
-                        glyph="glyphicon glyphicon glyphicon-minus-sign"
-                        id="showConditionalQuestion"
-                      />}
-                    </Button>
-                  </InputGroup.Button>
+      <div className="row">
+        <div className="col">
 
-                  {this.state.showConditionalPage[ix] &&
-                    <ConditionalPageEditor
-                      questionOptionIndex={ix}
-                      questionId={questionId}
-                      currentQuestionPanelIndex={currentQuestionPanelIndex}
-                      currentQuestionSetIndex={currentQuestionSetIndex}
-                      currentQuestionIndex={currentQuestionIndex}
-                      text={this.state.questionInputOptions[ix].text}
+          {questionInputOptions &&
+            <b>Options</b>
+          }
+
+          {this.state.questionInputOptions &&
+            this.state.questionInputOptions.map((option, ix) => {
+              const currentPath = ['schema', 'questionSets', currentQuestionSetIndex, 'questions', currentQuestionIndex, 'input', 'options', ix];
+              return (
+                <div key={`${ix}`} >
+                  <div className="input-group winterfell-form-builder-conditional-question">
+                    <input
+                      className="form-control"
+                      type="text"
+                      name={this.state.questionInputOptions[ix].text}
+                      value={this.state.questionInputOptions[ix].text}
+                      onChange={event => this.onOptionTextChange(event, ix)}
                     />
-                  }
-                  {this.state.showConditionalQuestions[ix] &&
-                    <ConditionalQuestionEditor
-                      parentPath={currentPath}
-                      parentOptionText={this.state.questionInputOptions[ix].text}
+                    <input
+                      className="form-control"
+                      type="text"
+                      name={this.state.questionInputOptions[ix].value}
+                      value={this.state.questionInputOptions[ix].value}
+                      onChange={event => this.onOptionValueChange(event, ix)}
                     />
-                  }
-                </InputGroup>
-              </div>);
-          })
-        }
-        <br />
-        <div>
-          <AddQuestionOptionButton
-            questionOptionText={this.state.questionOptionText}
-            questionOptionValue={this.state.questionOptionValue}
-            onChange={e => this.onAddOptionChange(e)}
-            onClick={this.onAddOption}
-          />
+                    <div className="input-group">
+                      <DeleteQuestionOptionButton
+                        questionOptionIndex={ix}
+                        onDeleteQuestionOption={() => this.onDeleteQuestionOption(ix)}
+                      />
+                    </div>
+                    <div className="input-group">
+                      <button
+                        type="button"
+                        onClick={event => this.onShowConditonalClick(ix, event)}
+                        className="btn btn-warning"
+                        id="showConditionalPageButton"
+                      >
+                        {this.state.showConditionalPage && !this.state.showConditionalPage[ix] &&
+                          <i className="material-icons" id="showConditionalPage" >share</i>}
+                        {this.state.showConditionalPage && this.state.showConditionalPage[ix] &&
+                          <i className="material-icons" id="showConditionalPage" >remove_circle </i>}
+                      </button>
+                    </div>
+                    <div className="input-group">
+                      <button
+                        type="button"
+                        id="showConditionalQuestionButton"
+                        onClick={event => this.onShowConditonalClick(ix, event)}
+                        className="btn btn-dark"
+                      >
+                        {this.state.showConditionalQuestions &&
+                          !this.state.showConditionalQuestions[ix] &&
+                          <i className="material-icons" id="showConditionalPage" >menu</i>}
+                        {this.state.showConditionalQuestions &&
+                          this.state.showConditionalQuestions[ix] &&
+                          <i className="material-icons" id="showConditionalPage" >remove_circle </i>}
+                      </button>
+                    </div>
+
+                    {this.state.showConditionalPage[ix] &&
+                      <ConditionalPageEditor
+                        questionOptionIndex={ix}
+                        questionId={questionId}
+                        currentQuestionPanelIndex={currentQuestionPanelIndex}
+                        currentQuestionSetIndex={currentQuestionSetIndex}
+                        currentQuestionIndex={currentQuestionIndex}
+                        text={this.state.questionInputOptions[ix].text}
+                      />
+                    }
+                    {this.state.showConditionalQuestions[ix] &&
+                      <ConditionalQuestionEditor
+                        parentPath={currentPath}
+                        parentOptionText={this.state.questionInputOptions[ix].text}
+                      />
+                    }
+                  </div>
+                </div>);
+            })
+          }
+          <br />
+          <div>
+            <AddQuestionOptionButton
+              questionOptionText={this.state.questionOptionText}
+              questionOptionValue={this.state.questionOptionValue}
+              onChange={e => this.onAddOptionChange(e)}
+              onClick={this.onAddOption}
+            />
+          </div>
         </div>
       </div>
     );
   }
 }
+
+QuestionOptionEditor.propTypes = {
+  questionInputOptions: PropTypes.object.isRequired,
+  questionId: PropTypes.string.isRequired,
+  currentQuestionPanelIndex: PropTypes.number.isRequired,
+  currentQuestionSetIndex: PropTypes.number.isRequired,
+  currentQuestionIndex: PropTypes.number.isRequired,
+  editQuestionOptionText: PropTypes.func.isRequired,
+  editQuestionOptionValue: PropTypes.func.isRequired,
+  deleteQuestionOption: PropTypes.func.isRequired,
+  addQuestionOption: PropTypes.func.isRequired,
+};
 
 export default connect(
   null,

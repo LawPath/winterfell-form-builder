@@ -1,33 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button } from 'react-bootstrap';
 
 const ButtonBarSelector = (props) => {
   const { nextButton, backButton, backButtonDisabled, onClick } = props;
 
   return (
-    <Button
-      className="winterfell-form-builder-selector btn-block"
+    <button
+      type="button"
+      className="winterfell-form-builder-selector btn-default btn-block"
       onClick={onClick}
     >
       <div className="button-bar">
-        { backButton && !backButtonDisabled &&
-          <button className="btn btn-danger pull-left">
-            {backButton}
-          </button>
+        {backButton && !backButtonDisabled &&
+        <button className="btn btn-danger float-left">
+          {backButton}
+        </button>
         }
-        { nextButton &&
-          <button className="btn btn-dark pull-right">
-            {nextButton}
-          </button>
+        {nextButton &&
+        <button className="btn btn-dark float-right">
+          {nextButton}
+        </button>
         }
-        { !nextButton &&
-          <button className="btn btn-dark pull-right">
-            Submit
-          </button>
+        {!nextButton &&
+        <button className="btn btn-dark float-right">
+          Submit
+        </button>
         }
       </div>
-    </Button>
+    </button>
   );
 };
 

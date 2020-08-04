@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Row, Col, Button, FormControl, Glyphicon } from 'react-bootstrap';
 
 const AddQuestionOptionButton = (props) => {
   const {
@@ -11,20 +10,21 @@ const AddQuestionOptionButton = (props) => {
   } = props;
 
   return (
-    <Row>
-      <Col xs={12}>
+    <div className="row">
+      <div className="col">
         <label
           htmlFor="addOption"
         >
           Add Option
         </label>
-      </Col>
-      <Col xs={12}>
+      </div>
+      <div className="col">
         <table>
           <tbody id="addOption">
             <tr>
               <td>
-                <FormControl
+                <input
+                  className="form-control"
                   type="text"
                   name="questionOptionText"
                   value={questionOptionText}
@@ -32,7 +32,8 @@ const AddQuestionOptionButton = (props) => {
                 />
               </td>
               <td>
-                <FormControl
+                <input
+                  className="form-control"
                   type="text"
                   name="questionOptionValue"
                   value={questionOptionValue}
@@ -40,18 +41,19 @@ const AddQuestionOptionButton = (props) => {
                 />
               </td>
               <td colSpan={2}>
-                <Button
-                  className="btn btn-dark"
+                <button
+                  type="button"
+                  className="btn btn-dark py-0"
                   onClick={onClick}
                   disabled={questionOptionText === '' || questionOptionValue === ''}
-                ><Glyphicon glyph="glyphicon glyphicon-plus" />
-                </Button>
+                ><i className="material-icons" id="showConditionalPage" >add_circle</i>
+                </button>
               </td>
             </tr>
           </tbody>
         </table>
-      </Col>
-    </Row>
+      </div>
+    </div>
   );
 };
 
