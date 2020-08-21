@@ -43,6 +43,12 @@ var _FieldSelector = _interopRequireDefault(require("./FieldSelector"));
 
 var _FieldEditor = _interopRequireDefault(require("./FieldEditor"));
 
+var _documentEditorV = require("document-editor-v3");
+
+require("document-editor-v3/dist/lib/index.scss");
+
+var _QuestionsPanel = _interopRequireDefault(require("./layouts/QuestionsPanel"));
+
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
@@ -62,11 +68,27 @@ var WinterfellFormBuilder = /*#__PURE__*/function (_Component) {
     }
 
     _this = _super.call.apply(_super, [this].concat(args));
+    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "state", {
+      schema: {},
+      schemaToggle: false
+    });
     (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "onFormUpdate", function (e) {
       e.preventDefault();
 
       _this.setState({
-        schema: JSON.parse(e.target.value)
+        schemaToggle: JSON.parse(e.target.value)
+      });
+    });
+    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "toggleTable", function (evt, state) {
+      evt.preventDefault();
+
+      if (state) {
+        document.getElementById("schemaViewer").style.height = "".concat(document.getElementById("questionEditor").clientHeight, "px");
+        document.getElementById("htmlViewer").style.height = "".concat(document.getElementById("questionEditor").clientHeight, "px");
+      }
+
+      _this.setState({
+        schemaToggle: state
       });
     });
     return _this;
@@ -88,7 +110,7 @@ var WinterfellFormBuilder = /*#__PURE__*/function (_Component) {
           errorMessage = _this$props.errorMessage,
           title = _this$props.title;
       return /*#__PURE__*/_react["default"].createElement("div", {
-        className: "container winterfell-form-builder"
+        className: "container-fluid winterfell-form-builder"
       }, /*#__PURE__*/_react["default"].createElement("div", {
         className: "row"
       }, /*#__PURE__*/_react["default"].createElement("div", {
@@ -96,7 +118,7 @@ var WinterfellFormBuilder = /*#__PURE__*/function (_Component) {
       }, /*#__PURE__*/_react["default"].createElement("h1", null, "Winterfell Form Builder"))), /*#__PURE__*/_react["default"].createElement("div", {
         className: "row"
       }, /*#__PURE__*/_react["default"].createElement("div", {
-        className: "modal fade ".concat(errorMessage !== '' ? 'show' : ''),
+        className: "modal fade ".concat(errorMessage !== "" ? "show" : ""),
         id: "errorMessage",
         tabIndex: "-1",
         key: "errorMessageModal"
@@ -125,21 +147,22 @@ var WinterfellFormBuilder = /*#__PURE__*/function (_Component) {
       }, /*#__PURE__*/_react["default"].createElement(_FormMenu.CreateFormButton, null), /*#__PURE__*/_react["default"].createElement(_FormMenu.UploadJSONButton, null), /*#__PURE__*/_react["default"].createElement(_FormMenu.SaveFormButton, null), /*#__PURE__*/_react["default"].createElement(_FormMenu.EditSchemaButton, null), /*#__PURE__*/_react["default"].createElement(_FormMenu.EditFormTitleButton, null)))), !this.props.schema || this.props.schema.size === 0 ? /*#__PURE__*/_react["default"].createElement("div", {
         className: "alert alert-info",
         role: "alert"
-      }, "No form loaded.  Click on ", /*#__PURE__*/_react["default"].createElement("b", null, "Create"), " to create a new form, or ", /*#__PURE__*/_react["default"].createElement("b", null, "Import"), " to load an existing form (.json).") : /*#__PURE__*/_react["default"].createElement("div", {
+      }, "No form loaded. Click on ", /*#__PURE__*/_react["default"].createElement("b", null, "Create"), " to create a new form, or ", /*#__PURE__*/_react["default"].createElement("b", null, "Import"), " to load an existing form (.json).") : /*#__PURE__*/_react["default"].createElement("div", {
         className: "row winterfell-form-builder-editor"
       }, /*#__PURE__*/_react["default"].createElement("div", {
-        className: "col-4"
+        className: "col-4",
+        id: "questionEditor"
       }, /*#__PURE__*/_react["default"].createElement("h3", null, "Page Editor"), /*#__PURE__*/_react["default"].createElement("div", {
         className: "btn-group"
       }, /*#__PURE__*/_react["default"].createElement(_FormMenu.AddPageButton, null), /*#__PURE__*/_react["default"].createElement(_FormMenu.PageSortButton, {
         onClick: function onClick() {
-          return _this2.props.changeCurrentEditingField('pageSort');
+          return _this2.props.changeCurrentEditingField("pageSort");
         }
       })), /*#__PURE__*/_react["default"].createElement("br", null), /*#__PURE__*/_react["default"].createElement(_TreeView["default"], {
         id: "tree-view"
       }), /*#__PURE__*/_react["default"].createElement("br", null), formPanels && /*#__PURE__*/_react["default"].createElement(_Pagination["default"], {
         formPanels: formPanels.map(function (panel) {
-          return panel.get('panelId');
+          return panel.get("panelId");
         }),
         currentPanelId: currentPanelId,
         onClick: this.props.goToPage
@@ -150,19 +173,104 @@ var WinterfellFormBuilder = /*#__PURE__*/function (_Component) {
         currentQuestionIndex: currentQuestionIndex
       })), /*#__PURE__*/_react["default"].createElement("div", {
         className: "col-8 winterfell-form-builder-page-editor"
-      }, /*#__PURE__*/_react["default"].createElement("h3", null, title), this.props.schema && currentQuestionPanelIndex >= 0 && /*#__PURE__*/_react["default"].createElement(_FieldSelector["default"], {
+      }, /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("ul", {
+        "class": "nav nav-tabs",
+        id: "myTab",
+        role: "tablist"
+      }, /*#__PURE__*/_react["default"].createElement("li", {
+        "class": "nav-item",
+        role: "presentation",
+        onClick: function onClick(evt) {
+          _this2.toggleTable(evt, false);
+        }
+      }, /*#__PURE__*/_react["default"].createElement("a", {
+        "class": "nav-link active",
+        id: "questionPanel-tab",
+        "data-toggle": "tab",
+        href: "#questionPanel",
+        role: "tab",
+        "aria-controls": "questionPanel",
+        "aria-selected": "false"
+      }, "Questions panel")), /*#__PURE__*/_react["default"].createElement("li", {
+        "class": "nav-item",
+        role: "presentation",
+        onClick: function onClick(evt) {
+          _this2.toggleTable(evt, false);
+        }
+      }, /*#__PURE__*/_react["default"].createElement("a", {
+        "class": "nav-link ",
+        id: "docEditor-tab",
+        "data-toggle": "tab",
+        href: "#docEditor",
+        role: "tab",
+        "aria-controls": "docEditor",
+        "aria-selected": "true"
+      }, "Editor")), /*#__PURE__*/_react["default"].createElement("li", {
+        "class": "nav-item",
+        role: "presentation",
+        onClick: function onClick(evt) {
+          _this2.toggleTable(evt, true);
+        }
+      }, /*#__PURE__*/_react["default"].createElement("a", {
+        "class": "nav-link",
+        id: "schemaViewer-tab",
+        "data-toggle": "tab",
+        href: "#schemaViewer",
+        role: "tab",
+        "aria-controls": "schemaViewer",
+        "aria-selected": "false"
+      }, "Document schema viewer")), /*#__PURE__*/_react["default"].createElement("li", {
+        "class": "nav-item",
+        role: "presentation",
+        onClick: function onClick(evt) {
+          _this2.toggleTable(evt, true);
+        }
+      }, /*#__PURE__*/_react["default"].createElement("a", {
+        "class": "nav-link",
+        id: "htmlViewer-tab",
+        "data-toggle": "tab",
+        href: "#htmlViewer",
+        role: "tab",
+        "aria-controls": "htmlViewer",
+        "aria-selected": "false"
+      }, "Document HTML viewer")))), /*#__PURE__*/_react["default"].createElement("div", {
+        "class": "tab-content",
+        id: "myTabContent"
+      }, /*#__PURE__*/_react["default"].createElement("div", {
+        "class": "tab-pane fade show active",
+        id: "questionPanel",
+        role: "tabpanel",
+        "aria-labelledby": "contact-tab"
+      }, /*#__PURE__*/_react["default"].createElement(_QuestionsPanel["default"], {
+        title: title,
+        schema: this.props.schema,
         currentQuestionPanelIndex: currentQuestionPanelIndex
-      }))), /*#__PURE__*/_react["default"].createElement("div", {
+      })), /*#__PURE__*/_react["default"].createElement("div", {
+        "class": "tab-pane fade",
+        id: "docEditor",
+        role: "tabpanel",
+        "aria-labelledby": "docEditor-tab"
+      }, /*#__PURE__*/_react["default"].createElement(_documentEditorV.TextEditor, null)), /*#__PURE__*/_react["default"].createElement("div", {
+        "class": "tab-pane fade overflow-auto",
+        id: "schemaViewer",
+        role: "tabpanel",
+        "aria-labelledby": "schemaViewer-tab"
+      }, this.state.schemaToggle ? /*#__PURE__*/_react["default"].createElement(_documentEditorV.SchemaViewer, null) : null), /*#__PURE__*/_react["default"].createElement("div", {
+        "class": "tab-pane fade overflow-auto",
+        id: "htmlViewer",
+        role: "tabpanel",
+        "aria-labelledby": "htmlViewer-tab"
+      }, this.state.schemaToggle ? /*#__PURE__*/_react["default"].createElement(_documentEditorV.HTMLViewer, null) : null)))), /*#__PURE__*/_react["default"].createElement("div", {
         className: "row winterfell-form-builder-previewer"
       }, /*#__PURE__*/_react["default"].createElement("div", {
         className: "col-12 mb-5 py-3"
       }, /*#__PURE__*/_react["default"].createElement("h3", null, "Winterfell Form Preview:"), schema && /*#__PURE__*/_react["default"].createElement(_Previewer["default"], {
         currentPanelId: currentPanelId,
         schema: schema.toJS()
-      }), currentPanelId === 'Select Page' && /*#__PURE__*/_react["default"].createElement("div", {
+      }), currentPanelId === "Select Page" && /*#__PURE__*/_react["default"].createElement("div", {
         className: "alert alert-info",
         role: "alert"
-      }, "No page selected to preview.  Select a page from the dropdown above."))));
+      }, "No page selected to preview. Select a page from the dropdown above."))));
     }
   }]);
   return WinterfellFormBuilder;
@@ -183,7 +291,7 @@ WinterfellFormBuilder.propTypes = {
   title: _propTypes["default"].string
 };
 WinterfellFormBuilder.defaultProps = {
-  title: '',
+  title: "",
   schema: null,
   currentPanelId: null,
   inputSchema: {},
@@ -193,22 +301,22 @@ WinterfellFormBuilder.defaultProps = {
   // first page by default
   currentQuestionSetIndex: null,
   currentQuestionIndex: null,
-  currentEditingField: 'page',
-  errorMessage: ''
+  currentEditingField: "page",
+  errorMessage: ""
 };
 
 function mapStateToProps(state, ownProps) {
   return {
-    title: state.getIn(['form', 'title']),
-    schema: state.getIn(['form', 'schema']),
-    currentPanelId: state.getIn(['form', 'currentPanelId']),
-    formPanels: state.getIn(['form', 'schema', 'formPanels']),
-    questionSets: state.getIn(['form', 'schema', 'questionSets']),
-    currentEditingField: state.getIn(['form', 'currentEditingField']),
-    currentQuestionPanelIndex: state.getIn(['form', 'currentQuestionPanelIndex']),
-    currentQuestionSetIndex: state.getIn(['form', 'currentQuestionSetIndex']),
-    currentQuestionIndex: state.getIn(['form', 'currentQuestionIndex']),
-    errorMessage: state.getIn(['error', 'message'])
+    title: state.getIn(["form", "title"]),
+    schema: state.getIn(["form", "schema"]),
+    currentPanelId: state.getIn(["form", "currentPanelId"]),
+    formPanels: state.getIn(["form", "schema", "formPanels"]),
+    questionSets: state.getIn(["form", "schema", "questionSets"]),
+    currentEditingField: state.getIn(["form", "currentEditingField"]),
+    currentQuestionPanelIndex: state.getIn(["form", "currentQuestionPanelIndex"]),
+    currentQuestionSetIndex: state.getIn(["form", "currentQuestionSetIndex"]),
+    currentQuestionIndex: state.getIn(["form", "currentQuestionIndex"]),
+    errorMessage: state.getIn(["error", "message"])
   };
 }
 
