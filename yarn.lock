@@ -6123,9 +6123,9 @@ doctrine@^3.0.0:
   dependencies:
     esutils "^2.0.2"
 
-"document-editor-v3@https://github.com/LawPath/document-editor-v3.git":
+"document-editor-v3@https://github.com/LawPath/document-editor-v3.git#abc8904918ac0251109f609399ce6ab6520116b9":
   version "0.0.5"
-  resolved "https://github.com/LawPath/document-editor-v3.git#f07a4fe053c086169adaa9bc356dbc43c2312530"
+  resolved "https://github.com/LawPath/document-editor-v3.git#abc8904918ac0251109f609399ce6ab6520116b9"
   dependencies:
     "@convertkit/slate-keymap" "^0.1.10"
     babel-loader "^8.1.0"
@@ -6135,14 +6135,15 @@ doctrine@^3.0.0:
     is-hotkey "^0.1.6"
     jquery "^3.5.1"
     moment "^2.27.0"
+    prettier "^2.0.5"
     react-autosuggest "^10.0.2"
     react-contextmenu "^2.14.0"
     react-device-detect "^1.13.1"
     react-scripts "3.4.1"
     slate "0.47.9"
+    slate-deep-table "https://github.com/LawPath/slate-deep-table.git#a521f4bde345e8c386fa30d75868a901190be9c8"
     slate-html-serializer "^0.8.13"
     slate-react "0.22.10"
-    slate-react-placeholder "^0.2.9"
     styled-components "^5.1.1"
 
 dom-converter@~0.1:
@@ -12691,6 +12692,11 @@ prepend-http@^1.0.0:
   resolved "https://registry.yarnpkg.com/prepend-http/-/prepend-http-1.0.4.tgz#d4f4562b0ce3696e41ac52d0e002e57a635dc6dc"
   integrity sha1-1PRWKwzjaW5BrFLQ4ALlemNdxtw=
 
+prettier@^2.0.5:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.1.1.tgz#d9485dd5e499daa6cb547023b87a6cf51bee37d6"
+  integrity sha512-9bY+5ZWCfqj3ghYBLxApy2zf6m+NJo5GzmLTpr9FsApsfjriNnS2dahWReHMi7qNPhhHl9SYHJs2cHZLgexNIw==
+
 pretty-bytes@^5.1.0:
   version "5.4.1"
   resolved "https://registry.yarnpkg.com/pretty-bytes/-/pretty-bytes-5.4.1.tgz#cd89f79bbcef21e3d21eb0da68ffe93f803e884b"
@@ -14383,6 +14389,12 @@ slate-base64-serializer@^0.2.112:
   dependencies:
     isomorphic-base64 "^1.0.2"
 
+"slate-deep-table@https://github.com/LawPath/slate-deep-table.git#a521f4bde345e8c386fa30d75868a901190be9c8":
+  version "0.9.7"
+  resolved "https://github.com/LawPath/slate-deep-table.git#a521f4bde345e8c386fa30d75868a901190be9c8"
+  dependencies:
+    slate-html-serializer "^0.8.0"
+
 slate-dev-environment@^0.2.2:
   version "0.2.5"
   resolved "https://registry.yarnpkg.com/slate-dev-environment/-/slate-dev-environment-0.2.5.tgz#481b6906fde5becc390db7c14edf97a4bb0029f2"
@@ -14398,7 +14410,7 @@ slate-hotkeys@^0.2.9:
     is-hotkey "0.1.4"
     slate-dev-environment "^0.2.2"
 
-slate-html-serializer@^0.8.13:
+slate-html-serializer@^0.8.0, slate-html-serializer@^0.8.13:
   version "0.8.13"
   resolved "https://registry.yarnpkg.com/slate-html-serializer/-/slate-html-serializer-0.8.13.tgz#cb37696f5d7046a61047b53e659654799c5c3bde"
   integrity sha512-TRn81JUs7qbzE19A3f7Cw+YM4aiYiKUZM98hX9AQ7YeFqXosB0S07FwezfFt73qZhvHuJTHlnB58gPa48mEg0w==
