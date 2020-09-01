@@ -333,7 +333,7 @@ function deletePage(panelId) {
   };
 }
 
-function addQuestionSet(currentPanelId, questionSetId, questionSetHeader, questionSetText, question, questionText, questionType) {
+function addQuestionSet(currentPanelId, questionSetId, questionSetHeader, questionSetText, questionId, question, questionText, questionType) {
   return {
     type: _constants.ADD_QUESTION_SET_SUCCESS,
     payload: {
@@ -341,6 +341,7 @@ function addQuestionSet(currentPanelId, questionSetId, questionSetHeader, questi
       questionSetId: questionSetId,
       questionSetHeader: questionSetHeader,
       questionSetText: questionSetText,
+      questionId: questionId,
       question: question,
       questionText: questionText,
       questionType: questionType

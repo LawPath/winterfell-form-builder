@@ -239,16 +239,8 @@ function winterfellFormBuilderReducer() {
     case _constants.CREATE_FORM_SUCCESS:
       return state.set('title', action.payload.title).set('currentQuestionPanelIndex', 0).set('schema', (0, _immutable.fromJS)({
         classes: _constants.BOOTSTRAP_CLASSES,
-        formPanels: [{
-          index: 1,
-          panelId: 'page-1'
-        }],
-        questionPanels: [{
-          panelId: 'page-1',
-          panelHeader: "".concat(action.payload.title, " - page-1"),
-          panelText: 'page-1 text',
-          questionSets: []
-        }],
+        formPanels: [],
+        questionPanels: [],
         questionSets: []
       }));
 

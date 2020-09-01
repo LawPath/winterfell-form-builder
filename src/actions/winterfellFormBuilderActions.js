@@ -40,7 +40,7 @@ import {
   UPDATE_NEXT_QUESTION_TARGET_SUCCESS,
   RESET_NEXT_QUESTION_TARGET_SUCCESS,
   UPDATE_QUESTION_ANSWERS_SUCCESS,
-} from '../common/constants';
+} from "../common/constants";
 
 export function updateErrorMessage(message) {
   return {
@@ -248,14 +248,7 @@ export function deletePage(panelId) {
   };
 }
 
-export function addQuestionSet(
-  currentPanelId,
-  questionSetId,
-  questionSetHeader,
-  questionSetText,
-  question,
-  questionText,
-  questionType) {
+export function addQuestionSet(currentPanelId, questionSetId, questionSetHeader, questionSetText, questionId, question, questionText, questionType) {
   return {
     type: ADD_QUESTION_SET_SUCCESS,
     payload: {
@@ -263,19 +256,15 @@ export function addQuestionSet(
       questionSetId,
       questionSetHeader,
       questionSetText,
+      questionId,
       question,
       questionText,
-      questionType },
+      questionType,
+    },
   };
 }
 
-export function addQuestion(
-  currentQuestionSetIndex,
-  questionSetId,
-  questionId,
-  question,
-  questionText,
-  questionType) {
+export function addQuestion(currentQuestionSetIndex, questionSetId, questionId, question, questionText, questionType) {
   return {
     type: ADD_QUESTION_SUCCESS,
     payload: {
@@ -284,16 +273,12 @@ export function addQuestion(
       questionId,
       question,
       questionText,
-      questionType },
+      questionType,
+    },
   };
 }
 
-export function addConditionalQuestion(
-  path,
-  questionId,
-  question,
-  questionText,
-  questionType) {
+export function addConditionalQuestion(path, questionId, question, questionText, questionType) {
   return {
     type: ADD_CONDITIONAL_QUESTION_SUCCESS,
     payload: {
@@ -301,7 +286,8 @@ export function addConditionalQuestion(
       questionId,
       question,
       questionText,
-      questionType },
+      questionType,
+    },
   };
 }
 
@@ -312,16 +298,14 @@ export function deleteQuestion(currentQuestionSetIndex, currentQuestionIndex) {
   };
 }
 
-export function changeCurrentEditingField(
-  currentEditingField, currentQuestionSetIndex, currentQuestionIndex) {
+export function changeCurrentEditingField(currentEditingField, currentQuestionSetIndex, currentQuestionIndex) {
   return {
     type: CHANGE_EDITING_FIELD_SUCCESS,
     payload: { currentEditingField, currentQuestionSetIndex, currentQuestionIndex },
   };
 }
 
-export function updateQuestion(
-  currentQuestionSetIndex, currentQuestionIndex, question, questionText) {
+export function updateQuestion(currentQuestionSetIndex, currentQuestionIndex, question, questionText) {
   return {
     type: UPDATE_QUESTION_SUCCESS,
     payload: { currentQuestionSetIndex, currentQuestionIndex, question, questionText },
@@ -335,8 +319,7 @@ export function movePage(oldIndex, newIndex) {
   };
 }
 
-export function updateNextQuestionTarget(
-  currentQuestionPanelIndex, questionId, value, target, optionIndex) {
+export function updateNextQuestionTarget(currentQuestionPanelIndex, questionId, value, target, optionIndex) {
   return {
     type: UPDATE_NEXT_QUESTION_TARGET_SUCCESS,
     payload: { currentQuestionPanelIndex, questionId, value, target, optionIndex },
@@ -350,15 +333,7 @@ export function resetNextQuestionTarget(currentQuestionPanelIndex, value) {
   };
 }
 
-export function saveConditionalQuestion(
-  path,
-  questionId,
-  question,
-  text,
-  postText,
-  type,
-  options,
-) {
+export function saveConditionalQuestion(path, questionId, question, text, postText, type, options) {
   return {
     type: SAVE_CONDITIONAL_QUESTION_SUCCESS,
     payload: {

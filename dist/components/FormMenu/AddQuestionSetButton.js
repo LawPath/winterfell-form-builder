@@ -53,12 +53,12 @@ var AddQuestionSetButton = /*#__PURE__*/function (_Component) {
     _this = _super.call(this, props);
     _this.state = {
       showModal: false,
-      questionSetId: '',
-      questionSetHeader: '',
-      questionSetText: '',
-      question: '',
-      questionText: '',
-      questionType: ''
+      questionSetId: "",
+      questionSetHeader: "",
+      questionSetText: "",
+      question: "",
+      questionText: "",
+      questionType: ""
     };
     _this.onChange = _this.onChange.bind((0, _assertThisInitialized2["default"])(_this));
     _this.onSelect = _this.onSelect.bind((0, _assertThisInitialized2["default"])(_this));
@@ -91,7 +91,7 @@ var AddQuestionSetButton = /*#__PURE__*/function (_Component) {
     key: "onFormUpdate",
     value: function onFormUpdate(e) {
       e.preventDefault();
-      this.props.addQuestionSet(this.props.currentPanelId, this.state.questionSetId, this.state.questionSetHeader, this.state.questionSetText, this.state.question, this.state.questionText, this.state.questionType);
+      this.props.addQuestionSet(this.props.currentPanelId, this.state.questionSetId, this.state.questionSetHeader, this.state.questionSetText, null, this.state.question, this.state.questionText, this.state.questionType);
       this.setState({
         showModal: false
       });
@@ -102,7 +102,7 @@ var AddQuestionSetButton = /*#__PURE__*/function (_Component) {
       return [/*#__PURE__*/_react["default"].createElement("button", {
         type: "button",
         className: "btn btn-block btn-dark",
-        disabled: !this.props.currentPanelId || this.props.currentPanelId === 'Select Page',
+        disabled: !this.props.currentPanelId || this.props.currentPanelId === "Select Page",
         "data-toggle": "modal",
         "data-target": "#addQuestionSet",
         key: "addQuestionSet",
@@ -191,12 +191,12 @@ AddQuestionSetButton.propTypes = {
   currentPanelId: _propTypes["default"].string
 };
 AddQuestionSetButton.defaultProps = {
-  currentPanelId: ''
+  currentPanelId: ""
 };
 
 function mapStateToProps(state) {
   return {
-    currentPanelId: state.getIn(['form', 'currentPanelId'])
+    currentPanelId: state.getIn(["form", "currentPanelId"])
   };
 }
 
