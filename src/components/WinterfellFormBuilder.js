@@ -97,7 +97,9 @@ class WinterfellFormBuilder extends Component {
               )}
             </div>
             <div className="col-8 winterfell-form-builder-page-editor">
-              <div>
+              <QuestionPanels title={title} schema={this.props.schema} currentQuestionPanelIndex={currentQuestionPanelIndex} />
+
+              {/* <div>
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                   <li
                     class="nav-item"
@@ -144,9 +146,9 @@ class WinterfellFormBuilder extends Component {
                     </a>
                   </li>
                 </ul>
-              </div>
+              </div> */}
 
-              <div class="tab-content" id="myTabContent">
+              {/* <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="questionPanel" role="tabpanel" aria-labelledby="contact-tab">
                   <QuestionPanels title={title} schema={this.props.schema} currentQuestionPanelIndex={currentQuestionPanelIndex} />
                 </div>
@@ -159,7 +161,7 @@ class WinterfellFormBuilder extends Component {
                 <div class="tab-pane fade overflow-auto" id="htmlViewer" role="tabpanel" aria-labelledby="htmlViewer-tab">
                   {this.state.schemaToggle ? <HTMLViewer /> : null}
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         )}

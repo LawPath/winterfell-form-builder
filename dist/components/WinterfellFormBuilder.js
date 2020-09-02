@@ -173,94 +173,11 @@ var WinterfellFormBuilder = /*#__PURE__*/function (_Component) {
         currentQuestionIndex: currentQuestionIndex
       })), /*#__PURE__*/_react["default"].createElement("div", {
         className: "col-8 winterfell-form-builder-page-editor"
-      }, /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("ul", {
-        "class": "nav nav-tabs",
-        id: "myTab",
-        role: "tablist"
-      }, /*#__PURE__*/_react["default"].createElement("li", {
-        "class": "nav-item",
-        role: "presentation",
-        onClick: function onClick(evt) {
-          _this2.toggleTable(evt, false);
-        }
-      }, /*#__PURE__*/_react["default"].createElement("a", {
-        "class": "nav-link active",
-        id: "questionPanel-tab",
-        "data-toggle": "tab",
-        href: "#questionPanel",
-        role: "tab",
-        "aria-controls": "questionPanel",
-        "aria-selected": "false"
-      }, "Questions panel")), /*#__PURE__*/_react["default"].createElement("li", {
-        "class": "nav-item",
-        role: "presentation",
-        onClick: function onClick(evt) {
-          _this2.toggleTable(evt, false);
-        }
-      }, /*#__PURE__*/_react["default"].createElement("a", {
-        "class": "nav-link ",
-        id: "docEditor-tab",
-        "data-toggle": "tab",
-        href: "#docEditor",
-        role: "tab",
-        "aria-controls": "docEditor",
-        "aria-selected": "true"
-      }, "Editor")), /*#__PURE__*/_react["default"].createElement("li", {
-        "class": "nav-item",
-        role: "presentation",
-        onClick: function onClick(evt) {
-          _this2.toggleTable(evt, true);
-        }
-      }, /*#__PURE__*/_react["default"].createElement("a", {
-        "class": "nav-link",
-        id: "schemaViewer-tab",
-        "data-toggle": "tab",
-        href: "#schemaViewer",
-        role: "tab",
-        "aria-controls": "schemaViewer",
-        "aria-selected": "false"
-      }, "Document schema viewer")), /*#__PURE__*/_react["default"].createElement("li", {
-        "class": "nav-item",
-        role: "presentation",
-        onClick: function onClick(evt) {
-          _this2.toggleTable(evt, true);
-        }
-      }, /*#__PURE__*/_react["default"].createElement("a", {
-        "class": "nav-link",
-        id: "htmlViewer-tab",
-        "data-toggle": "tab",
-        href: "#htmlViewer",
-        role: "tab",
-        "aria-controls": "htmlViewer",
-        "aria-selected": "false"
-      }, "Document HTML viewer")))), /*#__PURE__*/_react["default"].createElement("div", {
-        "class": "tab-content",
-        id: "myTabContent"
-      }, /*#__PURE__*/_react["default"].createElement("div", {
-        "class": "tab-pane fade show active",
-        id: "questionPanel",
-        role: "tabpanel",
-        "aria-labelledby": "contact-tab"
       }, /*#__PURE__*/_react["default"].createElement(_QuestionsPanel["default"], {
         title: title,
         schema: this.props.schema,
         currentQuestionPanelIndex: currentQuestionPanelIndex
-      })), /*#__PURE__*/_react["default"].createElement("div", {
-        "class": "tab-pane fade",
-        id: "docEditor",
-        role: "tabpanel",
-        "aria-labelledby": "docEditor-tab"
-      }, /*#__PURE__*/_react["default"].createElement(_documentEditorV.TextEditor, null)), /*#__PURE__*/_react["default"].createElement("div", {
-        "class": "tab-pane fade overflow-auto",
-        id: "schemaViewer",
-        role: "tabpanel",
-        "aria-labelledby": "schemaViewer-tab"
-      }, this.state.schemaToggle ? /*#__PURE__*/_react["default"].createElement(_documentEditorV.SchemaViewer, null) : null), /*#__PURE__*/_react["default"].createElement("div", {
-        "class": "tab-pane fade overflow-auto",
-        id: "htmlViewer",
-        role: "tabpanel",
-        "aria-labelledby": "htmlViewer-tab"
-      }, this.state.schemaToggle ? /*#__PURE__*/_react["default"].createElement(_documentEditorV.HTMLViewer, null) : null)))), /*#__PURE__*/_react["default"].createElement("div", {
+      }))), /*#__PURE__*/_react["default"].createElement("div", {
         className: "row winterfell-form-builder-previewer"
       }, /*#__PURE__*/_react["default"].createElement("div", {
         className: "col-12 mb-5 py-3"
