@@ -592,7 +592,7 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.10.4"
 
-"@babel/plugin-syntax-dynamic-import@^7.8.0":
+"@babel/plugin-syntax-dynamic-import@^7.8.0", "@babel/plugin-syntax-dynamic-import@^7.8.3":
   version "7.8.3"
   resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-dynamic-import/-/plugin-syntax-dynamic-import-7.8.3.tgz#62bf98b2da3cd21d626154fc96ee5b3cb68eacb3"
   integrity sha512-5gdGbFon+PszYzqs83S3E5mpi7/y/8M9eC90MRTZfduQOYW76ig6SOSPNe41IG5LoP3FGBn2N0RjVDSQiS94kQ==
@@ -6146,9 +6146,9 @@ doctrine@^3.0.0:
     slate-react "0.22.10"
     styled-components "^5.1.1"
 
-"document-editor-v3@https://github.com/LawPath/document-editor-v3.git#9e66141d661497d4ad7425a9853939b089dbb481":
+"document-editor-v3@https://github.com/LawPath/document-editor-v3.git#9be2a46ed3644dcce1a359caf5a10eedb634b320":
   version "0.0.5"
-  resolved "https://github.com/LawPath/document-editor-v3.git#9e66141d661497d4ad7425a9853939b089dbb481"
+  resolved "https://github.com/LawPath/document-editor-v3.git#9be2a46ed3644dcce1a359caf5a10eedb634b320"
   dependencies:
     "@convertkit/slate-keymap" "^0.1.10"
     babel-loader "^8.1.0"
