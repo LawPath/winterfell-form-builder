@@ -1,8 +1,8 @@
 "use strict";
 
-var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
-
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -22,6 +22,8 @@ var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime
 var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
 
 var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
+
+var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -49,9 +51,116 @@ require("document-editor-v3/dist/lib/index.scss");
 
 var _QuestionsPanel = _interopRequireDefault(require("./layouts/QuestionsPanel"));
 
+var _this = void 0;
+
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+var TabPanel = function TabPanel(_ref) {
+  var children = _ref.children;
+
+  var _useState = (0, _react.useState)(false),
+      _useState2 = (0, _slicedToArray2["default"])(_useState, 2),
+      schemaToggle = _useState2[0],
+      setSchemaToggle = _useState2[1];
+
+  var toggleTable = function toggleTable(evt, state) {
+    evt.preventDefault();
+
+    if (state) {
+      document.getElementById("schemaViewer").style.height = "".concat(document.getElementById("questionEditor").clientHeight, "px");
+      document.getElementById("htmlViewer").style.height = "".concat(document.getElementById("questionEditor").clientHeight, "px");
+    }
+
+    setSchemaToggle(state);
+  };
+
+  return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("ul", {
+    "class": "nav nav-tabs",
+    id: "myTab",
+    role: "tablist"
+  }, /*#__PURE__*/_react["default"].createElement("li", {
+    "class": "nav-item",
+    role: "presentation",
+    onClick: function onClick(evt) {
+      return toggleTable(evt, false);
+    }
+  }, /*#__PURE__*/_react["default"].createElement("a", {
+    "class": "nav-link active",
+    id: "questionPanel-tab",
+    "data-toggle": "tab",
+    href: "#questionPanel",
+    role: "tab",
+    "aria-controls": "questionPanel",
+    "aria-selected": "false"
+  }, "Questions panel")), /*#__PURE__*/_react["default"].createElement("li", {
+    "class": "nav-item",
+    role: "presentation",
+    onClick: function onClick(evt) {
+      return toggleTable(evt, false);
+    }
+  }, /*#__PURE__*/_react["default"].createElement("a", {
+    "class": "nav-link ",
+    id: "docEditor-tab",
+    "data-toggle": "tab",
+    href: "#docEditor",
+    role: "tab",
+    "aria-controls": "docEditor",
+    "aria-selected": "true"
+  }, "Editor")), /*#__PURE__*/_react["default"].createElement("li", {
+    "class": "nav-item",
+    role: "presentation",
+    onClick: function onClick(evt) {
+      return _this.toggleTable(evt, true);
+    }
+  }, /*#__PURE__*/_react["default"].createElement("a", {
+    "class": "nav-link",
+    id: "schemaViewer-tab",
+    "data-toggle": "tab",
+    href: "#schemaViewer",
+    role: "tab",
+    "aria-controls": "schemaViewer",
+    "aria-selected": "false"
+  }, "Document schema viewer")), /*#__PURE__*/_react["default"].createElement("li", {
+    "class": "nav-item",
+    role: "presentation",
+    onClick: function onClick(evt) {
+      return _this.toggleTable(evt, true);
+    }
+  }, /*#__PURE__*/_react["default"].createElement("a", {
+    "class": "nav-link",
+    id: "htmlViewer-tab",
+    "data-toggle": "tab",
+    href: "#htmlViewer",
+    role: "tab",
+    "aria-controls": "htmlViewer",
+    "aria-selected": "false"
+  }, "Document HTML viewer")))), /*#__PURE__*/_react["default"].createElement("div", {
+    "class": "tab-content",
+    id: "myTabContent"
+  }, /*#__PURE__*/_react["default"].createElement("div", {
+    "class": "tab-pane fade show active",
+    id: "questionPanel",
+    role: "tabpanel",
+    "aria-labelledby": "contact-tab"
+  }, children), /*#__PURE__*/_react["default"].createElement("div", {
+    "class": "tab-pane fade",
+    id: "docEditor",
+    role: "tabpanel",
+    "aria-labelledby": "docEditor-tab"
+  }, /*#__PURE__*/_react["default"].createElement(_documentEditorV.TextEditor, null)), /*#__PURE__*/_react["default"].createElement("div", {
+    "class": "tab-pane fade overflow-auto",
+    id: "schemaViewer",
+    role: "tabpanel",
+    "aria-labelledby": "schemaViewer-tab"
+  }, schemaToggle ? /*#__PURE__*/_react["default"].createElement(_documentEditorV.SchemaViewer, null) : null), /*#__PURE__*/_react["default"].createElement("div", {
+    "class": "tab-pane fade overflow-auto",
+    id: "htmlViewer",
+    role: "tabpanel",
+    "aria-labelledby": "htmlViewer-tab"
+  }, schemaToggle ? /*#__PURE__*/_react["default"].createElement(_documentEditorV.HTMLViewer, null) : null)));
+};
 
 var WinterfellFormBuilder = /*#__PURE__*/function (_Component) {
   (0, _inherits2["default"])(WinterfellFormBuilder, _Component);
@@ -59,7 +168,7 @@ var WinterfellFormBuilder = /*#__PURE__*/function (_Component) {
   var _super = _createSuper(WinterfellFormBuilder);
 
   function WinterfellFormBuilder() {
-    var _this;
+    var _this2;
 
     (0, _classCallCheck2["default"])(this, WinterfellFormBuilder);
 
@@ -67,37 +176,25 @@ var WinterfellFormBuilder = /*#__PURE__*/function (_Component) {
       args[_key] = arguments[_key];
     }
 
-    _this = _super.call.apply(_super, [this].concat(args));
-    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "state", {
+    _this2 = _super.call.apply(_super, [this].concat(args));
+    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this2), "state", {
       schema: {},
       schemaToggle: false
     });
-    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "onFormUpdate", function (e) {
+    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this2), "onFormUpdate", function (e) {
       e.preventDefault();
 
-      _this.setState({
+      _this2.setState({
         schemaToggle: JSON.parse(e.target.value)
       });
     });
-    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "toggleTable", function (evt, state) {
-      evt.preventDefault();
-
-      if (state) {
-        document.getElementById("schemaViewer").style.height = "".concat(document.getElementById("questionEditor").clientHeight, "px");
-        document.getElementById("htmlViewer").style.height = "".concat(document.getElementById("questionEditor").clientHeight, "px");
-      }
-
-      _this.setState({
-        schemaToggle: state
-      });
-    });
-    return _this;
+    return _this2;
   }
 
   (0, _createClass2["default"])(WinterfellFormBuilder, [{
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
       var _this$props = this.props,
           schema = _this$props.schema,
@@ -115,7 +212,7 @@ var WinterfellFormBuilder = /*#__PURE__*/function (_Component) {
         className: "row"
       }, /*#__PURE__*/_react["default"].createElement("div", {
         className: "col-12"
-      }, /*#__PURE__*/_react["default"].createElement("h1", null, "Winterfell Form Builder"))), /*#__PURE__*/_react["default"].createElement("div", {
+      }, /*#__PURE__*/_react["default"].createElement("h1", null, "Winterfell Form Builder"))), /*#__PURE__*/_react["default"].createElement(TabPanel, null, /*#__PURE__*/_react["default"].createElement("div", {
         className: "row"
       }, /*#__PURE__*/_react["default"].createElement("div", {
         className: "modal fade ".concat(errorMessage !== "" ? "show" : ""),
@@ -156,7 +253,7 @@ var WinterfellFormBuilder = /*#__PURE__*/function (_Component) {
         className: "btn-group"
       }, /*#__PURE__*/_react["default"].createElement(_FormMenu.AddPageButton, null), /*#__PURE__*/_react["default"].createElement(_FormMenu.PageSortButton, {
         onClick: function onClick() {
-          return _this2.props.changeCurrentEditingField("pageSort");
+          return _this3.props.changeCurrentEditingField("pageSort");
         }
       })), /*#__PURE__*/_react["default"].createElement("br", null), /*#__PURE__*/_react["default"].createElement(_TreeView["default"], {
         id: "tree-view"
@@ -187,7 +284,7 @@ var WinterfellFormBuilder = /*#__PURE__*/function (_Component) {
       }), currentPanelId === "Select Page" && /*#__PURE__*/_react["default"].createElement("div", {
         className: "alert alert-info",
         role: "alert"
-      }, "No page selected to preview. Select a page from the dropdown above."))));
+      }, "No page selected to preview. Select a page from the dropdown above.")))));
     }
   }]);
   return WinterfellFormBuilder;
