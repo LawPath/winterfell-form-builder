@@ -6123,6 +6123,30 @@ doctrine@^3.0.0:
   dependencies:
     esutils "^2.0.2"
 
+"document-editor-v3@https://github.com/LawPath/document-editor-v3.git#5ba3fdc14e7ce687857c047ffe5229df985014ef":
+  version "0.0.5"
+  resolved "https://github.com/LawPath/document-editor-v3.git#5ba3fdc14e7ce687857c047ffe5229df985014ef"
+  dependencies:
+    "@convertkit/slate-keymap" "^0.1.10"
+    babel-loader "^8.1.0"
+    bootstrap "4.3.1"
+    emotion "^10.0.27"
+    immutable "^3.8.2"
+    is-hotkey "^0.1.6"
+    jquery "^3.5.1"
+    moment "^2.27.0"
+    prettier "^2.0.5"
+    react-autosuggest "^10.0.2"
+    react-contextmenu "^2.14.0"
+    react-device-detect "^1.13.1"
+    react-scripts "3.4.1"
+    slate "0.47.9"
+    slate-deep-table "https://github.com/LawPath/slate-deep-table.git#dd0b43b796cf8648a102fad8b9304a7443cc8c65"
+    slate-html-serializer "^0.8.13"
+    slate-react "0.22.10"
+    styled-components "^5.1.1"
+    winterfell-form-builder "https://github.com/LawPath/winterfell-form-builder.git#e1daae30e42144fd906d6f9597277b99ee7dc675"
+
 "document-editor-v3@https://github.com/LawPath/document-editor-v3.git#68c4686e9a59c18eb259286c3025c83046b23a60":
   version "0.0.5"
   resolved "https://github.com/LawPath/document-editor-v3.git#68c4686e9a59c18eb259286c3025c83046b23a60"
@@ -6146,9 +6170,9 @@ doctrine@^3.0.0:
     slate-react "0.22.10"
     styled-components "^5.1.1"
 
-"document-editor-v3@https://github.com/LawPath/document-editor-v3.git#9be2a46ed3644dcce1a359caf5a10eedb634b320":
+"document-editor-v3@https://github.com/LawPath/document-editor-v3.git#c6144ce33ec659fe3541bdb7ad9c821bbea75cdc":
   version "0.0.5"
-  resolved "https://github.com/LawPath/document-editor-v3.git#9be2a46ed3644dcce1a359caf5a10eedb634b320"
+  resolved "https://github.com/LawPath/document-editor-v3.git#c6144ce33ec659fe3541bdb7ad9c821bbea75cdc"
   dependencies:
     "@convertkit/slate-keymap" "^0.1.10"
     babel-loader "^8.1.0"
@@ -6168,7 +6192,7 @@ doctrine@^3.0.0:
     slate-html-serializer "^0.8.13"
     slate-react "0.22.10"
     styled-components "^5.1.1"
-    winterfell-form-builder "https://github.com/LawPath/winterfell-form-builder.git#e1daae30e42144fd906d6f9597277b99ee7dc675"
+    winterfell-form-builder "https://github.com/LawPath/winterfell-form-builder.git#e7f011af1f2414f687a519f358311d14d4fff4f4"
 
 dom-converter@~0.1:
   version "0.1.4"
@@ -16407,6 +16431,24 @@ window-size@^0.1.2:
     redux-storage "^4.1.1"
     redux-storage-engine-localstorage "^1.1.4"
     redux-storage-merger-immutablejs "^1.0.5"
+    validator "^13.1.1"
+    vinyl-source-stream "^2.0.0"
+    winterfell "https://github.com/andrewhathaway/Winterfell.git"
+
+"winterfell-form-builder@https://github.com/LawPath/winterfell-form-builder.git#e7f011af1f2414f687a519f358311d14d4fff4f4":
+  version "0.0.1"
+  resolved "https://github.com/LawPath/winterfell-form-builder.git#e7f011af1f2414f687a519f358311d14d4fff4f4"
+  dependencies:
+    document-editor-v3 "https://github.com/LawPath/document-editor-v3.git#5ba3fdc14e7ce687857c047ffe5229df985014ef"
+    immutable "^3.8.2"
+    js-file-download "^0.4.12"
+    keycodez "^1.0.0"
+    lodash "^4.17.19"
+    moment "^2.27.0"
+    prop-types "15.7.2"
+    react-datepicker "^3.1.3"
+    react-router-redux "^4.0.8"
+    react-sortable-hoc "^1.11.0"
     validator "^13.1.1"
     vinyl-source-stream "^2.0.0"
     winterfell "https://github.com/andrewhathaway/Winterfell.git"

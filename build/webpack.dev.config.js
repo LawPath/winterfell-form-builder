@@ -69,15 +69,8 @@ module.exports = {
     extensions: [".js", ".json"], // <- Just append a '.json' here
   },
   optimization: {
-    runtimeChunk: true,
-    splitChunks: {
-      cacheGroups: {
-        vendor: {
-          test: /[\\/]node_modules[\\/]/,
-          name: "common",
-          chunks: "all",
-        },
-      },
-    },
+    namedModules: true,
+    namedChunks: true,
+    splitChunks: { cacheGroups: { default: false } },
   },
 };
