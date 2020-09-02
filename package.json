@@ -51,16 +51,10 @@
     "react-datepicker": "^3.1.3",
     "react-router-redux": "^4.0.8",
     "react-sortable-hoc": "^1.11.0",
-    "redux": "^4.0.4",
-    "redux-immutable": "^4.0.0",
-    "redux-saga": "0.14.3",
-    "redux-storage": "^4.1.1",
-    "redux-storage-engine-localstorage": "^1.1.4",
-    "redux-storage-merger-immutablejs": "^1.0.5",
     "validator": "^13.1.1",
     "vinyl-source-stream": "^2.0.0",
     "winterfell": "https://github.com/andrewhathaway/Winterfell.git",
-    "document-editor-v3": "https://github.com/LawPath/document-editor-v3.git#68c4686e9a59c18eb259286c3025c83046b23a60"
+    "document-editor-v3": "https://github.com/LawPath/document-editor-v3.git#9e66141d661497d4ad7425a9853939b089dbb481"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.5",
@@ -111,6 +105,12 @@
     "webpack-dev-server": "3.11.0",
     "react-redux": "^7.1.0",
     "react": "16.9.0",
-    "react-dom": "16.9.0"
+    "react-dom": "16.9.0",
+    "redux": "^4.0.4",
+    "redux-immutable": "^4.0.0",
+    "redux-saga": "0.14.3",
+    "redux-storage": "^4.1.1",
+    "redux-storage-engine-localstorage": "^1.1.4",
+    "redux-storage-merger-immutablejs": "^1.0.5"
   }
 }
