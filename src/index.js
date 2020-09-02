@@ -11,6 +11,7 @@ import {
   deletePage,
   createForm,
 } from "./actions/winterfellFormBuilderActions";
+import "document-editor-v3/dist/lib/index.scss";
 
 export {
   WinterfellFormBuilderReducer,
