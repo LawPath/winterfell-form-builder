@@ -14,37 +14,38 @@ import "document-editor-v3/dist/lib/index.scss";
 import QuestionPanels from "./layouts/QuestionsPanel";
 
 const TabPanel = ({ children }) => {
-  const [schemaToggle, setSchemaToggle] = useState(false);
+  const [schemaToggle, setSchemaToggle] = useState("schemaEditor");
 
   const toggleTable = (evt, state) => {
     evt.preventDefault();
-    if (state) {
-      document.getElementById("schemaViewer").style.height = `${document.getElementById("questionEditor").clientHeight}px`;
-      document.getElementById("htmlViewer").style.height = `${document.getElementById("questionEditor").clientHeight}px`;
-    }
     setSchemaToggle(state);
   };
 
   return (
     <>
-      <div>
+      <div className="winterfell-form-builder-tab-bar">
+        <div className="row">
+          <div className="col-12">
+            <h1>Winterfell Form Builder</h1>
+          </div>
+        </div>
         <ul class="nav nav-tabs" id="myTab" role="tablist">
-          <li class="nav-item" role="presentation" onClick={(evt) => toggleTable(evt, false)}>
+          <li class="nav-item" role="presentation" onClick={(evt) => toggleTable(evt, "schemaEditor")}>
             <a class="nav-link active" id="questionPanel-tab" data-toggle="tab" href="#questionPanel" role="tab" aria-controls="questionPanel" aria-selected="false">
               Questions panel
             </a>
           </li>
-          <li class="nav-item" role="presentation" onClick={(evt) => toggleTable(evt, false)}>
+          <li class="nav-item" role="presentation" onClick={(evt) => toggleTable(evt, "docEditor")}>
             <a class="nav-link " id="docEditor-tab" data-toggle="tab" href="#docEditor" role="tab" aria-controls="docEditor" aria-selected="true">
               Editor
             </a>
           </li>
-          <li class="nav-item" role="presentation" onClick={(evt) => this.toggleTable(evt, true)}>
+          <li class="nav-item" role="presentation" onClick={(evt) => toggleTable(evt, "schemaViewer")}>
             <a class="nav-link" id="schemaViewer-tab" data-toggle="tab" href="#schemaViewer" role="tab" aria-controls="schemaViewer" aria-selected="false">
               Document schema viewer
             </a>
           </li>
-          <li class="nav-item" role="presentation" onClick={(evt) => this.toggleTable(evt, true)}>
+          <li class="nav-item" role="presentation" onClick={(evt) => toggleTable(evt, "htmlViewer")}>
             <a class="nav-link" id="htmlViewer-tab" data-toggle="tab" href="#htmlViewer" role="tab" aria-controls="htmlViewer" aria-selected="false">
               Document HTML viewer
             </a>
@@ -52,19 +53,29 @@ const TabPanel = ({ children }) => {
         </ul>
       </div>
 
-      <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="questionPanel" role="tabpanel" aria-labelledby="contact-tab">
-          {children}
-        </div>
-        <div class="tab-pane fade" id="docEditor" role="tabpanel" aria-labelledby="docEditor-tab">
-          <TextEditor />
-        </div>
-        <div class="tab-pane fade overflow-auto" id="schemaViewer" role="tabpanel" aria-labelledby="schemaViewer-tab">
-          {schemaToggle ? <SchemaViewer /> : null}
-        </div>
-        <div class="tab-pane fade overflow-auto" id="htmlViewer" role="tabpanel" aria-labelledby="htmlViewer-tab">
-          {schemaToggle ? <HTMLViewer /> : null}
-        </div>
+      <div class="winterfell-form-builder-tab-content" id="myTabContent">
+        {schemaToggle === "schemaEditor" ? (
+          <div class="tab-pane fade show active" id="questionPanel" role="tabpanel" aria-labelledby="contact-tab">
+            {children}
+          </div>
+        ) : null}
+        {schemaToggle === "docEditor" ? (
+          <div class="tab-pane fade show active" id="docEditor" role="tabpanel" aria-labelledby="docEditor-tab">
+            <TextEditor />
+          </div>
+        ) : null}
+        {schemaToggle === "schemaViewer" ? (
+          <div class="tab-pane fade show active" id="schemaViewer" role="tabpanel" aria-labelledby="schemaViewer-tab">
+            <div>{<SchemaViewer />}</div>
+          </div>
+        ) : null}
+        {schemaToggle === "htmlViewer" ? (
+          <div class="tab-pane fade show active" id="htmlViewer" role="tabpanel" aria-labelledby="htmlViewer-tab">
+            <div>
+              <HTMLViewer />
+            </div>
+          </div>
+        ) : null}
       </div>
     </>
   );
@@ -86,11 +97,6 @@ class WinterfellFormBuilder extends Component {
 
     return (
       <div className="container-fluid winterfell-form-builder">
-        <div className="row">
-          <div className="col-12">
-            <h1>Winterfell Form Builder</h1>
-          </div>
-        </div>
         <TabPanel>
           <div className="row">
             <div className={`modal fade ${errorMessage !== "" ? "show" : ""}`} id="errorMessage" tabIndex="-1" key="errorMessageModal">
