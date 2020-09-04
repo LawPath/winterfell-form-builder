@@ -151,7 +151,7 @@
   background-color: #fff;
   z-index: 5;
   width: 100%;
-}
-.winterfell-form-builder-tab-content {
-  padding-top: 98px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
 }
