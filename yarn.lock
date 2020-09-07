@@ -6124,6 +6124,30 @@ doctrine@^3.0.0:
   dependencies:
     esutils "^2.0.2"
 
+"document-editor-v3@https://github.com/LawPath/document-editor-v3.git#10f7de2e095bbf01e35983a4e3195c8cd4668ff8":
+  version "0.0.5"
+  resolved "https://github.com/LawPath/document-editor-v3.git#10f7de2e095bbf01e35983a4e3195c8cd4668ff8"
+  dependencies:
+    "@convertkit/slate-keymap" "^0.1.10"
+    babel-loader "^8.1.0"
+    bootstrap "4.3.1"
+    emotion "^10.0.27"
+    immutable "^3.8.2"
+    is-hotkey "^0.1.6"
+    jquery "^3.5.1"
+    moment "^2.27.0"
+    prettier "^2.0.5"
+    react-autosuggest "^10.0.2"
+    react-contextmenu "^2.14.0"
+    react-device-detect "^1.13.1"
+    react-scripts "3.4.1"
+    slate "0.47.9"
+    slate-deep-table "https://github.com/LawPath/slate-deep-table.git#029b8a006e0b7b58e0f23250a1505de8acd6d890"
+    slate-html-serializer "^0.8.13"
+    slate-react "0.22.10"
+    styled-components "^5.1.1"
+    winterfell-form-builder "https://github.com/LawPath/winterfell-form-builder.git#e7f011af1f2414f687a519f358311d14d4fff4f4"
+
 "document-editor-v3@https://github.com/LawPath/document-editor-v3.git#5ba3fdc14e7ce687857c047ffe5229df985014ef":
   version "0.0.5"
   resolved "https://github.com/LawPath/document-editor-v3.git#5ba3fdc14e7ce687857c047ffe5229df985014ef"
@@ -6170,30 +6194,6 @@ doctrine@^3.0.0:
     slate-html-serializer "^0.8.13"
     slate-react "0.22.10"
     styled-components "^5.1.1"
-
-"document-editor-v3@https://github.com/LawPath/document-editor-v3.git#e5b39cbbe7a6c2ffb82f16f8a345beeb03677898":
-  version "0.0.5"
-  resolved "https://github.com/LawPath/document-editor-v3.git#e5b39cbbe7a6c2ffb82f16f8a345beeb03677898"
-  dependencies:
-    "@convertkit/slate-keymap" "^0.1.10"
-    babel-loader "^8.1.0"
-    bootstrap "4.3.1"
-    emotion "^10.0.27"
-    immutable "^3.8.2"
-    is-hotkey "^0.1.6"
-    jquery "^3.5.1"
-    moment "^2.27.0"
-    prettier "^2.0.5"
-    react-autosuggest "^10.0.2"
-    react-contextmenu "^2.14.0"
-    react-device-detect "^1.13.1"
-    react-scripts "3.4.1"
-    slate "0.47.9"
-    slate-deep-table "https://github.com/LawPath/slate-deep-table.git#dbe1134aab89e9f5381d854cc31d48fdd6614375"
-    slate-html-serializer "^0.8.13"
-    slate-react "0.22.10"
-    styled-components "^5.1.1"
-    winterfell-form-builder "https://github.com/LawPath/winterfell-form-builder.git#e7f011af1f2414f687a519f358311d14d4fff4f4"
 
 dom-converter@~0.1:
   version "0.1.4"
@@ -14439,9 +14439,9 @@ slate-base64-serializer@^0.2.112:
   dependencies:
     isomorphic-base64 "^1.0.2"
 
-"slate-deep-table@https://github.com/LawPath/slate-deep-table.git#dbe1134aab89e9f5381d854cc31d48fdd6614375":
+"slate-deep-table@https://github.com/LawPath/slate-deep-table.git#029b8a006e0b7b58e0f23250a1505de8acd6d890":
   version "0.9.7"
-  resolved "https://github.com/LawPath/slate-deep-table.git#dbe1134aab89e9f5381d854cc31d48fdd6614375"
+  resolved "https://github.com/LawPath/slate-deep-table.git#029b8a006e0b7b58e0f23250a1505de8acd6d890"
   dependencies:
     slate-html-serializer "^0.8.0"
 
