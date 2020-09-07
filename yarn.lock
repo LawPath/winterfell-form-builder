@@ -6171,9 +6171,9 @@ doctrine@^3.0.0:
     slate-react "0.22.10"
     styled-components "^5.1.1"
 
-"document-editor-v3@https://github.com/LawPath/document-editor-v3.git#7969d85068eaa682c000bdd5d3a31978e71e74a2":
+"document-editor-v3@https://github.com/LawPath/document-editor-v3.git#7cb7d407d72a58489fe30ceef4eebf29ed9c9bb0":
   version "0.0.5"
-  resolved "https://github.com/LawPath/document-editor-v3.git#7969d85068eaa682c000bdd5d3a31978e71e74a2"
+  resolved "https://github.com/LawPath/document-editor-v3.git#7cb7d407d72a58489fe30ceef4eebf29ed9c9bb0"
   dependencies:
     "@convertkit/slate-keymap" "^0.1.10"
     babel-loader "^8.1.0"
