@@ -3179,6 +3179,13 @@ axe-core@^3.5.4:
   resolved "https://registry.yarnpkg.com/axe-core/-/axe-core-3.5.5.tgz#84315073b53fa3c0c51676c588d59da09a192227"
   integrity sha512-5P0QZ6J5xGikH780pghEdbEKijCTrruK9KxtPZCFWUpef0f6GipO+xEZ5GKCb020mmqgbiNO6TcA55CriL784Q==
 
+axios@^0.20.0:
+  version "0.20.0"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.20.0.tgz#057ba30f04884694993a8cd07fa394cff11c50bd"
+  integrity sha512-ANA4rr2BDcmmAQLOKft2fufrtuvlqR+cXNNinUmvfeSNCOF98PZL+7M/v1zIdGo7OLjEA9J2gXJL+j4zGsl0bA==
+  dependencies:
+    follow-redirects "^1.10.0"
+
 axobject-query@^2.0.2, axobject-query@^2.1.2:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/axobject-query/-/axobject-query-2.2.0.tgz#943d47e10c0b704aa42275e20edf3722648989be"
@@ -6124,6 +6131,32 @@ doctrine@^3.0.0:
   dependencies:
     esutils "^2.0.2"
 
+"document-editor-v3@https://github.com/LawPath/document-editor-v3.git#474ad245d7e7bab10d334c79ab7767b028947e8f":
+  version "0.0.5"
+  resolved "https://github.com/LawPath/document-editor-v3.git#474ad245d7e7bab10d334c79ab7767b028947e8f"
+  dependencies:
+    "@convertkit/slate-keymap" "^0.1.10"
+    axios "^0.20.0"
+    babel-loader "^8.1.0"
+    bootstrap "4.3.1"
+    emotion "^10.0.27"
+    immutable "^3.8.2"
+    is-hotkey "^0.1.6"
+    jquery "^3.5.1"
+    less "^3.12.2"
+    moment "^2.27.0"
+    prettier "^2.0.5"
+    react-autosuggest "^10.0.2"
+    react-contextmenu "^2.14.0"
+    react-device-detect "^1.13.1"
+    react-scripts "3.4.1"
+    slate "0.47.9"
+    slate-deep-table "https://github.com/LawPath/slate-deep-table.git#029b8a006e0b7b58e0f23250a1505de8acd6d890"
+    slate-html-serializer "^0.8.13"
+    slate-react "0.22.10"
+    styled-components "^5.1.1"
+    winterfell-form-builder "https://github.com/LawPath/winterfell-form-builder.git#e7f011af1f2414f687a519f358311d14d4fff4f4"
+
 "document-editor-v3@https://github.com/LawPath/document-editor-v3.git#5ba3fdc14e7ce687857c047ffe5229df985014ef":
   version "0.0.5"
   resolved "https://github.com/LawPath/document-editor-v3.git#5ba3fdc14e7ce687857c047ffe5229df985014ef"
@@ -6170,30 +6203,6 @@ doctrine@^3.0.0:
     slate-html-serializer "^0.8.13"
     slate-react "0.22.10"
     styled-components "^5.1.1"
-
-"document-editor-v3@https://github.com/LawPath/document-editor-v3.git#869241809b1401b32427c861e2c2b9b2d17492f4":
-  version "0.0.5"
-  resolved "https://github.com/LawPath/document-editor-v3.git#869241809b1401b32427c861e2c2b9b2d17492f4"
-  dependencies:
-    "@convertkit/slate-keymap" "^0.1.10"
-    babel-loader "^8.1.0"
-    bootstrap "4.3.1"
-    emotion "^10.0.27"
-    immutable "^3.8.2"
-    is-hotkey "^0.1.6"
-    jquery "^3.5.1"
-    moment "^2.27.0"
-    prettier "^2.0.5"
-    react-autosuggest "^10.0.2"
-    react-contextmenu "^2.14.0"
-    react-device-detect "^1.13.1"
-    react-scripts "3.4.1"
-    slate "0.47.9"
-    slate-deep-table "https://github.com/LawPath/slate-deep-table.git#029b8a006e0b7b58e0f23250a1505de8acd6d890"
-    slate-html-serializer "^0.8.13"
-    slate-react "0.22.10"
-    styled-components "^5.1.1"
-    winterfell-form-builder "https://github.com/LawPath/winterfell-form-builder.git#e7f011af1f2414f687a519f358311d14d4fff4f4"
 
 dom-converter@~0.1:
   version "0.1.4"
@@ -7408,6 +7417,11 @@ follow-redirects@^1.0.0:
   version "1.12.1"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.12.1.tgz#de54a6205311b93d60398ebc01cf7015682312b6"
   integrity sha512-tmRv0AVuR7ZyouUHLeNSiO6pqulF7dYa3s19c6t+wz9LD69/uSzdMxJ2S91nTI9U3rt/IldxpzMOFejp6f0hjg==
+
+follow-redirects@^1.10.0:
+  version "1.13.0"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.13.0.tgz#b42e8d93a2a7eea5ed88633676d6597bc8e384db"
+  integrity sha512-aq6gF1BEKje4a9i9+5jimNFIpq4Q1WiwBToeRK5NvZBd/TRsmW8BsJfOEGkr76TbOyPVD3OVDN910EcUNtRYEA==
 
 for-in@^0.1.3:
   version "0.1.8"
@@ -10226,7 +10240,7 @@ less-loader@^6.2.0:
     loader-utils "^2.0.0"
     schema-utils "^2.7.0"
 
-less@^3.11.3:
+less@^3.11.3, less@^3.12.2:
   version "3.12.2"
   resolved "https://registry.yarnpkg.com/less/-/less-3.12.2.tgz#157e6dd32a68869df8859314ad38e70211af3ab4"
   integrity sha512-+1V2PCMFkL+OIj2/HrtrvZw0BC0sYLMICJfbQjuj/K8CEnlrFX6R5cKKgzzttsZDHyxQNL1jqMREjKN3ja/E3Q==

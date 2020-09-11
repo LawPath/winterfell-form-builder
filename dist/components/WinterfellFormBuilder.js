@@ -41,8 +41,6 @@ var _TreeView = _interopRequireDefault(require("./TreeView"));
 
 var _FormMenu = require("./FormMenu");
 
-var _FieldSelector = _interopRequireDefault(require("./FieldSelector"));
-
 var _FieldEditor = _interopRequireDefault(require("./FieldEditor"));
 
 var _documentEditorV = require("document-editor-v3");
@@ -56,9 +54,10 @@ function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflec
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 var TabPanel = function TabPanel(_ref) {
-  var children = _ref.children;
+  var children = _ref.children,
+      textEditorOnPreview = _ref.textEditorOnPreview;
 
-  var _useState = (0, _react.useState)("schemaEditor"),
+  var _useState = (0, _react.useState)('schemaEditor'),
       _useState2 = (0, _slicedToArray2["default"])(_useState, 2),
       schemaToggle = _useState2[0],
       setSchemaToggle = _useState2[1];
@@ -82,7 +81,7 @@ var TabPanel = function TabPanel(_ref) {
     "class": "nav-item",
     role: "presentation",
     onClick: function onClick(evt) {
-      return toggleTable(evt, "schemaEditor");
+      return toggleTable(evt, 'schemaEditor');
     }
   }, /*#__PURE__*/_react["default"].createElement("a", {
     "class": "nav-link active",
@@ -96,7 +95,7 @@ var TabPanel = function TabPanel(_ref) {
     "class": "nav-item",
     role: "presentation",
     onClick: function onClick(evt) {
-      return toggleTable(evt, "docEditor");
+      return toggleTable(evt, 'docEditor');
     }
   }, /*#__PURE__*/_react["default"].createElement("a", {
     "class": "nav-link ",
@@ -110,7 +109,7 @@ var TabPanel = function TabPanel(_ref) {
     "class": "nav-item",
     role: "presentation",
     onClick: function onClick(evt) {
-      return toggleTable(evt, "schemaViewer");
+      return toggleTable(evt, 'schemaViewer');
     }
   }, /*#__PURE__*/_react["default"].createElement("a", {
     "class": "nav-link",
@@ -124,7 +123,7 @@ var TabPanel = function TabPanel(_ref) {
     "class": "nav-item",
     role: "presentation",
     onClick: function onClick(evt) {
-      return toggleTable(evt, "htmlViewer");
+      return toggleTable(evt, 'htmlViewer');
     }
   }, /*#__PURE__*/_react["default"].createElement("a", {
     "class": "nav-link",
@@ -137,22 +136,24 @@ var TabPanel = function TabPanel(_ref) {
   }, "Document HTML viewer")))), /*#__PURE__*/_react["default"].createElement("div", {
     "class": "winterfell-form-builder-tab-content",
     id: "myTabContent"
-  }, schemaToggle === "schemaEditor" ? /*#__PURE__*/_react["default"].createElement("div", {
+  }, schemaToggle === 'schemaEditor' ? /*#__PURE__*/_react["default"].createElement("div", {
     "class": "tab-pane fade show active",
     id: "questionPanel",
     role: "tabpanel",
     "aria-labelledby": "contact-tab"
-  }, children) : null, schemaToggle === "docEditor" ? /*#__PURE__*/_react["default"].createElement("div", {
+  }, children) : null, schemaToggle === 'docEditor' ? /*#__PURE__*/_react["default"].createElement("div", {
     "class": "tab-pane fade show active",
     id: "docEditor",
     role: "tabpanel",
     "aria-labelledby": "docEditor-tab"
-  }, /*#__PURE__*/_react["default"].createElement(_documentEditorV.TextEditor, null)) : null, schemaToggle === "schemaViewer" ? /*#__PURE__*/_react["default"].createElement("div", {
+  }, /*#__PURE__*/_react["default"].createElement(_documentEditorV.TextEditor, {
+    onPreview: textEditorOnPreview
+  })) : null, schemaToggle === 'schemaViewer' ? /*#__PURE__*/_react["default"].createElement("div", {
     "class": "tab-pane fade show active",
     id: "schemaViewer",
     role: "tabpanel",
     "aria-labelledby": "schemaViewer-tab"
-  }, /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement(_documentEditorV.SchemaViewer, null))) : null, schemaToggle === "htmlViewer" ? /*#__PURE__*/_react["default"].createElement("div", {
+  }, /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement(_documentEditorV.SchemaViewer, null))) : null, schemaToggle === 'htmlViewer' ? /*#__PURE__*/_react["default"].createElement("div", {
     "class": "tab-pane fade show active",
     id: "htmlViewer",
     role: "tabpanel",
@@ -206,10 +207,12 @@ var WinterfellFormBuilder = /*#__PURE__*/function (_Component) {
           title = _this$props.title;
       return /*#__PURE__*/_react["default"].createElement("div", {
         className: "container-fluid winterfell-form-builder"
-      }, /*#__PURE__*/_react["default"].createElement(TabPanel, null, /*#__PURE__*/_react["default"].createElement("div", {
+      }, /*#__PURE__*/_react["default"].createElement(TabPanel, {
+        textEditorOnPreview: this.props.textEditorOnPreview
+      }, /*#__PURE__*/_react["default"].createElement("div", {
         className: "row"
       }, /*#__PURE__*/_react["default"].createElement("div", {
-        className: "modal fade ".concat(errorMessage !== "" ? "show" : ""),
+        className: "modal fade ".concat(errorMessage !== '' ? 'show' : ''),
         id: "errorMessage",
         tabIndex: "-1",
         key: "errorMessageModal"
@@ -247,13 +250,13 @@ var WinterfellFormBuilder = /*#__PURE__*/function (_Component) {
         className: "btn-group"
       }, /*#__PURE__*/_react["default"].createElement(_FormMenu.AddPageButton, null), /*#__PURE__*/_react["default"].createElement(_FormMenu.PageSortButton, {
         onClick: function onClick() {
-          return _this2.props.changeCurrentEditingField("pageSort");
+          return _this2.props.changeCurrentEditingField('pageSort');
         }
       })), /*#__PURE__*/_react["default"].createElement("br", null), /*#__PURE__*/_react["default"].createElement(_TreeView["default"], {
         id: "tree-view"
       }), /*#__PURE__*/_react["default"].createElement("br", null), formPanels && /*#__PURE__*/_react["default"].createElement(_Pagination["default"], {
         formPanels: formPanels.map(function (panel) {
-          return panel.get("panelId");
+          return panel.get('panelId');
         }),
         currentPanelId: currentPanelId,
         onClick: this.props.goToPage
@@ -275,7 +278,7 @@ var WinterfellFormBuilder = /*#__PURE__*/function (_Component) {
       }, /*#__PURE__*/_react["default"].createElement("h3", null, "Winterfell Form Preview:"), schema && /*#__PURE__*/_react["default"].createElement(_Previewer["default"], {
         currentPanelId: currentPanelId,
         schema: schema.toJS()
-      }), currentPanelId === "Select Page" && /*#__PURE__*/_react["default"].createElement("div", {
+      }), currentPanelId === 'Select Page' && /*#__PURE__*/_react["default"].createElement("div", {
         className: "alert alert-info",
         role: "alert"
       }, "No page selected to preview. Select a page from the dropdown above.")))));
@@ -296,10 +299,11 @@ WinterfellFormBuilder.propTypes = {
   changeCurrentEditingField: _propTypes["default"].func.isRequired,
   clearErrorMessage: _propTypes["default"].func.isRequired,
   errorMessage: _propTypes["default"].string,
-  title: _propTypes["default"].string
+  title: _propTypes["default"].string,
+  textEditorOnPreview: _propTypes["default"].func.isRequired
 };
 WinterfellFormBuilder.defaultProps = {
-  title: "",
+  title: '',
   schema: null,
   currentPanelId: null,
   inputSchema: {},
@@ -309,22 +313,22 @@ WinterfellFormBuilder.defaultProps = {
   // first page by default
   currentQuestionSetIndex: null,
   currentQuestionIndex: null,
-  currentEditingField: "page",
-  errorMessage: ""
+  currentEditingField: 'page',
+  errorMessage: ''
 };
 
 function mapStateToProps(state, ownProps) {
   return {
-    title: state.getIn(["form", "title"]),
-    schema: state.getIn(["form", "schema"]),
-    currentPanelId: state.getIn(["form", "currentPanelId"]),
-    formPanels: state.getIn(["form", "schema", "formPanels"]),
-    questionSets: state.getIn(["form", "schema", "questionSets"]),
-    currentEditingField: state.getIn(["form", "currentEditingField"]),
-    currentQuestionPanelIndex: state.getIn(["form", "currentQuestionPanelIndex"]),
-    currentQuestionSetIndex: state.getIn(["form", "currentQuestionSetIndex"]),
-    currentQuestionIndex: state.getIn(["form", "currentQuestionIndex"]),
-    errorMessage: state.getIn(["error", "message"])
+    title: state.getIn(['form', 'title']),
+    schema: state.getIn(['form', 'schema']),
+    currentPanelId: state.getIn(['form', 'currentPanelId']),
+    formPanels: state.getIn(['form', 'schema', 'formPanels']),
+    questionSets: state.getIn(['form', 'schema', 'questionSets']),
+    currentEditingField: state.getIn(['form', 'currentEditingField']),
+    currentQuestionPanelIndex: state.getIn(['form', 'currentQuestionPanelIndex']),
+    currentQuestionSetIndex: state.getIn(['form', 'currentQuestionSetIndex']),
+    currentQuestionIndex: state.getIn(['form', 'currentQuestionIndex']),
+    errorMessage: state.getIn(['error', 'message'])
   };
 }
 
