@@ -73,7 +73,7 @@ var _winterfellFormBuilderReducer = _interopRequireDefault(require("./reducers/w
 
 var _winterfellFormBuilderActions = require("./actions/winterfellFormBuilderActions");
 
-require("document-editor-v3/dist/lib/index.scss");
+require("document-editor-v3/dist/index.scss");
 
 var _default = _WinterfellFormBuilder["default"];
 exports["default"] = _default;

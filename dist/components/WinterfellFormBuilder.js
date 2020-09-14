@@ -45,7 +45,7 @@ var _FieldEditor = _interopRequireDefault(require("./FieldEditor"));
 
 var _documentEditorV = require("document-editor-v3");
 
-require("document-editor-v3/dist/lib/index.scss");
+require("document-editor-v3/dist/index.scss");
 
 var _QuestionsPanel = _interopRequireDefault(require("./layouts/QuestionsPanel"));
 

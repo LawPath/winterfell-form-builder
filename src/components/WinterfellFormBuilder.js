@@ -21,7 +21,7 @@ import {
 import FieldEditor from './FieldEditor';
 import { TextEditor, SchemaViewer, HTMLViewer } from 'document-editor-v3';
 
-import 'document-editor-v3/dist/lib/index.scss';
+import 'document-editor-v3/dist/index.scss';
 import QuestionPanels from './layouts/QuestionsPanel';
 
 const TabPanel = ({ children, textEditorOnPreview }) => {
