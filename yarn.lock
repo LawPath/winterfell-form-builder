@@ -6178,6 +6178,33 @@ doctrine@^3.0.0:
     slate-react "0.22.10"
     styled-components "^5.1.1"
 
+"document-editor-v3@https://github.com/LawPath/document-editor-v3.git#7356b356be584a72bedb2f5f42a48072bd0ebe01":
+  version "0.0.5"
+  resolved "https://github.com/LawPath/document-editor-v3.git#7356b356be584a72bedb2f5f42a48072bd0ebe01"
+  dependencies:
+    "@convertkit/slate-keymap" "^0.1.10"
+    axios "^0.20.0"
+    babel-loader "^8.1.0"
+    bootstrap "4.3.1"
+    emotion "^10.0.27"
+    immutable "^3.8.2"
+    is-hotkey "^0.1.6"
+    jquery "^3.5.1"
+    less "^3.12.2"
+    moment "^2.27.0"
+    prettier "^2.0.5"
+    prop-types "^15.7.2"
+    react-autosuggest "^10.0.2"
+    react-contextmenu "^2.14.0"
+    react-device-detect "^1.13.1"
+    react-scripts "3.4.1"
+    slate "0.47.9"
+    slate-deep-table "https://github.com/LawPath/slate-deep-table.git#029b8a006e0b7b58e0f23250a1505de8acd6d890"
+    slate-html-serializer "^0.8.13"
+    slate-react "0.22.10"
+    styled-components "^5.1.1"
+    winterfell-form-builder "https://github.com/LawPath/winterfell-form-builder.git#085549a588d59db2e16678f96145dc9bf347c2e0"
+
 "document-editor-v3@https://github.com/LawPath/document-editor-v3.git#df5b546508865e51c4ece35784407dd153f71f7e":
   version "0.0.5"
   resolved "https://github.com/LawPath/document-editor-v3.git#df5b546508865e51c4ece35784407dd153f71f7e"
@@ -16434,6 +16461,24 @@ wide-align@^1.1.0:
 window-size@^0.1.2:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/window-size/-/window-size-0.1.4.tgz#f8e1aa1ee5a53ec5bf151ffa09742a6ad7697876"
+
+"winterfell-form-builder@https://github.com/LawPath/winterfell-form-builder.git#085549a588d59db2e16678f96145dc9bf347c2e0":
+  version "0.0.1"
+  resolved "https://github.com/LawPath/winterfell-form-builder.git#085549a588d59db2e16678f96145dc9bf347c2e0"
+  dependencies:
+    document-editor-v3 "https://github.com/LawPath/document-editor-v3.git#df5b546508865e51c4ece35784407dd153f71f7e"
+    immutable "^3.8.2"
+    js-file-download "^0.4.12"
+    keycodez "^1.0.0"
+    lodash "^4.17.19"
+    moment "^2.27.0"
+    prop-types "15.7.2"
+    react-datepicker "^3.1.3"
+    react-router-redux "^4.0.8"
+    react-sortable-hoc "^1.11.0"
+    validator "^13.1.1"
+    vinyl-source-stream "^2.0.0"
+    winterfell "https://github.com/andrewhathaway/Winterfell.git"
 
 "winterfell-form-builder@https://github.com/LawPath/winterfell-form-builder.git#e1daae30e42144fd906d6f9597277b99ee7dc675":
   version "0.0.1"
