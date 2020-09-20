@@ -40,7 +40,8 @@ import {
   UPDATE_NEXT_QUESTION_TARGET_SUCCESS,
   RESET_NEXT_QUESTION_TARGET_SUCCESS,
   UPDATE_QUESTION_ANSWERS_SUCCESS,
-} from "../common/constants";
+  CHANGE_ACTIVATED_TAB,
+} from '../common/constants';
 
 export const updateErrorMessage = (message) => {
   return {
@@ -247,7 +248,16 @@ export const deletePage = (panelId) => {
   };
 };
 
-export const addQuestionSet = (currentPanelId, questionSetId, questionSetHeader, questionSetText, questionId, question, questionText, questionType) => {
+export const addQuestionSet = (
+  currentPanelId,
+  questionSetId,
+  questionSetHeader,
+  questionSetText,
+  questionId,
+  question,
+  questionText,
+  questionType,
+) => {
   return {
     type: ADD_QUESTION_SET_SUCCESS,
     payload: {
@@ -263,7 +273,14 @@ export const addQuestionSet = (currentPanelId, questionSetId, questionSetHeader,
   };
 };
 
-export const addQuestion = (currentQuestionSetIndex, questionSetId, questionId, question, questionText, questionType) => {
+export const addQuestion = (
+  currentQuestionSetIndex,
+  questionSetId,
+  questionId,
+  question,
+  questionText,
+  questionType,
+) => {
   return {
     type: ADD_QUESTION_SUCCESS,
     payload: {
@@ -297,14 +314,23 @@ export const deleteQuestion = (currentQuestionSetIndex, currentQuestionIndex) =>
   };
 };
 
-export const changeCurrentEditingField = (currentEditingField, currentQuestionSetIndex, currentQuestionIndex) => {
+export const changeCurrentEditingField = (
+  currentEditingField,
+  currentQuestionSetIndex,
+  currentQuestionIndex,
+) => {
   return {
     type: CHANGE_EDITING_FIELD_SUCCESS,
     payload: { currentEditingField, currentQuestionSetIndex, currentQuestionIndex },
   };
 };
 
-export const updateQuestion = (currentQuestionSetIndex, currentQuestionIndex, question, questionText) => {
+export const updateQuestion = (
+  currentQuestionSetIndex,
+  currentQuestionIndex,
+  question,
+  questionText,
+) => {
   return {
     type: UPDATE_QUESTION_SUCCESS,
     payload: { currentQuestionSetIndex, currentQuestionIndex, question, questionText },
@@ -318,7 +344,13 @@ export const movePage = (oldIndex, newIndex) => {
   };
 };
 
-export const updateNextQuestionTarget = (currentQuestionPanelIndex, questionId, value, target, optionIndex) => {
+export const updateNextQuestionTarget = (
+  currentQuestionPanelIndex,
+  questionId,
+  value,
+  target,
+  optionIndex,
+) => {
   return {
     type: UPDATE_NEXT_QUESTION_TARGET_SUCCESS,
     payload: { currentQuestionPanelIndex, questionId, value, target, optionIndex },
@@ -332,7 +364,15 @@ export const resetNextQuestionTarget = (currentQuestionPanelIndex, value) => {
   };
 };
 
-export const saveConditionalQuestion = (path, questionId, question, text, postText, type, options) => {
+export const saveConditionalQuestion = (
+  path,
+  questionId,
+  question,
+  text,
+  postText,
+  type,
+  options,
+) => {
   return {
     type: SAVE_CONDITIONAL_QUESTION_SUCCESS,
     payload: {
@@ -358,5 +398,12 @@ export const updateQuestionAnswers = (questionAnswers) => {
   return {
     type: UPDATE_QUESTION_ANSWERS_SUCCESS,
     payload: { questionAnswers },
+  };
+};
+
+export const changeActivatedTab = (activateTab) => {
+  return {
+    type: CHANGE_ACTIVATED_TAB,
+    payload: { activateTab },
   };
 };

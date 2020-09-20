@@ -1,5 +1,6 @@
-import WinterfellFormBuilder from "./components/WinterfellFormBuilder";
-import WinterfellFormBuilderReducer from "./reducers/winterfellFormBuilderReducer";
+import WinterfellFormBuilder from './components/WinterfellFormBuilder';
+import WinterfellFormBuilderReducer from './reducers/winterfellFormBuilderReducer';
+import WinterfellFormBuilderTabReducer from './reducers/winterfellFormBuilderTabReducer';
 import {
   addQuestion,
   addQuestionSet,
@@ -10,11 +11,12 @@ import {
   changeCurrentEditingField,
   deletePage,
   createForm,
-} from "./actions/winterfellFormBuilderActions";
-import "document-editor-v3/dist/index.scss";
+} from './actions/winterfellFormBuilderActions';
+import 'document-editor-v3/dist/index.scss';
 
 export {
   WinterfellFormBuilderReducer,
+  WinterfellFormBuilderTabReducer,
   addQuestion,
   addQuestionSet,
   goToPage,

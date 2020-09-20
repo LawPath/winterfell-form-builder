@@ -5,6 +5,7 @@ import {
   goToPage,
   changeCurrentEditingField,
   clearErrorMessage,
+  changeActivatedTab,
 } from '../actions/winterfellFormBuilderActions';
 import Pagination from './Pagination';
 import Previewer from './Previewer';
@@ -19,17 +20,26 @@ import {
   EditSchemaButton,
 } from './FormMenu';
 import FieldEditor from './FieldEditor';
-import { TextEditor, SchemaViewer, HTMLViewer } from 'document-editor-v3';
+import { TextEditor } from 'document-editor-v3';
 
 import 'document-editor-v3/dist/index.scss';
 import QuestionPanels from './layouts/QuestionsPanel';
 
-const TabPanel = ({ children, textEditorOnPreview }) => {
-  const [schemaToggle, setSchemaToggle] = useState('schemaEditor');
+const TabPanel = ({
+  children,
+  textEditorOnPreview,
+  textEditorOnSave,
+  documentSchema,
+  documentId,
+  activatedTab,
+  changeActivatedTab,
+}) => {
+  const [schemaToggle, setSchemaToggle] = useState(activatedTab ? activatedTab : 'schemaEditor');
 
   const toggleTable = (evt, state) => {
     evt.preventDefault();
     setSchemaToggle(state);
+    changeActivatedTab(state);
   };
 
   return (
@@ -47,7 +57,7 @@ const TabPanel = ({ children, textEditorOnPreview }) => {
             onClick={(evt) => toggleTable(evt, 'schemaEditor')}
           >
             <a
-              class="nav-link active"
+              class={`nav-link ${activatedTab === 'schemaEditor' ? 'active' : ''}`}
               id="questionPanel-tab"
               data-toggle="tab"
               href="#questionPanel"
@@ -60,7 +70,7 @@ const TabPanel = ({ children, textEditorOnPreview }) => {
           </li>
           <li class="nav-item" role="presentation" onClick={(evt) => toggleTable(evt, 'docEditor')}>
             <a
-              class="nav-link "
+              class={`nav-link ${activatedTab === 'docEditor' ? 'active' : ''}`}
               id="docEditor-tab"
               data-toggle="tab"
               href="#docEditor"
@@ -69,40 +79,6 @@ const TabPanel = ({ children, textEditorOnPreview }) => {
               aria-selected="true"
             >
               Editor
-            </a>
-          </li>
-          <li
-            class="nav-item"
-            role="presentation"
-            onClick={(evt) => toggleTable(evt, 'schemaViewer')}
-          >
-            <a
-              class="nav-link"
-              id="schemaViewer-tab"
-              data-toggle="tab"
-              href="#schemaViewer"
-              role="tab"
-              aria-controls="schemaViewer"
-              aria-selected="false"
-            >
-              Document schema viewer
-            </a>
-          </li>
-          <li
-            class="nav-item"
-            role="presentation"
-            onClick={(evt) => toggleTable(evt, 'htmlViewer')}
-          >
-            <a
-              class="nav-link"
-              id="htmlViewer-tab"
-              data-toggle="tab"
-              href="#htmlViewer"
-              role="tab"
-              aria-controls="htmlViewer"
-              aria-selected="false"
-            >
-              Document HTML viewer
             </a>
           </li>
         </ul>
@@ -126,29 +102,12 @@ const TabPanel = ({ children, textEditorOnPreview }) => {
             role="tabpanel"
             aria-labelledby="docEditor-tab"
           >
-            <TextEditor onPreview={textEditorOnPreview} />
-          </div>
-        ) : null}
-        {schemaToggle === 'schemaViewer' ? (
-          <div
-            class="tab-pane fade show active"
-            id="schemaViewer"
-            role="tabpanel"
-            aria-labelledby="schemaViewer-tab"
-          >
-            <div>{<SchemaViewer />}</div>
-          </div>
-        ) : null}
-        {schemaToggle === 'htmlViewer' ? (
-          <div
-            class="tab-pane fade show active"
-            id="htmlViewer"
-            role="tabpanel"
-            aria-labelledby="htmlViewer-tab"
-          >
-            <div>
-              <HTMLViewer />
-            </div>
+            <TextEditor
+              onPreview={textEditorOnPreview}
+              onSave={textEditorOnSave}
+              documentSchema={documentSchema}
+              documentId={documentId}
+            />
           </div>
         ) : null}
       </div>
@@ -178,11 +137,20 @@ class WinterfellFormBuilder extends Component {
       currentQuestionIndex,
       errorMessage,
       title,
+      documentSchema,
+      documentId,
+      activatedTab,
     } = this.props;
-
     return (
       <div className="container-fluid winterfell-form-builder">
-        <TabPanel textEditorOnPreview={this.props.textEditorOnPreview}>
+        <TabPanel
+          textEditorOnPreview={this.props.textEditorOnPreview}
+          textEditorOnSave={this.props.textEditorOnSave}
+          documentSchema={documentSchema}
+          documentId={documentId}
+          changeActivatedTab={this.props.changeActivatedTab}
+          activatedTab={activatedTab}
+        >
           <div className="row">
             <div
               className={`modal fade ${errorMessage !== '' ? 'show' : ''}`}
@@ -293,7 +261,12 @@ WinterfellFormBuilder.propTypes = {
   clearErrorMessage: PropTypes.func.isRequired,
   errorMessage: PropTypes.string,
   title: PropTypes.string,
+
   textEditorOnPreview: PropTypes.func.isRequired,
+  textEditorOnSave: PropTypes.func.isRequired,
+  documentSchema: PropTypes.object,
+  documentId: PropTypes.number.isRequired,
+  activatedTab: PropTypes.string.isRequired,
 };
 
 WinterfellFormBuilder.defaultProps = {
@@ -308,6 +281,9 @@ WinterfellFormBuilder.defaultProps = {
   currentQuestionIndex: null,
   currentEditingField: 'page',
   errorMessage: '',
+
+  documentSchema: null,
+  documentId: 0,
 };
 
 function mapStateToProps(state, ownProps) {
@@ -322,9 +298,13 @@ function mapStateToProps(state, ownProps) {
     currentQuestionSetIndex: state.getIn(['form', 'currentQuestionSetIndex']),
     currentQuestionIndex: state.getIn(['form', 'currentQuestionIndex']),
     errorMessage: state.getIn(['error', 'message']),
+    activatedTab: state.getIn(['formBuilderTabs', 'activatedTab']),
   };
 }
 
-export default connect(mapStateToProps, { goToPage, changeCurrentEditingField, clearErrorMessage })(
-  WinterfellFormBuilder,
-);
+export default connect(mapStateToProps, {
+  goToPage,
+  changeCurrentEditingField,
+  clearErrorMessage,
+  changeActivatedTab,
+})(WinterfellFormBuilder);

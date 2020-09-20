@@ -72,6 +72,8 @@ export const UPDATE_NEXT_QUESTION_TARGET_SUCCESS = 'UPDATE_NEXT_QUESTION_TARGET_
 export const RESET_NEXT_QUESTION_TARGET_SUCCESS = 'RESET_NEXT_QUESTION_TARGET_SUCCESS';
 export const UPDATE_QUESTION_ANSWERS_SUCCESS = 'UPDATE_QUESTION_ANSWERS_SUCCESS';
 
+export const CHANGE_ACTIVATED_TAB = 'CHANGE_ACTIVATED_TAB';
+
 export const BOOTSTRAP_CLASSES = {
   input: 'form-control',
   select: 'form-control',
@@ -88,30 +90,39 @@ export const BOOTSTRAP_CLASSES = {
   buttonBar: 'button-bar',
 };
 
-export const INPUT_TYPE_OPTIONS = [{
-  text: 'text',
-  value: 'textInput',
-}, {
-  text: 'textarea',
-  value: 'textAreaInput',
-}, {
-  text: 'select',
-  value: 'selectInput',
-}, {
-  text: 'checkbox options',
-  value: 'checkboxOptionsInput',
-}, {
-  text: 'radio button',
-  value: 'radioOptionsInput',
-}, {
-  text: 'address',
-  value: 'addressInput',
-}, {
-  text: 'date',
-  value: 'dateInput',
-}, {
-  text: 'checkbox',
-  value: 'checkboxInput',
-}];
+export const INPUT_TYPE_OPTIONS = [
+  {
+    text: 'text',
+    value: 'textInput',
+  },
+  {
+    text: 'textarea',
+    value: 'textAreaInput',
+  },
+  {
+    text: 'select',
+    value: 'selectInput',
+  },
+  {
+    text: 'checkbox options',
+    value: 'checkboxOptionsInput',
+  },
+  {
+    text: 'radio button',
+    value: 'radioOptionsInput',
+  },
+  {
+    text: 'address',
+    value: 'addressInput',
+  },
+  {
+    text: 'date',
+    value: 'dateInput',
+  },
+  {
+    text: 'checkbox',
+    value: 'checkboxInput',
+  },
+];
 
-export const DATE_FORMAT = "dd/MM/yyyy";
+export const DATE_FORMAT = 'dd/MM/yyyy';

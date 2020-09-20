@@ -55,9 +55,14 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 var TabPanel = function TabPanel(_ref) {
   var children = _ref.children,
-      textEditorOnPreview = _ref.textEditorOnPreview;
+      textEditorOnPreview = _ref.textEditorOnPreview,
+      textEditorOnSave = _ref.textEditorOnSave,
+      documentSchema = _ref.documentSchema,
+      documentId = _ref.documentId,
+      activatedTab = _ref.activatedTab,
+      changeActivatedTab = _ref.changeActivatedTab;
 
-  var _useState = (0, _react.useState)('schemaEditor'),
+  var _useState = (0, _react.useState)(activatedTab ? activatedTab : 'schemaEditor'),
       _useState2 = (0, _slicedToArray2["default"])(_useState, 2),
       schemaToggle = _useState2[0],
       setSchemaToggle = _useState2[1];
@@ -65,6 +70,7 @@ var TabPanel = function TabPanel(_ref) {
   var toggleTable = function toggleTable(evt, state) {
     evt.preventDefault();
     setSchemaToggle(state);
+    changeActivatedTab(state);
   };
 
   return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement("div", {
@@ -84,7 +90,7 @@ var TabPanel = function TabPanel(_ref) {
       return toggleTable(evt, 'schemaEditor');
     }
   }, /*#__PURE__*/_react["default"].createElement("a", {
-    "class": "nav-link active",
+    "class": "nav-link ".concat(activatedTab === 'schemaEditor' ? 'active' : ''),
     id: "questionPanel-tab",
     "data-toggle": "tab",
     href: "#questionPanel",
@@ -98,42 +104,14 @@ var TabPanel = function TabPanel(_ref) {
       return toggleTable(evt, 'docEditor');
     }
   }, /*#__PURE__*/_react["default"].createElement("a", {
-    "class": "nav-link ",
+    "class": "nav-link ".concat(activatedTab === 'docEditor' ? 'active' : ''),
     id: "docEditor-tab",
     "data-toggle": "tab",
     href: "#docEditor",
     role: "tab",
     "aria-controls": "docEditor",
     "aria-selected": "true"
-  }, "Editor")), /*#__PURE__*/_react["default"].createElement("li", {
-    "class": "nav-item",
-    role: "presentation",
-    onClick: function onClick(evt) {
-      return toggleTable(evt, 'schemaViewer');
-    }
-  }, /*#__PURE__*/_react["default"].createElement("a", {
-    "class": "nav-link",
-    id: "schemaViewer-tab",
-    "data-toggle": "tab",
-    href: "#schemaViewer",
-    role: "tab",
-    "aria-controls": "schemaViewer",
-    "aria-selected": "false"
-  }, "Document schema viewer")), /*#__PURE__*/_react["default"].createElement("li", {
-    "class": "nav-item",
-    role: "presentation",
-    onClick: function onClick(evt) {
-      return toggleTable(evt, 'htmlViewer');
-    }
-  }, /*#__PURE__*/_react["default"].createElement("a", {
-    "class": "nav-link",
-    id: "htmlViewer-tab",
-    "data-toggle": "tab",
-    href: "#htmlViewer",
-    role: "tab",
-    "aria-controls": "htmlViewer",
-    "aria-selected": "false"
-  }, "Document HTML viewer")))), /*#__PURE__*/_react["default"].createElement("div", {
+  }, "Editor")))), /*#__PURE__*/_react["default"].createElement("div", {
     "class": "winterfell-form-builder-tab-content",
     id: "myTabContent"
   }, schemaToggle === 'schemaEditor' ? /*#__PURE__*/_react["default"].createElement("div", {
@@ -147,18 +125,11 @@ var TabPanel = function TabPanel(_ref) {
     role: "tabpanel",
     "aria-labelledby": "docEditor-tab"
   }, /*#__PURE__*/_react["default"].createElement(_documentEditorV.TextEditor, {
-    onPreview: textEditorOnPreview
-  })) : null, schemaToggle === 'schemaViewer' ? /*#__PURE__*/_react["default"].createElement("div", {
-    "class": "tab-pane fade show active",
-    id: "schemaViewer",
-    role: "tabpanel",
-    "aria-labelledby": "schemaViewer-tab"
-  }, /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement(_documentEditorV.SchemaViewer, null))) : null, schemaToggle === 'htmlViewer' ? /*#__PURE__*/_react["default"].createElement("div", {
-    "class": "tab-pane fade show active",
-    id: "htmlViewer",
-    role: "tabpanel",
-    "aria-labelledby": "htmlViewer-tab"
-  }, /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement(_documentEditorV.HTMLViewer, null))) : null));
+    onPreview: textEditorOnPreview,
+    onSave: textEditorOnSave,
+    documentSchema: documentSchema,
+    documentId: documentId
+  })) : null));
 };
 
 var WinterfellFormBuilder = /*#__PURE__*/function (_Component) {
@@ -204,11 +175,19 @@ var WinterfellFormBuilder = /*#__PURE__*/function (_Component) {
           currentQuestionSetIndex = _this$props.currentQuestionSetIndex,
           currentQuestionIndex = _this$props.currentQuestionIndex,
           errorMessage = _this$props.errorMessage,
-          title = _this$props.title;
+          title = _this$props.title,
+          documentSchema = _this$props.documentSchema,
+          documentId = _this$props.documentId,
+          activatedTab = _this$props.activatedTab;
       return /*#__PURE__*/_react["default"].createElement("div", {
         className: "container-fluid winterfell-form-builder"
       }, /*#__PURE__*/_react["default"].createElement(TabPanel, {
-        textEditorOnPreview: this.props.textEditorOnPreview
+        textEditorOnPreview: this.props.textEditorOnPreview,
+        textEditorOnSave: this.props.textEditorOnSave,
+        documentSchema: documentSchema,
+        documentId: documentId,
+        changeActivatedTab: this.props.changeActivatedTab,
+        activatedTab: activatedTab
       }, /*#__PURE__*/_react["default"].createElement("div", {
         className: "row"
       }, /*#__PURE__*/_react["default"].createElement("div", {
@@ -300,7 +279,11 @@ WinterfellFormBuilder.propTypes = {
   clearErrorMessage: _propTypes["default"].func.isRequired,
   errorMessage: _propTypes["default"].string,
   title: _propTypes["default"].string,
-  textEditorOnPreview: _propTypes["default"].func.isRequired
+  textEditorOnPreview: _propTypes["default"].func.isRequired,
+  textEditorOnSave: _propTypes["default"].func.isRequired,
+  documentSchema: _propTypes["default"].object,
+  documentId: _propTypes["default"].number.isRequired,
+  activatedTab: _propTypes["default"].string.isRequired
 };
 WinterfellFormBuilder.defaultProps = {
   title: '',
@@ -314,7 +297,9 @@ WinterfellFormBuilder.defaultProps = {
   currentQuestionSetIndex: null,
   currentQuestionIndex: null,
   currentEditingField: 'page',
-  errorMessage: ''
+  errorMessage: '',
+  documentSchema: null,
+  documentId: 0
 };
 
 function mapStateToProps(state, ownProps) {
@@ -328,14 +313,16 @@ function mapStateToProps(state, ownProps) {
     currentQuestionPanelIndex: state.getIn(['form', 'currentQuestionPanelIndex']),
     currentQuestionSetIndex: state.getIn(['form', 'currentQuestionSetIndex']),
     currentQuestionIndex: state.getIn(['form', 'currentQuestionIndex']),
-    errorMessage: state.getIn(['error', 'message'])
+    errorMessage: state.getIn(['error', 'message']),
+    activatedTab: state.getIn(['formBuilderTabs', 'activatedTab'])
   };
 }
 
 var _default = (0, _reactRedux.connect)(mapStateToProps, {
   goToPage: _winterfellFormBuilderActions.goToPage,
   changeCurrentEditingField: _winterfellFormBuilderActions.changeCurrentEditingField,
-  clearErrorMessage: _winterfellFormBuilderActions.clearErrorMessage
+  clearErrorMessage: _winterfellFormBuilderActions.clearErrorMessage,
+  changeActivatedTab: _winterfellFormBuilderActions.changeActivatedTab
 })(WinterfellFormBuilder);
 
 exports["default"] = _default;

@@ -11,6 +11,12 @@ Object.defineProperty(exports, "WinterfellFormBuilderReducer", {
     return _winterfellFormBuilderReducer["default"];
   }
 });
+Object.defineProperty(exports, "WinterfellFormBuilderTabReducer", {
+  enumerable: true,
+  get: function get() {
+    return _winterfellFormBuilderTabReducer["default"];
+  }
+});
 Object.defineProperty(exports, "addQuestion", {
   enumerable: true,
   get: function get() {
@@ -70,6 +76,8 @@ exports["default"] = void 0;
 var _WinterfellFormBuilder = _interopRequireDefault(require("./components/WinterfellFormBuilder"));
 
 var _winterfellFormBuilderReducer = _interopRequireDefault(require("./reducers/winterfellFormBuilderReducer"));
+
+var _winterfellFormBuilderTabReducer = _interopRequireDefault(require("./reducers/winterfellFormBuilderTabReducer"));
 
 var _winterfellFormBuilderActions = require("./actions/winterfellFormBuilderActions");
 
