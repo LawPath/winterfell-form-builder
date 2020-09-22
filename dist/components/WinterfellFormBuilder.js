@@ -60,6 +60,7 @@ var TabPanel = function TabPanel(_ref) {
       documentSchema = _ref.documentSchema,
       documentId = _ref.documentId,
       activatedTab = _ref.activatedTab,
+      documentUpdatedAt = _ref.documentUpdatedAt,
       changeActivatedTab = _ref.changeActivatedTab;
 
   var _useState = (0, _react.useState)(activatedTab ? activatedTab : 'schemaEditor'),
@@ -128,7 +129,8 @@ var TabPanel = function TabPanel(_ref) {
     onPreview: textEditorOnPreview,
     onSave: textEditorOnSave,
     documentSchema: documentSchema,
-    documentId: documentId
+    documentId: documentId,
+    documentUpdatedAt: documentUpdatedAt
   })) : null));
 };
 
@@ -178,6 +180,7 @@ var WinterfellFormBuilder = /*#__PURE__*/function (_Component) {
           title = _this$props.title,
           documentSchema = _this$props.documentSchema,
           documentId = _this$props.documentId,
+          documentUpdatedAt = _this$props.documentUpdatedAt,
           activatedTab = _this$props.activatedTab;
       return /*#__PURE__*/_react["default"].createElement("div", {
         className: "container-fluid winterfell-form-builder"
@@ -187,6 +190,7 @@ var WinterfellFormBuilder = /*#__PURE__*/function (_Component) {
         documentSchema: documentSchema,
         documentId: documentId,
         changeActivatedTab: this.props.changeActivatedTab,
+        documentUpdatedAt: documentUpdatedAt,
         activatedTab: activatedTab
       }, /*#__PURE__*/_react["default"].createElement("div", {
         className: "row"
@@ -283,6 +287,7 @@ WinterfellFormBuilder.propTypes = {
   textEditorOnSave: _propTypes["default"].func.isRequired,
   documentSchema: _propTypes["default"].object,
   documentId: _propTypes["default"].number.isRequired,
+  documentUpdatedAt: _propTypes["default"].number.isRequired,
   activatedTab: _propTypes["default"].string.isRequired
 };
 WinterfellFormBuilder.defaultProps = {
@@ -299,7 +304,8 @@ WinterfellFormBuilder.defaultProps = {
   currentEditingField: 'page',
   errorMessage: '',
   documentSchema: null,
-  documentId: 0
+  documentId: 0,
+  documentUpdatedAt: 0
 };
 
 function mapStateToProps(state, ownProps) {

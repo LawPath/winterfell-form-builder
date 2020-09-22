@@ -32,6 +32,7 @@ const TabPanel = ({
   documentSchema,
   documentId,
   activatedTab,
+  documentUpdatedAt,
   changeActivatedTab,
 }) => {
   const [schemaToggle, setSchemaToggle] = useState(activatedTab ? activatedTab : 'schemaEditor');
@@ -107,6 +108,7 @@ const TabPanel = ({
               onSave={textEditorOnSave}
               documentSchema={documentSchema}
               documentId={documentId}
+              documentUpdatedAt={documentUpdatedAt}
             />
           </div>
         ) : null}
@@ -139,6 +141,7 @@ class WinterfellFormBuilder extends Component {
       title,
       documentSchema,
       documentId,
+      documentUpdatedAt,
       activatedTab,
     } = this.props;
     return (
@@ -149,6 +152,7 @@ class WinterfellFormBuilder extends Component {
           documentSchema={documentSchema}
           documentId={documentId}
           changeActivatedTab={this.props.changeActivatedTab}
+          documentUpdatedAt={documentUpdatedAt}
           activatedTab={activatedTab}
         >
           <div className="row">
@@ -266,6 +270,7 @@ WinterfellFormBuilder.propTypes = {
   textEditorOnSave: PropTypes.func.isRequired,
   documentSchema: PropTypes.object,
   documentId: PropTypes.number.isRequired,
+  documentUpdatedAt: PropTypes.number.isRequired,
   activatedTab: PropTypes.string.isRequired,
 };
 
@@ -284,6 +289,7 @@ WinterfellFormBuilder.defaultProps = {
 
   documentSchema: null,
   documentId: 0,
+  documentUpdatedAt: 0,
 };
 
 function mapStateToProps(state, ownProps) {

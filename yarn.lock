@@ -6213,6 +6213,36 @@ doctrine@^3.0.0:
     slate-react "0.22.10"
     styled-components "^5.1.1"
 
+"document-editor-v3@https://github.com/LawPath/document-editor-v3.git#8af5a1fb64e5f6a74dcd86466a5c65e1b0bd5e1c":
+  version "0.0.5"
+  resolved "https://github.com/LawPath/document-editor-v3.git#8af5a1fb64e5f6a74dcd86466a5c65e1b0bd5e1c"
+  dependencies:
+    "@convertkit/slate-keymap" "^0.1.10"
+    axios "^0.20.0"
+    babel-loader "^8.1.0"
+    bootstrap "4.3.1"
+    docx4js "^3.2.9"
+    emotion "^10.0.27"
+    immutable "^3.8.2"
+    is-hotkey "^0.1.6"
+    jquery "^3.5.1"
+    js-file-download "^0.4.12"
+    less "^3.12.2"
+    moment "^2.27.0"
+    prettier "^2.0.5"
+    prop-types "^15.7.2"
+    react-autosuggest "^10.0.2"
+    react-contextmenu "^2.14.0"
+    react-device-detect "^1.13.1"
+    react-responsive-modal "^5.1.0"
+    react-scripts "3.4.1"
+    slate "0.47.9"
+    slate-deep-table "https://github.com/LawPath/slate-deep-table.git#029b8a006e0b7b58e0f23250a1505de8acd6d890"
+    slate-html-serializer "^0.8.13"
+    slate-react "0.22.10"
+    styled-components "^5.1.1"
+    winterfell-form-builder "https://github.com/LawPath/winterfell-form-builder.git#085549a588d59db2e16678f96145dc9bf347c2e0"
+
 "document-editor-v3@https://github.com/LawPath/document-editor-v3.git#df5b546508865e51c4ece35784407dd153f71f7e":
   version "0.0.5"
   resolved "https://github.com/LawPath/document-editor-v3.git#df5b546508865e51c4ece35784407dd153f71f7e"
@@ -6239,35 +6269,6 @@ doctrine@^3.0.0:
     slate-react "0.22.10"
     styled-components "^5.1.1"
     winterfell-form-builder "https://github.com/LawPath/winterfell-form-builder.git#e7f011af1f2414f687a519f358311d14d4fff4f4"
-
-"document-editor-v3@https://github.com/LawPath/document-editor-v3.git#fe04527a0c6e20055eac70791c271685de1d21f1":
-  version "0.0.5"
-  resolved "https://github.com/LawPath/document-editor-v3.git#fe04527a0c6e20055eac70791c271685de1d21f1"
-  dependencies:
-    "@convertkit/slate-keymap" "^0.1.10"
-    axios "^0.20.0"
-    babel-loader "^8.1.0"
-    bootstrap "4.3.1"
-    docx4js "^3.2.9"
-    emotion "^10.0.27"
-    immutable "^3.8.2"
-    is-hotkey "^0.1.6"
-    jquery "^3.5.1"
-    js-file-download "^0.4.12"
-    less "^3.12.2"
-    moment "^2.27.0"
-    prettier "^2.0.5"
-    prop-types "^15.7.2"
-    react-autosuggest "^10.0.2"
-    react-contextmenu "^2.14.0"
-    react-device-detect "^1.13.1"
-    react-scripts "3.4.1"
-    slate "0.47.9"
-    slate-deep-table "https://github.com/LawPath/slate-deep-table.git#029b8a006e0b7b58e0f23250a1505de8acd6d890"
-    slate-html-serializer "^0.8.13"
-    slate-react "0.22.10"
-    styled-components "^5.1.1"
-    winterfell-form-builder "https://github.com/LawPath/winterfell-form-builder.git#085549a588d59db2e16678f96145dc9bf347c2e0"
 
 docx4js@^3.2.9:
   version "3.2.9"
@@ -11244,6 +11245,11 @@ no-case@^3.0.3:
     lower-case "^2.0.1"
     tslib "^1.10.0"
 
+no-scroll@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/no-scroll/-/no-scroll-2.1.1.tgz#f37e08cb159b75a5bdbfc0a87cd9223e120e6e27"
+  integrity sha512-YTzGAJOo/B6hkodeT5SKKHpOhAzjMfkUCCXjLJwjWk2F4/InIg+HbdH9kmT7bKpleDuqLZDTRy2OdNtAj0IVyQ==
+
 node-fetch@^1.0.1:
   version "1.7.3"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-1.7.3.tgz#980f6f72d85211a5347c6b2bc18c5b84c3eb47ef"
@@ -13385,6 +13391,14 @@ react-redux@^7.1.0:
     loose-envify "^1.4.0"
     prop-types "^15.7.2"
     react-is "^16.9.0"
+
+react-responsive-modal@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/react-responsive-modal/-/react-responsive-modal-5.1.0.tgz#0f660cc004b7eb85bf16778ca84514576f9ee4af"
+  integrity sha512-LmjKsBH2r+mzweJeKtd42ZHjzjZIbmw/4hHIGbiHqFeFVZuOg34fgKSMyELwtv8QOWlX7/TuB/O2kmXMCnhJUw==
+  dependencies:
+    classnames "^2.2.6"
+    no-scroll "^2.1.1"
 
 react-router-redux@^4.0.8:
   version "4.0.8"
