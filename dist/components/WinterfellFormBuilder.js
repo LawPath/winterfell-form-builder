@@ -61,7 +61,8 @@ var TabPanel = function TabPanel(_ref) {
       documentId = _ref.documentId,
       activatedTab = _ref.activatedTab,
       documentUpdatedAt = _ref.documentUpdatedAt,
-      changeActivatedTab = _ref.changeActivatedTab;
+      changeActivatedTab = _ref.changeActivatedTab,
+      textEditorOnMinifyHtml = _ref.textEditorOnMinifyHtml;
 
   var _useState = (0, _react.useState)(activatedTab ? activatedTab : 'schemaEditor'),
       _useState2 = (0, _slicedToArray2["default"])(_useState, 2),
@@ -127,6 +128,7 @@ var TabPanel = function TabPanel(_ref) {
     "aria-labelledby": "docEditor-tab"
   }, /*#__PURE__*/_react["default"].createElement(_documentEditorV.TextEditor, {
     onPreview: textEditorOnPreview,
+    onMinifyHtml: textEditorOnMinifyHtml,
     onSave: textEditorOnSave,
     documentSchema: documentSchema,
     documentId: documentId,
@@ -191,7 +193,8 @@ var WinterfellFormBuilder = /*#__PURE__*/function (_Component) {
         documentId: documentId,
         changeActivatedTab: this.props.changeActivatedTab,
         documentUpdatedAt: documentUpdatedAt,
-        activatedTab: activatedTab
+        activatedTab: activatedTab,
+        textEditorOnMinifyHtml: this.props.textEditorOnMinifyHtml
       }, /*#__PURE__*/_react["default"].createElement("div", {
         className: "row"
       }, /*#__PURE__*/_react["default"].createElement("div", {
@@ -284,6 +287,7 @@ WinterfellFormBuilder.propTypes = {
   errorMessage: _propTypes["default"].string,
   title: _propTypes["default"].string,
   textEditorOnPreview: _propTypes["default"].func.isRequired,
+  textEditorOnMinifyHtml: _propTypes["default"].func.isRequired,
   textEditorOnSave: _propTypes["default"].func.isRequired,
   documentSchema: _propTypes["default"].object,
   documentId: _propTypes["default"].number.isRequired,

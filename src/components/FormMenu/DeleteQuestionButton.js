@@ -23,8 +23,7 @@ class DeleteQuestionButton extends Component {
     const { currentQuestionSetIndex, currentQuestionIndex } = this.props;
     e.preventDefault();
     this.setState({ showModal: false });
-    this.props.deleteQuestion(
-      currentQuestionSetIndex, currentQuestionIndex);
+    this.props.deleteQuestion(currentQuestionSetIndex, currentQuestionIndex);
   }
 
   render() {
@@ -37,26 +36,20 @@ class DeleteQuestionButton extends Component {
       >
         Delete question
       </button>,
-      <div className="modal fade" id="deleteQuestion" tabIndex="-1">
+      <div className="modal fade" id="deleteQuestion" tabIndex="-1" key="deleteQuestionModal">
         <div className="modal-dialog bg-white">
           <div className="modal-content">
             <div className="modal-header">
               <div className="modal-title">Delete Option Confirmation</div>
             </div>
-            <div className="modal-body">
-              Are you sure you want to delete this question?
-            </div>
+            <div className="modal-body">Are you sure you want to delete this question?</div>
             <div className="modal-footer">
-              <button
-                className="btn btn-danger"
-                data-dismiss="modal"
-              >Cancel
-            </button>
-              <button
-                className="btn btn-dark"
-                onClick={this.onConfirmDelete}
-              >Confirm Delete
-            </button>
+              <button className="btn btn-danger" data-dismiss="modal">
+                Cancel
+              </button>
+              <button className="btn btn-dark" data-dismiss="modal" onClick={this.onConfirmDelete}>
+                Confirm Delete
+              </button>
             </div>
           </div>
         </div>
@@ -78,4 +71,3 @@ function mapStateToProps(state) {
   };
 }
 export default connect(mapStateToProps, { deleteQuestion })(DeleteQuestionButton);
-

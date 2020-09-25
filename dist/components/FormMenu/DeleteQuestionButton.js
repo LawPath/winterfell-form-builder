@@ -81,7 +81,8 @@ var DeleteQuestionButton = /*#__PURE__*/function (_Component) {
       }, "Delete question"), /*#__PURE__*/_react["default"].createElement("div", {
         className: "modal fade",
         id: "deleteQuestion",
-        tabIndex: "-1"
+        tabIndex: "-1",
+        key: "deleteQuestionModal"
       }, /*#__PURE__*/_react["default"].createElement("div", {
         className: "modal-dialog bg-white"
       }, /*#__PURE__*/_react["default"].createElement("div", {
@@ -99,6 +100,7 @@ var DeleteQuestionButton = /*#__PURE__*/function (_Component) {
         "data-dismiss": "modal"
       }, "Cancel"), /*#__PURE__*/_react["default"].createElement("button", {
         className: "btn btn-dark",
+        "data-dismiss": "modal",
         onClick: this.onConfirmDelete
       }, "Confirm Delete")))))];
     }

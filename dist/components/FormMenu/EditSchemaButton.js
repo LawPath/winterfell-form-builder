@@ -56,9 +56,9 @@ var EditSchemaButton = /*#__PURE__*/function (_Component) {
   (0, _createClass2["default"])(EditSchemaButton, [{
     key: "componentWillReceiveProps",
     value: function componentWillReceiveProps(nextProps) {
-      this.state = {
+      this.setState({
         schema: nextProps.schema
-      };
+      });
     }
   }, {
     key: "onChange",

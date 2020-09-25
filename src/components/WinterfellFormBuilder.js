@@ -34,6 +34,7 @@ const TabPanel = ({
   activatedTab,
   documentUpdatedAt,
   changeActivatedTab,
+  textEditorOnMinifyHtml,
 }) => {
   const [schemaToggle, setSchemaToggle] = useState(activatedTab ? activatedTab : 'schemaEditor');
 
@@ -105,6 +106,7 @@ const TabPanel = ({
           >
             <TextEditor
               onPreview={textEditorOnPreview}
+              onMinifyHtml={textEditorOnMinifyHtml}
               onSave={textEditorOnSave}
               documentSchema={documentSchema}
               documentId={documentId}
@@ -154,6 +156,7 @@ class WinterfellFormBuilder extends Component {
           changeActivatedTab={this.props.changeActivatedTab}
           documentUpdatedAt={documentUpdatedAt}
           activatedTab={activatedTab}
+          textEditorOnMinifyHtml={this.props.textEditorOnMinifyHtml}
         >
           <div className="row">
             <div
@@ -267,6 +270,7 @@ WinterfellFormBuilder.propTypes = {
   title: PropTypes.string,
 
   textEditorOnPreview: PropTypes.func.isRequired,
+  textEditorOnMinifyHtml: PropTypes.func.isRequired,
   textEditorOnSave: PropTypes.func.isRequired,
   documentSchema: PropTypes.object,
   documentId: PropTypes.number.isRequired,
