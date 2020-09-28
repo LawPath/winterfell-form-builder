@@ -71,6 +71,12 @@ Object.defineProperty(exports, "createForm", {
     return _winterfellFormBuilderActions.createForm;
   }
 });
+Object.defineProperty(exports, "editNextButtonText", {
+  enumerable: true,
+  get: function get() {
+    return _winterfellFormBuilderActions.editNextButtonText;
+  }
+});
 exports["default"] = void 0;
 
 var _WinterfellFormBuilder = _interopRequireDefault(require("./components/WinterfellFormBuilder"));

@@ -11,6 +11,7 @@ import {
   changeCurrentEditingField,
   deletePage,
   createForm,
+  editNextButtonText,
 } from './actions/winterfellFormBuilderActions';
 import 'document-editor-v3/dist/index.scss';
 
@@ -26,5 +27,6 @@ export {
   changeCurrentEditingField,
   deletePage,
   createForm,
+  editNextButtonText,
 };
 export default WinterfellFormBuilder;
