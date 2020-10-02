@@ -42,7 +42,7 @@
     "winterfell": ">=1.1.4"
   },
   "dependencies": {
-    "document-editor-v3": "https://github.com/LawPath/document-editor-v3.git#9df68a9506125c4dd9c1b857b5cfd879773768d1",
+    "document-editor-v3": "https://github.com/LawPath/document-editor-v3.git#a870867af332aae79bef9f89ee69953bd9a1b1d8",
     "immutable": "^3.8.2",
     "js-file-download": "^0.4.12",
     "keycodez": "^1.0.0",
