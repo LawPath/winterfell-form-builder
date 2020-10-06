@@ -42,153 +42,152 @@ import {
   UPDATE_QUESTION_ANSWERS_SUCCESS,
 } from '../common/constants';
 
-export function updateErrorMessage(message) {
+export const updateErrorMessage = (message) => {
   return {
     type: UPDATE_FORM_ERROR,
     payload: { message },
   };
-}
+};
 
-export function clearErrorMessage() {
+export const clearErrorMessage = () => {
   return {
     type: CLEAR_FORM_ERROR,
   };
-}
+};
 
-export function createForm(title) {
+export const createForm = (title) => {
   return {
     type: CREATE_FORM_SUCCESS,
     payload: { title },
   };
-}
+};
 
-export function uploadJSON(schema, fileName) {
+export const uploadJSON = (schema, fileName) => {
   return {
     type: UPLOAD_JSON_SUCCESS,
     payload: { schema, fileName },
   };
-}
+};
 
-export function saveJSON(schema, fileName) {
+export const saveJSON = (schema, fileName) => {
   return {
     type: SAVE_FORM_SUCCESS,
     payload: { schema, fileName },
   };
-}
+};
 
-export function editFormTitle(title) {
+export const editFormTitle = (title) => {
   return {
     type: EDIT_FORM_TITLE_SUCCESS,
     payload: { title },
   };
-}
+};
 
-export function editPageId(questionPanelIndex, text) {
+export const editPageId = (questionPanelIndex, text) => {
   return {
     type: EDIT_PAGE_ID_SUCCESS,
     payload: { questionPanelIndex, text },
   };
-}
-export function editPageHeader(questionPanelIndex, header) {
+};
+export const editPageHeader = (questionPanelIndex, header) => {
   return {
     type: EDIT_PAGE_HEADER_SUCCESS,
     payload: { questionPanelIndex, header },
   };
-}
+};
 
-export function editPageText(questionPanelIndex, text) {
+export const editPageText = (questionPanelIndex, text) => {
   return {
     type: EDIT_PAGE_TEXT_SUCCESS,
     payload: { questionPanelIndex, text },
   };
-}
+};
 
-export function editQuestionSetHeader(currentQuestionSetIndex, header) {
+export const editQuestionSetHeader = (currentQuestionSetIndex, header) => {
   return {
     type: EDIT_QUESTION_SET_HEADER_SUCCESS,
     payload: { currentQuestionSetIndex, header },
   };
-}
+};
 
-export function editQuestionSetText(currentQuestionSetIndex, text) {
+export const editQuestionSetText = (currentQuestionSetIndex, text) => {
   return {
     type: EDIT_QUESTION_SET_TEXT_SUCCESS,
     payload: { currentQuestionSetIndex, text },
   };
-}
+};
 
-export function editQuestionId(currentQuestionSetIndex, currentQuestionIndex, text) {
+export const editQuestionId = (currentQuestionSetIndex, currentQuestionIndex, text) => {
   return {
     type: EDIT_QUESTION_ID_SUCCESS,
     payload: { currentQuestionSetIndex, currentQuestionIndex, text },
   };
-}
+};
 
-export function editQuestion(currentQuestionSetIndex, currentQuestionIndex, text) {
+export const editQuestion = (currentQuestionSetIndex, currentQuestionIndex, text) => {
   return {
     type: EDIT_QUESTION_SUCCESS,
     payload: { currentQuestionSetIndex, currentQuestionIndex, text },
   };
-}
+};
 
-export function editQuestionText(currentQuestionSetIndex, currentQuestionIndex, text) {
+export const editQuestionText = (currentQuestionSetIndex, currentQuestionIndex, text) => {
   return {
     type: EDIT_QUESTION_TEXT_SUCCESS,
     payload: { currentQuestionSetIndex, currentQuestionIndex, text },
   };
-}
+};
 
-export function editQuestionPostText(currentQuestionSetIndex, currentQuestionIndex, text) {
+export const editQuestionPostText = (currentQuestionSetIndex, currentQuestionIndex, text) => {
   return {
     type: EDIT_QUESTION_POST_TEXT_SUCCESS,
     payload: { currentQuestionSetIndex, currentQuestionIndex, text },
   };
-}
+};
 
-export function editNextButtonText(currentQuestionPanelIndex, text) {
+export const editNextButtonText = (currentQuestionPanelIndex, text) => {
   return {
     type: EDIT_NEXT_BUTTON_TEXT_SUCCESS,
     payload: { currentQuestionPanelIndex, text },
   };
-}
+};
 
-export function editBackButtonText(currentQuestionPanelIndex, text) {
+export const editBackButtonText = (currentQuestionPanelIndex, text) => {
   return {
     type: EDIT_BACK_BUTTON_TEXT_SUCCESS,
     payload: { currentQuestionPanelIndex, text },
   };
-}
+};
 
-export function disableBackButton(currentQuestionPanelIndex, disabled) {
+export const disableBackButton = (currentQuestionPanelIndex, disabled) => {
   return {
     type: DISABLE_BACK_BUTTON_SUCCESS,
     payload: { currentQuestionPanelIndex, disabled },
   };
-}
+};
 
-
-export function onSelectNextButtonAction(currentQuestionPanelIndex, text) {
+export const onSelectNextButtonAction = (currentQuestionPanelIndex, text) => {
   return {
     type: EDIT_NEXT_BUTTON_ACTION_SUCCESS,
     payload: { currentQuestionPanelIndex, text },
   };
-}
+};
 
-export function onSelectNextButtonTarget(currentQuestionPanelIndex, text) {
+export const onSelectNextButtonTarget = (currentQuestionPanelIndex, text) => {
   return {
     type: EDIT_NEXT_BUTTON_TARGET_SUCCESS,
     payload: { currentQuestionPanelIndex, text },
   };
-}
+};
 
-export function changeQuestionType(currentQuestionSetIndex, currentQuestionIndex, questionType) {
+export const changeQuestionType = (currentQuestionSetIndex, currentQuestionIndex, questionType) => {
   return {
     type: CHANGE_QUESTION_TYPE_SUCCESS,
     payload: { currentQuestionSetIndex, currentQuestionIndex, questionType },
   };
-}
+};
 
-export function addQuestionOption(key, questionOptionText, questionOptionValue) {
+export const addQuestionOption = (key, questionOptionText, questionOptionValue) => {
   return {
     type: ADD_QUESTION_OPTION_SUCCESS,
     payload: {
@@ -197,65 +196,67 @@ export function addQuestionOption(key, questionOptionText, questionOptionValue) 
       questionOptionValue,
     },
   };
-}
+};
 
-export function editQuestionOptionText(path, text) {
+export const editQuestionOptionText = (path, text) => {
   return {
     type: EDIT_QUESTION_OPTION_TEXT_SUCCESS,
     payload: { path, text },
   };
-}
+};
 
-export function editQuestionOptionValue(path, value) {
+export const editQuestionOptionValue = (path, value) => {
   return {
     type: EDIT_QUESTION_OPTION_VALUE_SUCCESS,
     payload: { path, value },
   };
-}
+};
 
-export function deleteQuestionOption(path) {
+export const deleteQuestionOption = (path) => {
   return {
     type: DELETE_QUESTION_OPTION_SUCCESS,
     payload: { path },
   };
-}
+};
 
-export function goToPage(panelId) {
+export const goToPage = (panelId) => {
   return {
     type: GOTO_PAGE_SUCCESS,
     payload: { panelId },
   };
-}
+};
 
-export function updateForm(schema) {
+export const updateForm = (schema) => {
   return {
     type: UPDATE_FORM_SUCCESS,
     payload: { schema },
   };
-}
+};
 
-export function addPage(panelId, panelHeader, panelText) {
+export const addPage = (panelId, panelHeader, panelText) => {
   return {
     type: ADD_PAGE_SUCCESS,
     payload: { panelId, panelHeader, panelText },
   };
-}
+};
 
-export function deletePage(panelId) {
+export const deletePage = (panelId) => {
   return {
     type: DELETE_PAGE_SUCCESS,
     payload: { panelId },
   };
-}
+};
 
-export function addQuestionSet(
+export const addQuestionSet = (
   currentPanelId,
   questionSetId,
   questionSetHeader,
   questionSetText,
+  questionId,
   question,
   questionText,
-  questionType) {
+  questionType,
+) => {
   return {
     type: ADD_QUESTION_SET_SUCCESS,
     payload: {
@@ -263,19 +264,22 @@ export function addQuestionSet(
       questionSetId,
       questionSetHeader,
       questionSetText,
+      questionId,
       question,
       questionText,
-      questionType },
+      questionType,
+    },
   };
-}
+};
 
-export function addQuestion(
+export const addQuestion = (
   currentQuestionSetIndex,
   questionSetId,
   questionId,
   question,
   questionText,
-  questionType) {
+  questionType,
+) => {
   return {
     type: ADD_QUESTION_SUCCESS,
     payload: {
@@ -284,16 +288,12 @@ export function addQuestion(
       questionId,
       question,
       questionText,
-      questionType },
+      questionType,
+    },
   };
-}
+};
 
-export function addConditionalQuestion(
-  path,
-  questionId,
-  question,
-  questionText,
-  questionType) {
+export const addConditionalQuestion = (path, questionId, question, questionText, questionType) => {
   return {
     type: ADD_CONDITIONAL_QUESTION_SUCCESS,
     payload: {
@@ -301,56 +301,69 @@ export function addConditionalQuestion(
       questionId,
       question,
       questionText,
-      questionType },
+      questionType,
+    },
   };
-}
+};
 
-export function deleteQuestion(currentQuestionSetIndex, currentQuestionIndex) {
+export const deleteQuestion = (currentQuestionSetIndex, currentQuestionIndex) => {
   return {
     type: DELETE_QUESTION_SUCCESS,
     payload: { currentQuestionSetIndex, currentQuestionIndex },
   };
-}
+};
 
-export function changeCurrentEditingField(
-  currentEditingField, currentQuestionSetIndex, currentQuestionIndex) {
+export const changeCurrentEditingField = (
+  currentEditingField,
+  currentQuestionSetIndex,
+  currentQuestionIndex,
+) => {
   return {
     type: CHANGE_EDITING_FIELD_SUCCESS,
     payload: { currentEditingField, currentQuestionSetIndex, currentQuestionIndex },
   };
-}
+};
 
-export function updateQuestion(
-  currentQuestionSetIndex, currentQuestionIndex, question, questionText) {
+export const updateQuestion = (
+  currentQuestionSetIndex,
+  currentQuestionIndex,
+  question,
+  questionText,
+) => {
   return {
     type: UPDATE_QUESTION_SUCCESS,
     payload: { currentQuestionSetIndex, currentQuestionIndex, question, questionText },
   };
-}
+};
 
-export function movePage(oldIndex, newIndex) {
+export const movePage = (oldIndex, newIndex) => {
   return {
     type: MOVE_PAGE_SUCCESS,
     payload: { oldIndex, newIndex },
   };
-}
+};
 
-export function updateNextQuestionTarget(
-  currentQuestionPanelIndex, questionId, value, target, optionIndex) {
+export const updateNextQuestionTarget = (
+  currentQuestionPanelIndex,
+  questionId,
+  value,
+  target,
+  optionIndex,
+) => {
   return {
     type: UPDATE_NEXT_QUESTION_TARGET_SUCCESS,
     payload: { currentQuestionPanelIndex, questionId, value, target, optionIndex },
   };
-}
+};
 
-export function resetNextQuestionTarget(currentQuestionPanelIndex, value) {
+export const resetNextQuestionTarget = (currentQuestionPanelIndex, value) => {
   return {
     type: RESET_NEXT_QUESTION_TARGET_SUCCESS,
     payload: { currentQuestionPanelIndex, value },
   };
-}
+};
 
-export function saveConditionalQuestion(
+export const saveConditionalQuestion = (
   path,
   questionId,
   question,
@@ -358,7 +371,7 @@ export function saveConditionalQuestion(
   postText,
   type,
   options,
-) {
+) => {
   return {
     type: SAVE_CONDITIONAL_QUESTION_SUCCESS,
     payload: {
@@ -371,18 +384,18 @@ export function saveConditionalQuestion(
       options,
     },
   };
-}
+};
 
-export function deleteConditionalQuestion(path) {
+export const deleteConditionalQuestion = (path) => {
   return {
     type: DELETE_CONDITIONAL_QUESTION_SUCCESS,
     payload: { path },
   };
-}
+};
 
-export function updateQuestionAnswers(questionAnswers) {
+export const updateQuestionAnswers = (questionAnswers) => {
   return {
     type: UPDATE_QUESTION_ANSWERS_SUCCESS,
     payload: { questionAnswers },
   };
-}
+};

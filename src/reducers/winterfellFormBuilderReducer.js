@@ -213,16 +213,8 @@ function winterfellFormBuilderReducer(state = initialState, action) {
         .set('currentQuestionPanelIndex', 0)
         .set('schema', fromJS({
           classes: BOOTSTRAP_CLASSES,
-          formPanels: [{
-            index: 1,
-            panelId: 'page-1',
-          }],
-          questionPanels: [{
-            panelId: 'page-1',
-            panelHeader: `${action.payload.title} - page-1`,
-            panelText: 'page-1 text',
-            questionSets: [],
-          }],
+          formPanels: [],
+          questionPanels: [],
           questionSets: [],
         }));
     case EDIT_FORM_TITLE_SUCCESS:

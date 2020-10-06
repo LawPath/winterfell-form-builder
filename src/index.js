@@ -3,4 +3,3 @@ import WinterfellFormBuilderReducer from './reducers/winterfellFormBuilderReduce
 
 export { WinterfellFormBuilderReducer };
 export default WinterfellFormBuilder;
-

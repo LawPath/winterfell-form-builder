@@ -61,9 +61,9 @@ var SaveFormButton = /*#__PURE__*/function (_Component) {
   (0, _createClass2["default"])(SaveFormButton, [{
     key: "componentWillReceiveProps",
     value: function componentWillReceiveProps(nextProps) {
-      this.state = {
+      this.setState({
         filename: nextProps.title
-      };
+      });
     }
   }, {
     key: "onChange",

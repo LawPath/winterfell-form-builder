@@ -25,9 +25,9 @@ class EditSchemaButton extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.state = {
+    this.setState({
       schema: nextProps.schema,
-    };
+    });
   }
 
   onChange(e) {
@@ -47,7 +47,9 @@ class EditSchemaButton extends Component {
         data-target="#editSchema"
         key="editSchema"
         title="Edit Schema"
-      ><i className="material-icons">view_agenda</i><span className="icon-menu">Schema</span>
+      >
+        <i className="material-icons">view_agenda</i>
+        <span className="icon-menu">Schema</span>
       </button>,
       <div className="modal fade" id="editSchema" tabIndex="-1" key="editSchemaModal">
         <div className="modal-dialog bg-white">
@@ -66,15 +68,12 @@ class EditSchemaButton extends Component {
               </form>
             </div>
             <div className="modal-footer">
-              <button
-                className="btn btn-danger"
-                data-dismiss="modal"
-              >Cancel</button>
-              <button
-                className="btn btn-dark"
-                onClick={this.onFormUpdate}
-                data-dismiss="modal"
-              >Save changes</button>
+              <button className="btn btn-danger" data-dismiss="modal">
+                Cancel
+              </button>
+              <button className="btn btn-dark" onClick={this.onFormUpdate} data-dismiss="modal">
+                Save changes
+              </button>
             </div>
           </div>
         </div>

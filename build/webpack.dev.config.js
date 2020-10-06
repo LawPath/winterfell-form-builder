@@ -1,20 +1,11 @@
 const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const postcssMixins = require("postcss-mixins");
-const postcssNested = require("postcss-nested");
-const postcssExtend = require("postcss-extend");
-const autoprefixer = require("autoprefixer");
 
 module.exports = {
   devtool: "eval",
   entry: {
-    app: [
-      "webpack-dev-server/client?http://localhost:3001",
-      "webpack/hot/only-dev-server",
-      "react-hot-loader/patch",
-      "./index",
-    ],
+    app: ["webpack-dev-server/client?http://localhost:3001", "webpack/hot/only-dev-server", "react-hot-loader/patch", "./index"],
     common: ["react", "redux", "react-dom", "react-redux"],
   },
   output: {
@@ -42,10 +33,7 @@ module.exports = {
         exclude: /node_modules/,
         loader: "babel-loader",
         options: {
-          plugins: [
-            "@babel/plugin-proposal-class-properties",
-            "@babel/plugin-transform-runtime",
-          ],
+          plugins: ["@babel/plugin-proposal-class-properties", "@babel/plugin-transform-runtime"],
           presets: ["@babel/preset-env", "@babel/preset-react"],
         },
       },
@@ -60,20 +48,11 @@ module.exports = {
       },
       {
         test: /\.s?css$/,
-        use: [
-          "style-loader",
-          "css-loader",
-          // {
-          //   loader: "css-loader",
-          //   options: {
-          //     modules: false,
-          //     sourceMap: false,
-          //     importLoaders: 1,
-          //   },
-          // },
-          "sass-loader",
-          "postcss-loader",
-        ],
+        use: ["style-loader", "css-loader", "postcss-loader", "sass-loader"],
+      },
+      {
+        test: /\.less$/,
+        use: ["style-loader", "css-loader", "postcss-loader", "less-loader"],
       },
       {
         test: /\.json$/,
@@ -90,15 +69,8 @@ module.exports = {
     extensions: [".js", ".json"], // <- Just append a '.json' here
   },
   optimization: {
-    runtimeChunk: true,
-    splitChunks: {
-      cacheGroups: {
-        vendor: {
-          test: /[\\/]node_modules[\\/]/,
-          name: "common",
-          chunks: "all",
-        },
-      },
-    },
+    namedModules: true,
+    namedChunks: true,
+    splitChunks: { cacheGroups: { default: false } },
   },
 };

@@ -17,5 +17,30 @@ var _WinterfellFormBuilder = _interopRequireDefault(require("./components/Winter
 
 var _winterfellFormBuilderReducer = _interopRequireDefault(require("./reducers/winterfellFormBuilderReducer"));
 
+// import {
+//   addQuestion,
+//   addQuestionSet,
+//   goToPage,
+//   onSelectNextButtonAction,
+//   onSelectNextButtonTarget,
+//   addPage,
+//   changeCurrentEditingField,
+//   deletePage,
+//   createForm,
+//   editNextButtonText,
+// } from './actions/winterfellFormBuilderActions';
+// export {
+//   WinterfellFormBuilderReducer,
+//   addQuestion,
+//   addQuestionSet,
+//   goToPage,
+//   onSelectNextButtonAction,
+//   onSelectNextButtonTarget,
+//   addPage,
+//   changeCurrentEditingField,
+//   deletePage,
+//   createForm,
+//   editNextButtonText,
+// };
 var _default = _WinterfellFormBuilder["default"];
 exports["default"] = _default;

@@ -19,9 +19,9 @@ class SaveFormButton extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.state = {
+    this.setState({
       filename: nextProps.title,
-    };
+    });
   }
 
   onChange(event) {
@@ -45,7 +45,9 @@ class SaveFormButton extends Component {
         key="uploadButton"
         title="Export"
         disabled={!this.props.schema || this.props.schema === 'null'}
-      ><i className="material-icons">unarchive</i><span className="icon-menu">Export</span>
+      >
+        <i className="material-icons">unarchive</i>
+        <span className="icon-menu">Export</span>
       </button>,
       <div className="modal fade" id="uploadButton" tabIndex="-1" key="uploadButtonModal">
         <div className="modal-dialog bg-white">
@@ -66,16 +68,17 @@ class SaveFormButton extends Component {
               </form>
             </div>
             <div className="modal-footer">
-              <button
-                className="btn btn-danger"
-                data-dismiss="modal"
-              >Cancel</button>
+              <button className="btn btn-danger" data-dismiss="modal">
+                Cancel
+              </button>
               <button
                 className="btn btn-dark"
                 onClick={this.onJSONSave}
                 disabled={!this.state.filename}
                 data-dismiss="modal"
-              >Continue</button>
+              >
+                Continue
+              </button>
             </div>
           </div>
         </div>
@@ -101,4 +104,3 @@ function mapStateToProps(state) {
   };
 }
 export default connect(mapStateToProps, { saveJSON })(SaveFormButton);
-

@@ -88,30 +88,39 @@ export const BOOTSTRAP_CLASSES = {
   buttonBar: 'button-bar',
 };
 
-export const INPUT_TYPE_OPTIONS = [{
-  text: 'text',
-  value: 'textInput',
-}, {
-  text: 'textarea',
-  value: 'textAreaInput',
-}, {
-  text: 'select',
-  value: 'selectInput',
-}, {
-  text: 'checkbox options',
-  value: 'checkboxOptionsInput',
-}, {
-  text: 'radio button',
-  value: 'radioOptionsInput',
-}, {
-  text: 'address',
-  value: 'addressInput',
-}, {
-  text: 'date',
-  value: 'dateInput',
-}, {
-  text: 'checkbox',
-  value: 'checkboxInput',
-}];
+export const INPUT_TYPE_OPTIONS = [
+  {
+    text: 'text',
+    value: 'textInput',
+  },
+  {
+    text: 'textarea',
+    value: 'textAreaInput',
+  },
+  {
+    text: 'select',
+    value: 'selectInput',
+  },
+  {
+    text: 'checkbox options',
+    value: 'checkboxOptionsInput',
+  },
+  {
+    text: 'radio button',
+    value: 'radioOptionsInput',
+  },
+  {
+    text: 'address',
+    value: 'addressInput',
+  },
+  {
+    text: 'date',
+    value: 'dateInput',
+  },
+  {
+    text: 'checkbox',
+    value: 'checkboxInput',
+  },
+];
 
-export const DATE_FORMAT = "dd/MM/yyyy";
+export const DATE_FORMAT = 'dd/MM/yyyy';

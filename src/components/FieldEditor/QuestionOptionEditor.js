@@ -20,9 +20,7 @@ class QuestionOptionEditor extends PureComponent {
   constructor(props) {
     super(props);
 
-    const {
-      questionInputOptions,
-    } = props;
+    const { questionInputOptions } = props;
 
     this.state = {
       questionInputOptions: questionInputOptions ? questionInputOptions.toJS() : [],
@@ -50,7 +48,16 @@ class QuestionOptionEditor extends PureComponent {
     const questionInputOptions = Object.assign([], this.state.questionInputOptions);
     questionInputOptions[index].text = event.target.value;
     this.setState({ questionInputOptions });
-    const path = ['schema', 'questionSets', currentQuestionSetIndex, 'questions', currentQuestionIndex, 'input', 'options', index];
+    const path = [
+      'schema',
+      'questionSets',
+      currentQuestionSetIndex,
+      'questions',
+      currentQuestionIndex,
+      'input',
+      'options',
+      index,
+    ];
     this.props.editQuestionOptionText(path, event.target.value);
   }
 
@@ -59,13 +66,31 @@ class QuestionOptionEditor extends PureComponent {
     const questionInputOptions = Object.assign([], this.state.questionInputOptions);
     questionInputOptions[index].value = event.target.value;
     this.setState({ questionInputOptions });
-    const path = ['schema', 'questionSets', currentQuestionSetIndex, 'questions', currentQuestionIndex, 'input', 'options', index];
+    const path = [
+      'schema',
+      'questionSets',
+      currentQuestionSetIndex,
+      'questions',
+      currentQuestionIndex,
+      'input',
+      'options',
+      index,
+    ];
     this.props.editQuestionOptionValue(path, event.target.value);
   }
 
   onDeleteQuestionOption(index) {
     const { currentQuestionSetIndex, currentQuestionIndex } = this.props;
-    const path = ['schema', 'questionSets', currentQuestionSetIndex, 'questions', currentQuestionIndex, 'input', 'options', index];
+    const path = [
+      'schema',
+      'questionSets',
+      currentQuestionSetIndex,
+      'questions',
+      currentQuestionIndex,
+      'input',
+      'options',
+      index,
+    ];
     this.props.deleteQuestionOption(path);
   }
   onAddOptionChange(event) {
@@ -76,8 +101,15 @@ class QuestionOptionEditor extends PureComponent {
   onAddOption() {
     const { currentQuestionSetIndex, currentQuestionIndex } = this.props;
     const { questionOptionText, questionOptionValue } = this.state;
-    const key = ['schema', 'questionSets', currentQuestionSetIndex, 'questions',
-      currentQuestionIndex, 'input', 'options'];
+    const key = [
+      'schema',
+      'questionSets',
+      currentQuestionSetIndex,
+      'questions',
+      currentQuestionIndex,
+      'input',
+      'options',
+    ];
     this.props.addQuestionOption(key, questionOptionText, questionOptionValue);
     this.setState({ questionOptionText: '', questionOptionValue: '' });
   }
@@ -85,27 +117,37 @@ class QuestionOptionEditor extends PureComponent {
   onShowConditonalClick(index, event) {
     const showConditionalPageCopy = [...this.state.showConditionalPage];
     const showConditionalQuestionsCopy = [...this.state.showConditionalQuestions];
-    const currentConditionalPageSelected =
-      showConditionalPageCopy.findIndex(showCondition => showCondition);
-    const currentConditionalQuestionSelected =
-      showConditionalQuestionsCopy.findIndex(showCondition => showCondition);
+    const currentConditionalPageSelected = showConditionalPageCopy.findIndex(
+      (showCondition) => showCondition,
+    );
+    const currentConditionalQuestionSelected = showConditionalQuestionsCopy.findIndex(
+      (showCondition) => showCondition,
+    );
 
     // Turn off the existing choices
     if (currentConditionalPageSelected !== -1) {
-      showConditionalPageCopy[currentConditionalPageSelected] =
-        !showConditionalPageCopy[currentConditionalPageSelected];
+      showConditionalPageCopy[currentConditionalPageSelected] = !showConditionalPageCopy[
+        currentConditionalPageSelected
+      ];
     }
     if (currentConditionalQuestionSelected !== -1) {
-      showConditionalQuestionsCopy[currentConditionalQuestionSelected] =
-        !showConditionalQuestionsCopy[currentConditionalQuestionSelected];
+      showConditionalQuestionsCopy[
+        currentConditionalQuestionSelected
+      ] = !showConditionalQuestionsCopy[currentConditionalQuestionSelected];
     }
     // Turn on the selected choice
-    if ((event.target.id === 'showConditionalQuestion' || event.target.id === 'showConditionalQuestionButton')
-      && index !== currentConditionalQuestionSelected) {
+    if (
+      (event.target.id === 'showConditionalQuestion' ||
+        event.target.id === 'showConditionalQuestionButton') &&
+      index !== currentConditionalQuestionSelected
+    ) {
       showConditionalQuestionsCopy[index] = !showConditionalQuestionsCopy[index];
     }
-    if ((event.target.id === 'showConditionalPage' || event.target.id === 'showConditionalPageButton')
-      && index !== currentConditionalPageSelected) {
+    if (
+      (event.target.id === 'showConditionalPage' ||
+        event.target.id === 'showConditionalPageButton') &&
+      index !== currentConditionalPageSelected
+    ) {
       showConditionalPageCopy[index] = !showConditionalPageCopy[index];
     }
 
@@ -126,30 +168,36 @@ class QuestionOptionEditor extends PureComponent {
     return (
       <div className="row">
         <div className="col">
-
-          {questionInputOptions &&
-            <b>Options</b>
-          }
+          {questionInputOptions && <b>Options</b>}
 
           {this.state.questionInputOptions &&
             this.state.questionInputOptions.map((option, ix) => {
-              const currentPath = ['schema', 'questionSets', currentQuestionSetIndex, 'questions', currentQuestionIndex, 'input', 'options', ix];
+              const currentPath = [
+                'schema',
+                'questionSets',
+                currentQuestionSetIndex,
+                'questions',
+                currentQuestionIndex,
+                'input',
+                'options',
+                ix,
+              ];
               return (
-                <div key={`${ix}`} >
+                <div key={`${ix}`}>
                   <div className="input-group winterfell-form-builder-conditional-question">
                     <input
                       className="form-control"
                       type="text"
                       name={this.state.questionInputOptions[ix].text}
                       value={this.state.questionInputOptions[ix].text}
-                      onChange={event => this.onOptionTextChange(event, ix)}
+                      onChange={(event) => this.onOptionTextChange(event, ix)}
                     />
                     <input
                       className="form-control"
                       type="text"
                       name={this.state.questionInputOptions[ix].value}
                       value={this.state.questionInputOptions[ix].value}
-                      onChange={event => this.onOptionValueChange(event, ix)}
+                      onChange={(event) => this.onOptionValueChange(event, ix)}
                     />
                     <div className="input-group">
                       <DeleteQuestionOptionButton
@@ -160,33 +208,45 @@ class QuestionOptionEditor extends PureComponent {
                     <div className="input-group">
                       <button
                         type="button"
-                        onClick={event => this.onShowConditonalClick(ix, event)}
+                        onClick={(event) => this.onShowConditonalClick(ix, event)}
                         className="btn btn-warning"
                         id="showConditionalPageButton"
                       >
-                        {this.state.showConditionalPage && !this.state.showConditionalPage[ix] &&
-                          <i className="material-icons" id="showConditionalPage" >share</i>}
-                        {this.state.showConditionalPage && this.state.showConditionalPage[ix] &&
-                          <i className="material-icons" id="showConditionalPage" >remove_circle </i>}
+                        {this.state.showConditionalPage && !this.state.showConditionalPage[ix] && (
+                          <i className="material-icons" id="showConditionalPage">
+                            share
+                          </i>
+                        )}
+                        {this.state.showConditionalPage && this.state.showConditionalPage[ix] && (
+                          <i className="material-icons" id="showConditionalPage">
+                            remove_circle{' '}
+                          </i>
+                        )}
                       </button>
                     </div>
                     <div className="input-group">
                       <button
                         type="button"
                         id="showConditionalQuestionButton"
-                        onClick={event => this.onShowConditonalClick(ix, event)}
+                        onClick={(event) => this.onShowConditonalClick(ix, event)}
                         className="btn btn-dark"
                       >
                         {this.state.showConditionalQuestions &&
-                          !this.state.showConditionalQuestions[ix] &&
-                          <i className="material-icons" id="showConditionalPage" >menu</i>}
+                          !this.state.showConditionalQuestions[ix] && (
+                            <i className="material-icons" id="showConditionalPage">
+                              menu
+                            </i>
+                          )}
                         {this.state.showConditionalQuestions &&
-                          this.state.showConditionalQuestions[ix] &&
-                          <i className="material-icons" id="showConditionalPage" >remove_circle </i>}
+                          this.state.showConditionalQuestions[ix] && (
+                            <i className="material-icons" id="showConditionalPage">
+                              remove_circle{' '}
+                            </i>
+                          )}
                       </button>
                     </div>
 
-                    {this.state.showConditionalPage[ix] &&
+                    {this.state.showConditionalPage[ix] && (
                       <ConditionalPageEditor
                         questionOptionIndex={ix}
                         questionId={questionId}
@@ -195,23 +255,23 @@ class QuestionOptionEditor extends PureComponent {
                         currentQuestionIndex={currentQuestionIndex}
                         text={this.state.questionInputOptions[ix].text}
                       />
-                    }
-                    {this.state.showConditionalQuestions[ix] &&
+                    )}
+                    {this.state.showConditionalQuestions[ix] && (
                       <ConditionalQuestionEditor
                         parentPath={currentPath}
                         parentOptionText={this.state.questionInputOptions[ix].text}
                       />
-                    }
+                    )}
                   </div>
-                </div>);
-            })
-          }
+                </div>
+              );
+            })}
           <br />
           <div>
             <AddQuestionOptionButton
               questionOptionText={this.state.questionOptionText}
               questionOptionValue={this.state.questionOptionValue}
-              onChange={e => this.onAddOptionChange(e)}
+              onChange={(e) => this.onAddOptionChange(e)}
               onClick={this.onAddOption}
             />
           </div>
@@ -233,16 +293,13 @@ QuestionOptionEditor.propTypes = {
   addQuestionOption: PropTypes.func.isRequired,
 };
 
-export default connect(
-  null,
-  {
-    editQuestionOptionText,
-    editQuestionOptionValue,
-    addQuestionOption,
-    deleteQuestion,
-    deleteQuestionOption,
-    changeQuestionType,
-    changeCurrentEditingField,
-    updateNextQuestionTarget,
-  })(QuestionOptionEditor);
-
+export default connect(null, {
+  editQuestionOptionText,
+  editQuestionOptionValue,
+  addQuestionOption,
+  deleteQuestion,
+  deleteQuestionOption,
+  changeQuestionType,
+  changeCurrentEditingField,
+  updateNextQuestionTarget,
+})(QuestionOptionEditor);
