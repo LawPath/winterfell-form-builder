@@ -31,26 +31,28 @@ class DeleteQuestionOptionButton extends Component {
         data-toggle="modal"
         data-target="#deleteQuestionOptionButton"
       >
-        <i className="material-icons">delete</i><span>delete this option</span>
+        <i className="material-icons">delete</i>
+        <span>delete this option</span>
       </button>,
-      <div className="modal fade" id="deleteQuestionOptionButton" tabIndex="-1">
+      <div
+        className="modal fade"
+        id="deleteQuestionOptionButton"
+        tabIndex="-1"
+        key="deleteQuestionOptionButtonModal"
+      >
         <div className="modal-dialog bg-white">
           <div className="modal-content">
             <div className="modal-header">
               <div className="modal-title">Delete Option Confirmation</div>
             </div>
-            <div className="modal-body">
-              Are you sure you want to delete this option?
-          </div>
+            <div className="modal-body">Are you sure you want to delete this option?</div>
             <div className="modal-footer">
-              <button
-                className="btn btn-danger"
-                data-dismiss="modal"
-              >Cancel</button>
-              <button
-                className="btn btn-dark"
-                onClick={this.onConfirmDelete}
-              >Confirm Delete</button>
+              <button className="btn btn-danger" data-dismiss="modal">
+                Cancel
+              </button>
+              <button className="btn btn-dark" data-dismiss="modal" onClick={this.onConfirmDelete}>
+                Confirm Delete
+              </button>
             </div>
           </div>
         </div>
@@ -64,4 +66,3 @@ DeleteQuestionOptionButton.propTypes = {
 };
 
 export default DeleteQuestionOptionButton;
-

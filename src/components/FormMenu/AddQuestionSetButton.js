@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { addQuestionSet } from '../../actions/winterfellFormBuilderActions';
-import FieldGroup from '../InputTypes/FieldGroup';
-import SelectInput from '../InputTypes/SelectInput';
-import { INPUT_TYPE_OPTIONS } from '../../common/constants';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { addQuestionSet } from "../../actions/winterfellFormBuilderActions";
+import FieldGroup from "../InputTypes/FieldGroup";
+import SelectInput from "../InputTypes/SelectInput";
+import { INPUT_TYPE_OPTIONS } from "../../common/constants";
 
 class AddQuestionSetButton extends Component {
   constructor(props) {
@@ -12,12 +12,12 @@ class AddQuestionSetButton extends Component {
 
     this.state = {
       showModal: false,
-      questionSetId: '',
-      questionSetHeader: '',
-      questionSetText: '',
-      question: '',
-      questionText: '',
-      questionType: '',
+      questionSetId: "",
+      questionSetHeader: "",
+      questionSetText: "",
+      question: "",
+      questionText: "",
+      questionType: "",
     };
 
     this.onChange = this.onChange.bind(this);
@@ -46,9 +46,10 @@ class AddQuestionSetButton extends Component {
       this.state.questionSetId,
       this.state.questionSetHeader,
       this.state.questionSetText,
+      null,
       this.state.question,
       this.state.questionText,
-      this.state.questionType,
+      this.state.questionType
     );
     this.setState({ showModal: false });
   }
@@ -58,7 +59,7 @@ class AddQuestionSetButton extends Component {
       <button
         type="button"
         className="btn btn-block btn-dark"
-        disabled={!this.props.currentPanelId || this.props.currentPanelId === 'Select Page'}
+        disabled={!this.props.currentPanelId || this.props.currentPanelId === "Select Page"}
         data-toggle="modal"
         data-target="#addQuestionSet"
         key="addQuestionSet"
@@ -73,15 +74,7 @@ class AddQuestionSetButton extends Component {
               <div className="modal-title">Add a new question set</div>
             </div>
             <div className="modal-body">
-              <FieldGroup
-                id="questionSetId"
-                name="questionSetId"
-                label="Question Set ID"
-                onChange={this.onChange}
-                placeholder="(optional)"
-                value={this.state.questionSetId}
-                key="questionSetId"
-              />
+              <FieldGroup id="questionSetId" name="questionSetId" label="Question Set ID" onChange={this.onChange} placeholder="(optional)" value={this.state.questionSetId} key="questionSetId" />
               <FieldGroup
                 id="questionSetHeader"
                 name="questionSetHeader"
@@ -100,46 +93,18 @@ class AddQuestionSetButton extends Component {
                 value={this.state.questionSetText}
                 key="questionSetText"
               />
-              <FieldGroup
-                id="question"
-                name="question"
-                label="Enter Question"
-                onChange={this.onChange}
-                placeholder=""
-                value={this.state.question}
-                key="question"
-              />
-              <FieldGroup
-                id="questionText"
-                name="questionText"
-                label="Enter Question Text"
-                onChange={this.onChange}
-                placeholder=""
-                value={this.state.questionText}
-                key="questionText"
-              />
-              <label htmlFor="questionType">
-                Select Question Type
-                  </label>
-              <SelectInput
-                id="questionType"
-                labelId="questionType"
-                options={INPUT_TYPE_OPTIONS}
-                onSelect={this.onSelect}
-                value={this.state.questionType}
-                key="questionType"
-              />
+              <FieldGroup id="question" name="question" label="Enter Question" onChange={this.onChange} placeholder="" value={this.state.question} key="question" />
+              <FieldGroup id="questionText" name="questionText" label="Enter Question Text" onChange={this.onChange} placeholder="" value={this.state.questionText} key="questionText" />
+              <label htmlFor="questionType">Select Question Type</label>
+              <SelectInput id="questionType" labelId="questionType" options={INPUT_TYPE_OPTIONS} onSelect={this.onSelect} value={this.state.questionType} key="questionType" />
             </div>
             <div className="modal-footer">
-              <button
-                className="btn btn-danger"
-                data-dismiss="modal"
-              >Cancel</button>
-              <button
-                className="btn btn-dark"
-                onClick={this.onFormUpdate}
-                data-dismiss="modal"
-              >Save changes</button>
+              <button className="btn btn-danger" data-dismiss="modal">
+                Cancel
+              </button>
+              <button className="btn btn-dark" onClick={this.onFormUpdate} data-dismiss="modal">
+                Save changes
+              </button>
             </div>
           </div>
         </div>
@@ -154,13 +119,12 @@ AddQuestionSetButton.propTypes = {
 };
 
 AddQuestionSetButton.defaultProps = {
-  currentPanelId: '',
+  currentPanelId: "",
 };
 
 function mapStateToProps(state) {
   return {
-    currentPanelId: state.getIn(['form', 'currentPanelId']),
+    currentPanelId: state.getIn(["form", "currentPanelId"]),
   };
 }
 export default connect(mapStateToProps, { addQuestionSet })(AddQuestionSetButton);
-

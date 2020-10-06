@@ -230,7 +230,7 @@ var QuestionOptionEditor = /*#__PURE__*/function (_PureComponent) {
         }, "share"), _this2.state.showConditionalPage && _this2.state.showConditionalPage[ix] && /*#__PURE__*/_react["default"].createElement("i", {
           className: "material-icons",
           id: "showConditionalPage"
-        }, "remove_circle "))), /*#__PURE__*/_react["default"].createElement("div", {
+        }, "remove_circle", ' '))), /*#__PURE__*/_react["default"].createElement("div", {
           className: "input-group"
         }, /*#__PURE__*/_react["default"].createElement("button", {
           type: "button",
@@ -245,7 +245,7 @@ var QuestionOptionEditor = /*#__PURE__*/function (_PureComponent) {
         }, "menu"), _this2.state.showConditionalQuestions && _this2.state.showConditionalQuestions[ix] && /*#__PURE__*/_react["default"].createElement("i", {
           className: "material-icons",
           id: "showConditionalPage"
-        }, "remove_circle "))), _this2.state.showConditionalPage[ix] && /*#__PURE__*/_react["default"].createElement(_ConditionalPageEditor["default"], {
+        }, "remove_circle", ' '))), _this2.state.showConditionalPage[ix] && /*#__PURE__*/_react["default"].createElement(_ConditionalPageEditor["default"], {
           questionOptionIndex: ix,
           questionId: questionId,
           currentQuestionPanelIndex: currentQuestionPanelIndex,

@@ -178,5 +178,5 @@ var INPUT_TYPE_OPTIONS = [{
   value: 'checkboxInput'
 }];
 exports.INPUT_TYPE_OPTIONS = INPUT_TYPE_OPTIONS;
-var DATE_FORMAT = "dd/MM/yyyy";
+var DATE_FORMAT = 'dd/MM/yyyy';
 exports.DATE_FORMAT = DATE_FORMAT;

@@ -1,7 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, createRef, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { goToPage, changeCurrentEditingField, clearErrorMessage } from '../actions/winterfellFormBuilderActions';
+import {
+  goToPage,
+  changeCurrentEditingField,
+  clearErrorMessage,
+} from '../actions/winterfellFormBuilderActions';
 import Pagination from './Pagination';
 import Previewer from './Previewer';
 import TreeView from './TreeView';
@@ -14,16 +18,19 @@ import {
   UploadJSONButton,
   EditSchemaButton,
 } from './FormMenu';
-import FieldSelector from './FieldSelector';
 import FieldEditor from './FieldEditor';
+import QuestionPanels from './layouts/QuestionsPanel';
 
 class WinterfellFormBuilder extends Component {
-  
+  state = {
+    schema: {},
+    schemaToggle: false,
+  };
 
   onFormUpdate = (e) => {
     e.preventDefault();
-    this.setState({ schema: JSON.parse(e.target.value) });
-  }
+    this.setState({ schemaToggle: JSON.parse(e.target.value) });
+  };
 
   render() {
     const {
@@ -37,14 +44,8 @@ class WinterfellFormBuilder extends Component {
       errorMessage,
       title,
     } = this.props;
-
     return (
-      <div className="container winterfell-form-builder">
-        <div className="row">
-          <div className="col-12">
-            <h1>Winterfell Form Builder</h1>
-          </div>
-        </div>
+      <div className="container-fluid winterfell-form-builder">
         <div className="row">
           <div
             className={`modal fade ${errorMessage !== '' ? 'show' : ''}`}
@@ -57,9 +58,7 @@ class WinterfellFormBuilder extends Component {
                 <div className="modal-header">
                   <div className="modal-title">Error</div>
                 </div>
-                <div className="modal-body">
-                  {errorMessage}
-                </div>
+                <div className="modal-body">{errorMessage}</div>
                 <div className="modal-footer">
                   <button
                     type="button"
@@ -84,69 +83,56 @@ class WinterfellFormBuilder extends Component {
             </div>
           </div>
         </div>
-        {(!this.props.schema || this.props.schema.size === 0) ?
-          (<div className="alert alert-info" role="alert">
-            No form loaded.  Click on <b>Create</b> to create a new form,
-                or <b>Import</b> to load an existing form (.json).
-              </div>)
-          : (
-
-            <div className="row winterfell-form-builder-editor">
-              <div className="col-4">
-                <h3>Page Editor</h3>
-                <div className="btn-group">
-                  <AddPageButton />
-                  <PageSortButton
-                    onClick={() => this.props.changeCurrentEditingField('pageSort')}
-                  />
-                </div>
-                <br />
-                <TreeView id="tree-view" />
-                <br />
-                {
-                    formPanels &&
-                    <Pagination
-                      formPanels={formPanels.map(panel => panel.get('panelId'))}
-                      currentPanelId={currentPanelId}
-                      onClick={this.props.goToPage}
-                    />
-                  }
-                {currentQuestionPanelIndex >= 0 &&
-                  <FieldEditor
-                    currentQuestionPanelIndex={currentQuestionPanelIndex}
-                    currentEditingField={currentEditingField}
-                    currentQuestionSetIndex={currentQuestionSetIndex}
-                    currentQuestionIndex={currentQuestionIndex}
-                  />
-                }
+        {!this.props.schema || this.props.schema.size === 0 ? (
+          <div className="alert alert-info" role="alert">
+            No form loaded. Click on <b>Create</b> to create a new form, or <b>Import</b> to load an
+            existing form (.json).
+          </div>
+        ) : (
+          <div className="row winterfell-form-builder-editor">
+            <div className="col-4" id="questionEditor">
+              <h3>Page Editor</h3>
+              <div className="btn-group">
+                <AddPageButton />
+                <PageSortButton onClick={() => this.props.changeCurrentEditingField('pageSort')} />
               </div>
-              <div className="col-8 winterfell-form-builder-page-editor">
-                <h3>{title}</h3>
-                {(this.props.schema && currentQuestionPanelIndex >= 0) &&
-                  <FieldSelector
-                    currentQuestionPanelIndex={currentQuestionPanelIndex}
-                  />
-                }
-
-              </div>
-            </div>)}
-
+              <br />
+              <TreeView id="tree-view" />
+              <br />
+              {formPanels && (
+                <Pagination
+                  formPanels={formPanels.map((panel) => panel.get('panelId'))}
+                  currentPanelId={currentPanelId}
+                  onClick={this.props.goToPage}
+                />
+              )}
+              {currentQuestionPanelIndex >= 0 && (
+                <FieldEditor
+                  currentQuestionPanelIndex={currentQuestionPanelIndex}
+                  currentEditingField={currentEditingField}
+                  currentQuestionSetIndex={currentQuestionSetIndex}
+                  currentQuestionIndex={currentQuestionIndex}
+                />
+              )}
+            </div>
+            <div className="col-8 winterfell-form-builder-page-editor">
+              <QuestionPanels
+                title={title}
+                schema={this.props.schema}
+                currentQuestionPanelIndex={currentQuestionPanelIndex}
+              />
+            </div>
+          </div>
+        )}
         <div className="row winterfell-form-builder-previewer">
           <div className="col-12 mb-5 py-3">
             <h3>Winterfell Form Preview:</h3>
-            {
-              schema &&
-              <Previewer
-                currentPanelId={currentPanelId}
-                schema={schema.toJS()}
-              />
-            }
-            {
-              currentPanelId === 'Select Page' &&
+            {schema && <Previewer currentPanelId={currentPanelId} schema={schema.toJS()} />}
+            {currentPanelId === 'Select Page' && (
               <div className="alert alert-info" role="alert">
-                No page selected to preview.  Select a page from the dropdown above.
+                No page selected to preview. Select a page from the dropdown above.
               </div>
-            }
+            )}
           </div>
         </div>
       </div>
@@ -198,8 +184,8 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  { goToPage, changeCurrentEditingField, clearErrorMessage },
-)(WinterfellFormBuilder);
-
+export default connect(mapStateToProps, {
+  goToPage,
+  changeCurrentEditingField,
+  clearErrorMessage,
+})(WinterfellFormBuilder);

@@ -76,7 +76,8 @@ var DeleteQuestionOptionButton = /*#__PURE__*/function (_Component) {
       }, "delete"), /*#__PURE__*/_react["default"].createElement("span", null, "delete this option")), /*#__PURE__*/_react["default"].createElement("div", {
         className: "modal fade",
         id: "deleteQuestionOptionButton",
-        tabIndex: "-1"
+        tabIndex: "-1",
+        key: "deleteQuestionOptionButtonModal"
       }, /*#__PURE__*/_react["default"].createElement("div", {
         className: "modal-dialog bg-white"
       }, /*#__PURE__*/_react["default"].createElement("div", {
@@ -94,6 +95,7 @@ var DeleteQuestionOptionButton = /*#__PURE__*/function (_Component) {
         "data-dismiss": "modal"
       }, "Cancel"), /*#__PURE__*/_react["default"].createElement("button", {
         className: "btn btn-dark",
+        "data-dismiss": "modal",
         onClick: this.onConfirmDelete
       }, "Confirm Delete")))))];
     }
