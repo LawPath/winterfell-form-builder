@@ -40,7 +40,6 @@ import {
   UPDATE_NEXT_QUESTION_TARGET_SUCCESS,
   RESET_NEXT_QUESTION_TARGET_SUCCESS,
   UPDATE_QUESTION_ANSWERS_SUCCESS,
-  CHANGE_ACTIVATED_TAB,
 } from '../common/constants';
 
 export const updateErrorMessage = (message) => {
@@ -398,12 +397,5 @@ export const updateQuestionAnswers = (questionAnswers) => {
   return {
     type: UPDATE_QUESTION_ANSWERS_SUCCESS,
     payload: { questionAnswers },
-  };
-};
-
-export const changeActivatedTab = (activateTab) => {
-  return {
-    type: CHANGE_ACTIVATED_TAB,
-    payload: { activateTab },
   };
 };
