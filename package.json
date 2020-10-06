@@ -52,7 +52,6 @@
     "react-router-redux": "^4.0.8",
     "react-sortable-hoc": "^1.11.0",
     "validator": "^13.1.1",
-    "vinyl-source-stream": "^2.0.0",
     "winterfell": "https://github.com/andrewhathaway/Winterfell.git"
   },
   "devDependencies": {
