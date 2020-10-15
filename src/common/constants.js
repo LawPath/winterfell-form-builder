@@ -64,6 +64,10 @@ export const EDIT_QUESTION_OPTION_TEXT_SUCCESS = 'EDIT_QUESTION_OPTION_TEXT_SUCC
 export const EDIT_QUESTION_OPTION_VALUE_SUCCESS = 'EDIT_QUESTION_OPTION_VALUE_SUCCESS';
 export const DELETE_QUESTION_OPTION_SUCCESS = 'DELETE_QUESTION_OPTION_SUCCESS';
 
+export const CHANGE_QUESTION_LABEL_SUCCESS = 'CHANGE_QUESTION_LABEL_SUCCESS';
+
+export const CHANGE_SUGGESTED_ANSWERS_SUCCESS = 'CHANGE_SUGGESTED_ANSWERS_SUCCESS';
+
 export const UPLOAD_JSON_SUCCESS = 'UPLOAD_JSON_SUCCESS';
 export const CLEAR_FORM_ERROR = 'CLEAR_FORM_ERROR';
 export const MOVE_PAGE_SUCCESS = 'MOVE_PAGE_SUCCESS';
@@ -71,6 +75,8 @@ export const DISABLE_BACK_BUTTON_SUCCESS = 'DISABLE_BACK_BUTTON_SUCCESS';
 export const UPDATE_NEXT_QUESTION_TARGET_SUCCESS = 'UPDATE_NEXT_QUESTION_TARGET_SUCCESS';
 export const RESET_NEXT_QUESTION_TARGET_SUCCESS = 'RESET_NEXT_QUESTION_TARGET_SUCCESS';
 export const UPDATE_QUESTION_ANSWERS_SUCCESS = 'UPDATE_QUESTION_ANSWERS_SUCCESS';
+
+export const POST_QUESTION_SUGGESTION = '';
 
 export const BOOTSTRAP_CLASSES = {
   input: 'form-control',
@@ -120,6 +126,45 @@ export const INPUT_TYPE_OPTIONS = [
   {
     text: 'checkbox',
     value: 'checkboxInput',
+  },
+];
+
+export const QUESTION_LABEL_OPTIONS = [
+  {
+    text: 'Full name',
+    value: 'full_name',
+  },
+  {
+    text: 'Phone number',
+    value: 'phone_number',
+  },
+  {
+    text: 'Email',
+    value: 'email_address',
+  },
+  {
+    text: 'Business name',
+    value: 'business_name',
+  },
+  {
+    text: 'ABN',
+    value: 'abn',
+  },
+  {
+    text: 'ACN',
+    value: 'acn',
+  },
+  {
+    text: 'Address',
+    value: 'address',
+  },
+  {
+    text: 'Address state',
+    value: 'address_state',
+  },
+  {
+    text: 'Website address',
+    value: 'website_address',
   },
 ];
 

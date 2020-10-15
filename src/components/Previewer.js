@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Winterfell from 'winterfell';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 
 import { updateQuestionAnswers } from '../actions/winterfellFormBuilderActions';
 import DateInputType from '../components/InputTypes/DateInputType';
 import addressInputType from '../components/InputTypes/addressInputType';
 import textAreaInputType from '../components/InputTypes/textAreaInputType';
+import SuggestionInputs from './InputTypes/SuggestionInputs';
 
 const onRenderDefault = () => {
   console.log('Great news! Winterfell rendered successfully');
@@ -26,81 +27,86 @@ const onSubmitDefault = (questionAndAnswers, target) => {
   // alert('Submitted. Check the console to see the answers!');
 };
 
-class Previewer extends Component {
-  constructor(props) {
-    super(props);
-    this.onUpdateQuestionAnswers = this.onUpdateQuestionAnswers.bind(this);
-  }
+const Previewer = ({
+  currentPanelId = null,
+  schema = {},
+  onRender = onRenderDefault,
+  onSubmit = onSubmitDefault,
+  onSwitchPanel = onSwitchPanelDefault,
+  questionAnswers = {},
+  onUpdate = () => {},
+}) => {
+  const dispatch = useDispatch();
 
-  onUpdateQuestionAnswers(questionAndAnswers) {
+  const onUpdateQuestionAnswers = (questionAndAnswers) => {
     console.log('Question Updated! The current set of answers is: ', questionAndAnswers);
-    this.props.updateQuestionAnswers(questionAndAnswers);
-  }
 
-  render() {
-    const {
-      schema,
-      currentPanelId,
-      onRender,
-      onSwitchPanel,
-      onSubmit,
-      questionAnswers,
-    } = this.props;
+    dispatch(updateQuestionAnswers(questionAndAnswers));
+  };
 
-    Winterfell.addInputTypes({
-      dateInput: DateInputType,
-      addressInput: addressInputType,
-      textAreaInput: textAreaInputType });
-    const displayWinterFellForm = () => (
-      schema.formPanels.map((formPanel, index) => (
-        (formPanel.panelId === currentPanelId &&
+  const onClickSuggestion = (event, { questionId, item }) => {
+    const selectedAnswer = {};
+    selectedAnswer[questionId] = item.id;
+    dispatch(updateQuestionAnswers(selectedAnswer));
+  };
+
+  Winterfell.addInputTypes({
+    dateInput: DateInputType,
+    addressInput: addressInputType,
+    textAreaInput: textAreaInputType,
+  });
+  Winterfell.addPostQuestionComponent('suggestion', SuggestionInputs);
+
+  const displayWinterFellForm = () =>
+    schema.formPanels.map((formPanel, index) => {
+      return (
+        (formPanel.panelId === currentPanelId && (
           <Winterfell
             schema={schema}
             disableSubmit
             onRender={onRender}
-            onUpdate={this.onUpdateQuestionAnswers}
+            onUpdate={onUpdateQuestionAnswers}
             onSwitchPanel={onSwitchPanel}
             onSubmit={onSubmit}
             questionAnswers={questionAnswers}
             panelId={currentPanelId}
             key={index}
-          />)
-          ||
-        (currentPanelId === 'Select Page' &&
+          />
+        )) ||
+        (currentPanelId === 'Select Page' && (
           <Winterfell
             schema={schema}
             disableSubmit
             onRender={onRender}
-            onUpdate={this.onUpdate}
+            onUpdate={onUpdate}
             onSwitchPanel={onSwitchPanel}
             onSubmit={onSubmit}
             questionAnswers={questionAnswers}
-          />)
-      ))
-    );
+          />  
+        ))
+      );
+    });
 
-    return (
-      <div className="card p-3" >
-        {(schema &&
-          schema.formPanels &&
-          schema.formPanels.length > 0) &&
-          currentPanelId &&
-          currentPanelId !== 'Select Page' &&
-          displayWinterFellForm()
-        }
-      </div>
-    );
-  }
-}
+  return (
+    <div className="card p-3">
+      {schema &&
+        schema.formPanels &&
+        schema.formPanels.length > 0 &&
+        currentPanelId &&
+        currentPanelId !== 'Select Page' &&
+        displayWinterFellForm()}
+    </div>
+  );
+};
 
 Previewer.propTypes = {
-  currentPanelId: PropTypes.string,
+  currentPanelId: PropTypes.number.isRequired,
   schema: PropTypes.object.isRequired,
   onRender: PropTypes.func,
-  updateQuestionAnswers: PropTypes.func,
   onSubmit: PropTypes.func,
   onSwitchPanel: PropTypes.func,
   questionAnswers: PropTypes.object,
+  onUpdate: PropTypes.func,
 };
 
 Previewer.defaultProps = {
@@ -111,8 +117,6 @@ Previewer.defaultProps = {
   onSwitchPanel: onSwitchPanelDefault,
   questionAnswers: {},
   onUpdate: () => {},
-  updateQuestionAnswers: () => {},
 };
 
-export default connect(null, { updateQuestionAnswers })(Previewer);
-
+export default Previewer;
