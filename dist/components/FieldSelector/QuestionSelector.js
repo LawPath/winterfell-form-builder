@@ -13,10 +13,19 @@ var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _InputTypes = require("../InputTypes/");
 
-var FormQuestionEditor = function FormQuestionEditor(props) {
-  var questionSetIndex = props.questionSetIndex,
-      questions = props.questions,
-      _onClick = props.onClick;
+var Suggestions = function Suggestions(_ref) {
+  var data = _ref.data;
+  return /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("label", null, "Suggestions")), /*#__PURE__*/_react["default"].createElement("div", null, data.map(function (item) {
+    return /*#__PURE__*/_react["default"].createElement("span", {
+      className: "badge badge-primary m-1"
+    }, item.text);
+  })));
+};
+
+var FormQuestionEditor = function FormQuestionEditor(_ref2) {
+  var questionSetIndex = _ref2.questionSetIndex,
+      questions = _ref2.questions,
+      _onClick = _ref2.onClick;
 
   var displayQuestionButtons = function displayQuestionButtons() {
     return questions.map(function (question, questionIndex) {
@@ -55,7 +64,9 @@ var FormQuestionEditor = function FormQuestionEditor(props) {
         id: question.questionId,
         labelId: question.questionId,
         options: question.input.options
-      }), question.input && question.input.type === 'dateInput' && /*#__PURE__*/_react["default"].createElement("p", null, /*#__PURE__*/_react["default"].createElement("i", null, "(date input)")), question.input && question.input.type === 'addressInput' && /*#__PURE__*/_react["default"].createElement("p", null, /*#__PURE__*/_react["default"].createElement("i", null, "(address input)")), question.postText && /*#__PURE__*/_react["default"].createElement("p", null, question.postText)));
+      }), question.input && question.input.type === 'dateInput' && /*#__PURE__*/_react["default"].createElement("p", null, /*#__PURE__*/_react["default"].createElement("i", null, "(date input)")), question.input && question.input.type === 'addressInput' && /*#__PURE__*/_react["default"].createElement("p", null, /*#__PURE__*/_react["default"].createElement("i", null, "(address input)")), question.postText && /*#__PURE__*/_react["default"].createElement("p", null, question.postText), question.suggestions && /*#__PURE__*/_react["default"].createElement(Suggestions, {
+        data: question.suggestions
+      })));
     });
   };
 

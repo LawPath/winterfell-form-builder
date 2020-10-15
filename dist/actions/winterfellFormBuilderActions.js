@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.updateQuestionAnswers = exports.deleteConditionalQuestion = exports.saveConditionalQuestion = exports.resetNextQuestionTarget = exports.updateNextQuestionTarget = exports.movePage = exports.updateQuestion = exports.changeCurrentEditingField = exports.deleteQuestion = exports.addConditionalQuestion = exports.addQuestion = exports.addQuestionSet = exports.deletePage = exports.addPage = exports.updateForm = exports.goToPage = exports.deleteQuestionOption = exports.editQuestionOptionValue = exports.editQuestionOptionText = exports.addQuestionOption = exports.changeQuestionType = exports.onSelectNextButtonTarget = exports.onSelectNextButtonAction = exports.disableBackButton = exports.editBackButtonText = exports.editNextButtonText = exports.editQuestionPostText = exports.editQuestionText = exports.editQuestion = exports.editQuestionId = exports.editQuestionSetText = exports.editQuestionSetHeader = exports.editPageText = exports.editPageHeader = exports.editPageId = exports.editFormTitle = exports.saveJSON = exports.uploadJSON = exports.createForm = exports.clearErrorMessage = exports.updateErrorMessage = void 0;
+exports.updateQuestionAnswers = exports.deleteConditionalQuestion = exports.saveConditionalQuestion = exports.resetNextQuestionTarget = exports.updateNextQuestionTarget = exports.movePage = exports.updateQuestion = exports.changeCurrentEditingField = exports.deleteQuestion = exports.addConditionalQuestion = exports.addQuestion = exports.addQuestionSet = exports.deletePage = exports.addPage = exports.updateForm = exports.goToPage = exports.deleteQuestionOption = exports.editQuestionOptionValue = exports.editQuestionOptionText = exports.addQuestionOption = exports.changeSuggestedAnswers = exports.changeQuestionLabel = exports.changeQuestionType = exports.onSelectNextButtonTarget = exports.onSelectNextButtonAction = exports.disableBackButton = exports.editBackButtonText = exports.editNextButtonText = exports.editQuestionPostText = exports.editQuestionText = exports.editQuestion = exports.editQuestionId = exports.editQuestionSetText = exports.editQuestionSetHeader = exports.editPageText = exports.editPageHeader = exports.editPageId = exports.editFormTitle = exports.saveJSON = exports.uploadJSON = exports.createForm = exports.clearErrorMessage = exports.updateErrorMessage = void 0;
 
 var _constants = require("../common/constants");
 
@@ -256,6 +256,32 @@ var changeQuestionType = function changeQuestionType(currentQuestionSetIndex, cu
 };
 
 exports.changeQuestionType = changeQuestionType;
+
+var changeQuestionLabel = function changeQuestionLabel(currentQuestionSetIndex, currentQuestionIndex, labelType) {
+  return {
+    type: _constants.CHANGE_QUESTION_LABEL_SUCCESS,
+    payload: {
+      currentQuestionSetIndex: currentQuestionSetIndex,
+      currentQuestionIndex: currentQuestionIndex,
+      labelType: labelType
+    }
+  };
+};
+
+exports.changeQuestionLabel = changeQuestionLabel;
+
+var changeSuggestedAnswers = function changeSuggestedAnswers(currentQuestionSetIndex, currentQuestionIndex, postQuestionComponent) {
+  return {
+    type: _constants.CHANGE_SUGGESTED_ANSWERS_SUCCESS,
+    payload: {
+      currentQuestionSetIndex: currentQuestionSetIndex,
+      currentQuestionIndex: currentQuestionIndex,
+      postQuestionComponent: postQuestionComponent
+    }
+  };
+};
+
+exports.changeSuggestedAnswers = changeSuggestedAnswers;
 
 var addQuestionOption = function addQuestionOption(key, questionOptionText, questionOptionValue) {
   return {

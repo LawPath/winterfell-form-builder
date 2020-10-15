@@ -128,7 +128,7 @@ var WinterfellFormBuilder = /*#__PURE__*/function (_Component) {
       }, "No form loaded. Click on ", /*#__PURE__*/_react["default"].createElement("b", null, "Create"), " to create a new form, or ", /*#__PURE__*/_react["default"].createElement("b", null, "Import"), " to load an existing form (.json).") : /*#__PURE__*/_react["default"].createElement("div", {
         className: "row winterfell-form-builder-editor"
       }, /*#__PURE__*/_react["default"].createElement("div", {
-        className: "col-4",
+        className: "col-6",
         id: "questionEditor"
       }, /*#__PURE__*/_react["default"].createElement("h3", null, "Page Editor"), /*#__PURE__*/_react["default"].createElement("div", {
         className: "btn-group"
@@ -150,7 +150,7 @@ var WinterfellFormBuilder = /*#__PURE__*/function (_Component) {
         currentQuestionSetIndex: currentQuestionSetIndex,
         currentQuestionIndex: currentQuestionIndex
       })), /*#__PURE__*/_react["default"].createElement("div", {
-        className: "col-8 winterfell-form-builder-page-editor"
+        className: "col-6 winterfell-form-builder-page-editor"
       }, /*#__PURE__*/_react["default"].createElement(_QuestionsPanel["default"], {
         title: title,
         schema: this.props.schema,
