@@ -11,36 +11,21 @@ Object.defineProperty(exports, "WinterfellFormBuilderReducer", {
     return _winterfellFormBuilderReducer["default"];
   }
 });
+Object.defineProperty(exports, "SuggestionInputs", {
+  enumerable: true,
+  get: function get() {
+    return _SuggestionInputs["default"];
+  }
+});
 exports["default"] = void 0;
 
 var _WinterfellFormBuilder = _interopRequireDefault(require("./components/WinterfellFormBuilder"));
 
 var _winterfellFormBuilderReducer = _interopRequireDefault(require("./reducers/winterfellFormBuilderReducer"));
 
-// import {
-//   addQuestion,
-//   addQuestionSet,
-//   goToPage,
-//   onSelectNextButtonAction,
-//   onSelectNextButtonTarget,
-//   addPage,
-//   changeCurrentEditingField,
-//   deletePage,
-//   createForm,
-//   editNextButtonText,
-// } from './actions/winterfellFormBuilderActions';
-// export {
-//   WinterfellFormBuilderReducer,
-//   addQuestion,
-//   addQuestionSet,
-//   goToPage,
-//   onSelectNextButtonAction,
-//   onSelectNextButtonTarget,
-//   addPage,
-//   changeCurrentEditingField,
-//   deletePage,
-//   createForm,
-//   editNextButtonText,
-// };
+var _SuggestionInputs = _interopRequireDefault(require("./components/InputTypes/SuggestionInputs"));
+
+require("./common/styles/reactTags.scss");
+
 var _default = _WinterfellFormBuilder["default"];
 exports["default"] = _default;

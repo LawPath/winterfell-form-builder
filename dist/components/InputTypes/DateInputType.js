@@ -19,7 +19,7 @@ var _moment = _interopRequireDefault(require("moment"));
 
 var _constants = require("../../common/constants");
 
-require("react-datepicker/dist/react-datepicker-cssmodules.css");
+require("react-datepicker/dist/react-datepicker.css");
 
 var DateInput = function DateInput(_ref) {
   var value = _ref.value,

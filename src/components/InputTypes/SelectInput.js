@@ -1,49 +1,38 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-class SelectInput extends React.Component {
-  state = {
-    value: this.props.displayValue,
+const SelectInput = ({ displayValue, options, name, classes, required, onSelect }) => {
+  const [value, setValue] = useState(displayValue);
+
+  useEffect(() => {
+    setValue(displayValue);
+  }, [displayValue]);
+
+  const handleChange = (e) => {
+    setValue(e.target.value);
+    onSelect(e.target.value, e);
   };
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      value: nextProps.displayValue,
-    });
-  }
-  
-  handleChange = (e) => {
-    this.setState({ value: e.target.value });
-    this.props.onSelect(e.target.value);
-  }
-
-  render() {
-    const options = this.props.options && this.props.options.map((opt, index) =>
-      (<option
-        key={index}
-        value={opt.value}
-      >
-        {opt.text}
-      </option>),
-    );
-    return (
-      <select
-        name={this.props.name}
-        className={this.props.classes.select}
-        value={this.state.value}
-        required={this.props.required
-          ? 'required'
-          : undefined}
-        onChange={this.handleChange}
-        onSelect={() => this.props.onSelect}
-        autoComplete={this.props.name}
-      >
-        <option value="">&nbsp;</option>
-        {options}
-      </select>
-    );
-  }
-}
+  return (
+    <select
+      name={name}
+      className={classes.select}
+      value={value}
+      required={required ? 'required' : undefined}
+      onChange={handleChange}
+      onSelect={onSelect}
+      autoComplete={name}
+    >
+      <option value="">&nbsp;</option>
+      {options &&
+        options.map((opt, index) => (
+          <option key={index} value={opt.value}>
+            {opt.text}
+          </option>
+        ))}
+    </select>
+  );
+};
 
 SelectInput.propTypes = {
   displayValue: PropTypes.string,

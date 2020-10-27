@@ -1,9 +1,16 @@
 "use strict";
 
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.DATE_FORMAT = exports.INPUT_TYPE_OPTIONS = exports.BOOTSTRAP_CLASSES = exports.UPDATE_QUESTION_ANSWERS_SUCCESS = exports.RESET_NEXT_QUESTION_TARGET_SUCCESS = exports.UPDATE_NEXT_QUESTION_TARGET_SUCCESS = exports.DISABLE_BACK_BUTTON_SUCCESS = exports.MOVE_PAGE_SUCCESS = exports.CLEAR_FORM_ERROR = exports.UPLOAD_JSON_SUCCESS = exports.DELETE_QUESTION_OPTION_SUCCESS = exports.EDIT_QUESTION_OPTION_VALUE_SUCCESS = exports.EDIT_QUESTION_OPTION_TEXT_SUCCESS = exports.ADD_QUESTION_OPTION_SUCCESS = exports.CHANGE_QUESTION_TYPE_SUCCESS = exports.EDIT_QUESTION_POST_TEXT_SUCCESS = exports.EDIT_QUESTION_TEXT_SUCCESS = exports.EDIT_QUESTION_SUCCESS = exports.EDIT_QUESTION_ID_SUCCESS = exports.EDIT_NEXT_BUTTON_TARGET_SUCCESS = exports.EDIT_BACK_BUTTON_ACTION_SUCCESS = exports.EDIT_NEXT_BUTTON_ACTION_SUCCESS = exports.EDIT_BACK_BUTTON_TEXT_SUCCESS = exports.EDIT_NEXT_BUTTON_TEXT_SUCCESS = exports.EDIT_QUESTION_SET_TEXT_SUCCESS = exports.EDIT_QUESTION_SET_HEADER_SUCCESS = exports.EDIT_PAGE_TEXT_SUCCESS = exports.EDIT_PAGE_HEADER_SUCCESS = exports.EDIT_PAGE_ID_SUCCESS = exports.CHANGE_EDITING_FIELD_SUCCESS = exports.UPDATE_PAGE_TEXT_ERROR = exports.UPDATE_PAGE_TEXT_SUCCESS = exports.UPDATE_PAGE_HEADER_ERROR = exports.UPDATE_PAGE_HEADER_SUCCESS = exports.DELETE_QUESTION_ERROR = exports.DELETE_QUESTION_SUCCESS = exports.UPDATE_QUESTION_ERROR = exports.UPDATE_QUESTION_SUCCESS = exports.UPDATE_QUESTION_REQUEST = exports.ADD_QUESTION_ERROR = exports.ADD_QUESTION_SET_SUCCESS = exports.DELETE_CONDITIONAL_QUESTION_SUCCESS = exports.SAVE_CONDITIONAL_QUESTION_SUCCESS = exports.ADD_CONDITIONAL_QUESTION_SUCCESS = exports.ADD_QUESTION_SUCCESS = exports.DELETE_PAGE_ERROR = exports.DELETE_PAGE_SUCCESS = exports.DELETE_PAGE_REQUEST = exports.UPDATE_PAGE_ERROR = exports.UPDATE_PAGE_SUCCESS = exports.UPDATE_PAGE_REQUEST = exports.ADD_PAGE_ERROR = exports.ADD_PAGE_SUCCESS = exports.ADD_PAGE_REQUEST = exports.DELETE_FORM_ERROR = exports.DELETE_FORM_SUCCESS = exports.DELETE_FORM_REQUEST = exports.UPDATE_FORM_ERROR = exports.UPDATE_FORM_SUCCESS = exports.UPDATE_FORM_REQUEST = exports.SAVE_FORM_SUCCESS = exports.CREATE_FORM_ERROR = exports.CREATE_FORM_SUCCESS = exports.EDIT_FORM_TITLE_SUCCESS = exports.GOTO_PAGE_SUCCESS = exports.CREATE_FORM_REQUEST = exports.RETRIEVE_FORMLIST_ERROR = exports.RETRIEVE_FORMLIST_SUCCESS = exports.RETRIEVE_FORMLIST_REQUEST = void 0;
+exports.DATE_FORMAT = exports.QUESTION_LABEL_OPTIONS = exports.INPUT_TYPE_OPTIONS = exports.SUGGESION_PANEL_DEFAULT = exports.DEFAULT_SUGGESTIONS = exports.PANEL_CONSTANTS = exports.PROGRESS = exports.BOOTSTRAP_CLASSES = exports.POST_QUESTION_SUGGESTION = exports.UPDATE_QUESTION_ANSWERS_SUCCESS = exports.RESET_NEXT_QUESTION_TARGET_SUCCESS = exports.UPDATE_NEXT_QUESTION_TARGET_SUCCESS = exports.DISABLE_BACK_BUTTON_SUCCESS = exports.MOVE_PAGE_SUCCESS = exports.CLEAR_FORM_ERROR = exports.UPLOAD_JSON_SUCCESS = exports.CHANGE_SUGGESTED_ANSWERS_SUCCESS = exports.CHANGE_QUESTION_LABEL_SUCCESS = exports.DELETE_QUESTION_OPTION_SUCCESS = exports.EDIT_QUESTION_OPTION_VALUE_SUCCESS = exports.EDIT_QUESTION_OPTION_TEXT_SUCCESS = exports.ADD_QUESTION_OPTION_SUCCESS = exports.CHANGE_QUESTION_TYPE_SUCCESS = exports.EDIT_QUESTION_POST_TEXT_SUCCESS = exports.EDIT_QUESTION_TEXT_SUCCESS = exports.EDIT_QUESTION_SUCCESS = exports.EDIT_QUESTION_ID_SUCCESS = exports.EDIT_NEXT_BUTTON_TARGET_SUCCESS = exports.EDIT_BACK_BUTTON_ACTION_SUCCESS = exports.EDIT_NEXT_BUTTON_ACTION_SUCCESS = exports.EDIT_BACK_BUTTON_TEXT_SUCCESS = exports.EDIT_NEXT_BUTTON_TEXT_SUCCESS = exports.EDIT_QUESTION_SET_TEXT_SUCCESS = exports.EDIT_QUESTION_SET_HEADER_SUCCESS = exports.EDIT_PAGE_TEXT_SUCCESS = exports.EDIT_PAGE_HEADER_SUCCESS = exports.EDIT_PAGE_ID_SUCCESS = exports.CHANGE_EDITING_FIELD_SUCCESS = exports.UPDATE_PAGE_TEXT_ERROR = exports.UPDATE_PAGE_TEXT_SUCCESS = exports.UPDATE_PAGE_HEADER_ERROR = exports.UPDATE_PAGE_HEADER_SUCCESS = exports.DELETE_QUESTION_ERROR = exports.DELETE_QUESTION_SUCCESS = exports.UPDATE_QUESTION_ERROR = exports.UPDATE_QUESTION_SUCCESS = exports.UPDATE_QUESTION_REQUEST = exports.ADD_QUESTION_ERROR = exports.ADD_QUESTION_SET_SUCCESS = exports.DELETE_CONDITIONAL_QUESTION_SUCCESS = exports.SAVE_CONDITIONAL_QUESTION_SUCCESS = exports.ADD_CONDITIONAL_QUESTION_SUCCESS = exports.ADD_QUESTION_SUCCESS = exports.DELETE_PAGE_ERROR = exports.DELETE_PAGE_SUCCESS = exports.DELETE_PAGE_REQUEST = exports.UPDATE_PAGE_ERROR = exports.UPDATE_PAGE_SUCCESS = exports.UPDATE_PAGE_REQUEST = exports.ADD_PAGE_ERROR = exports.ADD_PAGE_SUCCESS = exports.ADD_PAGE_REQUEST = exports.DELETE_FORM_ERROR = exports.DELETE_FORM_SUCCESS = exports.DELETE_FORM_REQUEST = exports.UPDATE_FORM_ERROR = exports.UPDATE_FORM_SUCCESS = exports.UPDATE_FORM_REQUEST = exports.SAVE_FORM_SUCCESS = exports.CREATE_FORM_ERROR = exports.CREATE_FORM_SUCCESS = exports.EDIT_FORM_TITLE_SUCCESS = exports.GOTO_PAGE_SUCCESS = exports.CREATE_FORM_REQUEST = exports.RETRIEVE_FORMLIST_ERROR = exports.RETRIEVE_FORMLIST_SUCCESS = exports.RETRIEVE_FORMLIST_REQUEST = void 0;
+
+var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
+
+var _BOOTSTRAP_CLASSES, _PANEL_CONSTANTS;
+
 var RETRIEVE_FORMLIST_REQUEST = 'RETRIEVE_FORMLIST_REQUEST';
 exports.RETRIEVE_FORMLIST_REQUEST = RETRIEVE_FORMLIST_REQUEST;
 var RETRIEVE_FORMLIST_SUCCESS = 'RETRIEVE_FORMLIST_SUCCESS';
@@ -122,6 +129,10 @@ var EDIT_QUESTION_OPTION_VALUE_SUCCESS = 'EDIT_QUESTION_OPTION_VALUE_SUCCESS';
 exports.EDIT_QUESTION_OPTION_VALUE_SUCCESS = EDIT_QUESTION_OPTION_VALUE_SUCCESS;
 var DELETE_QUESTION_OPTION_SUCCESS = 'DELETE_QUESTION_OPTION_SUCCESS';
 exports.DELETE_QUESTION_OPTION_SUCCESS = DELETE_QUESTION_OPTION_SUCCESS;
+var CHANGE_QUESTION_LABEL_SUCCESS = 'CHANGE_QUESTION_LABEL_SUCCESS';
+exports.CHANGE_QUESTION_LABEL_SUCCESS = CHANGE_QUESTION_LABEL_SUCCESS;
+var CHANGE_SUGGESTED_ANSWERS_SUCCESS = 'CHANGE_SUGGESTED_ANSWERS_SUCCESS';
+exports.CHANGE_SUGGESTED_ANSWERS_SUCCESS = CHANGE_SUGGESTED_ANSWERS_SUCCESS;
 var UPLOAD_JSON_SUCCESS = 'UPLOAD_JSON_SUCCESS';
 exports.UPLOAD_JSON_SUCCESS = UPLOAD_JSON_SUCCESS;
 var CLEAR_FORM_ERROR = 'CLEAR_FORM_ERROR';
@@ -136,7 +147,9 @@ var RESET_NEXT_QUESTION_TARGET_SUCCESS = 'RESET_NEXT_QUESTION_TARGET_SUCCESS';
 exports.RESET_NEXT_QUESTION_TARGET_SUCCESS = RESET_NEXT_QUESTION_TARGET_SUCCESS;
 var UPDATE_QUESTION_ANSWERS_SUCCESS = 'UPDATE_QUESTION_ANSWERS_SUCCESS';
 exports.UPDATE_QUESTION_ANSWERS_SUCCESS = UPDATE_QUESTION_ANSWERS_SUCCESS;
-var BOOTSTRAP_CLASSES = {
+var POST_QUESTION_SUGGESTION = '';
+exports.POST_QUESTION_SUGGESTION = POST_QUESTION_SUGGESTION;
+var BOOTSTRAP_CLASSES = (_BOOTSTRAP_CLASSES = {
   input: 'form-control',
   select: 'form-control',
   question: 'form-group',
@@ -146,12 +159,60 @@ var BOOTSTRAP_CLASSES = {
   checkboxListItem: 'checkbox',
   checkboxList: 'clean-list',
   controlButton: 'btn btn-dark pull-right',
-  backButton: 'btn btn-default pull-left',
+  backButton: 'btn btn-hollow btn-back',
   errorMessage: 'alert alert-danger',
   questionPostText: 'push-top',
-  buttonBar: 'button-bar'
-};
+  buttonBar: 'button-bar',
+  questionPanels: 'winterfell-question-panels',
+  questionPanel: 'winterfell-question-panel',
+  postBodyHeader: 'post-body-header'
+}, (0, _defineProperty2["default"])(_BOOTSTRAP_CLASSES, "buttonBar", 'winterfell-button-bar'), (0, _defineProperty2["default"])(_BOOTSTRAP_CLASSES, "postBodyHeaderText", 'post-body-header-text'), (0, _defineProperty2["default"])(_BOOTSTRAP_CLASSES, "postBodyHeaderIcon", 'post-body-header-icon'), (0, _defineProperty2["default"])(_BOOTSTRAP_CLASSES, "progressBarIncomplete", 'winterfell-progress-incomplete'), (0, _defineProperty2["default"])(_BOOTSTRAP_CLASSES, "progressBarComplete", 'winterfell-progress-complete'), (0, _defineProperty2["default"])(_BOOTSTRAP_CLASSES, "progressBarTitle", 'winterfell-progress-title'), (0, _defineProperty2["default"])(_BOOTSTRAP_CLASSES, "progressBarLegend", 'winterfell-progress-legend'), (0, _defineProperty2["default"])(_BOOTSTRAP_CLASSES, "progressBar", 'winterfell-progressbar'), (0, _defineProperty2["default"])(_BOOTSTRAP_CLASSES, "postBodyHeader", 'post-body-header'), (0, _defineProperty2["default"])(_BOOTSTRAP_CLASSES, "postBodyHeaderText", 'post-body-header-text'), (0, _defineProperty2["default"])(_BOOTSTRAP_CLASSES, "postBodyHeaderIcon", 'post-body-header-icon'), _BOOTSTRAP_CLASSES);
 exports.BOOTSTRAP_CLASSES = BOOTSTRAP_CLASSES;
+var PROGRESS = {
+  showBar: true,
+  showPercent: true,
+  preText: '',
+  postText: '',
+  position: 'top',
+  legendPosition: 'inline',
+  variation: 'classic'
+};
+exports.PROGRESS = PROGRESS;
+var PANEL_CONSTANTS = (_PANEL_CONSTANTS = {
+  suggestionHintText: 'Click on suggested answers to apply',
+  postBodyHeaderText: 'Tips and commons answers',
+  titleIcon: 'https://assets.lawpath.com/images/svg/open-book.svg'
+}, (0, _defineProperty2["default"])(_PANEL_CONSTANTS, "titleIcon", 'https://assets.lawpath.com/images/svg/open-book.svg'), (0, _defineProperty2["default"])(_PANEL_CONSTANTS, "tooltipContent", '<span>This field has been <br/>pre-filled. Click <a>here</a> to edit <br/> your pre-filled information</span>'), _PANEL_CONSTANTS);
+exports.PANEL_CONSTANTS = PANEL_CONSTANTS;
+var DEFAULT_SUGGESTIONS = [{
+  id: 1,
+  content: "Users on our Legal Advice Subscription ($69/month) can book unlimited 30 minute calls with a lawyer to assist with and review up to four pages of a document - <a herf=\"/consultations\" target=\"_blank\" >Learn more</a>"
+}, {
+  id: 2,
+  content: "Keep your address private and have Lawpath manage and store all your mail - learn more about our <a href=\"/solutions/business-solutions/virtual-office\" target=\"_blank\" >Virtual Office</a>."
+}, {
+  id: 3,
+  content: "Did you know you can eSign unlimited documents for free with Lawpath? You can eSign completed documents or uploaded documents from <a href=\"/documents/my-documents\" target=\"_blank\" >My document library</a>."
+}, {
+  id: 4,
+  content: "The user feed on your dashboard updates with recommended next steps after you complete documents and perform actions."
+}, {
+  id: 5,
+  content: "Keep all your legal documents together - Upload and securely store documents on the Lawpath platform for free in your <a href=\"/documents?filter=popular\" target=\"_blank\" >document library</a>."
+}, {
+  id: 6,
+  content: "Create, edit and customise unlimited legal documents with a subscription to any of our annual legal plans - <a href-\"/about/pricing\" target=\"_blank\" >Learn more</a>"
+}];
+exports.DEFAULT_SUGGESTIONS = DEFAULT_SUGGESTIONS;
+var SUGGESION_PANEL_DEFAULT = {
+  classes: {
+    panel: 'winterfell-suggestion-panel',
+    body: 'suggestion-body'
+  },
+  titleTextClass: 'suggestion-tittle',
+  titleText: ''
+};
+exports.SUGGESION_PANEL_DEFAULT = SUGGESION_PANEL_DEFAULT;
 var INPUT_TYPE_OPTIONS = [{
   text: 'text',
   value: 'textInput'
@@ -178,5 +239,34 @@ var INPUT_TYPE_OPTIONS = [{
   value: 'checkboxInput'
 }];
 exports.INPUT_TYPE_OPTIONS = INPUT_TYPE_OPTIONS;
+var QUESTION_LABEL_OPTIONS = [{
+  text: 'Full name',
+  value: 'full_name'
+}, {
+  text: 'Phone number',
+  value: 'phone_number'
+}, {
+  text: 'Email',
+  value: 'email_address'
+}, {
+  text: 'Business name',
+  value: 'business_name'
+}, {
+  text: 'ABN',
+  value: 'abn'
+}, {
+  text: 'ACN',
+  value: 'acn'
+}, {
+  text: 'Address',
+  value: 'address'
+}, {
+  text: 'Address state',
+  value: 'address_state'
+}, {
+  text: 'Website address',
+  value: 'website_address'
+}];
+exports.QUESTION_LABEL_OPTIONS = QUESTION_LABEL_OPTIONS;
 var DATE_FORMAT = 'dd/MM/yyyy';
 exports.DATE_FORMAT = DATE_FORMAT;

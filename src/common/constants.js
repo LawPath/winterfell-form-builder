@@ -64,6 +64,10 @@ export const EDIT_QUESTION_OPTION_TEXT_SUCCESS = 'EDIT_QUESTION_OPTION_TEXT_SUCC
 export const EDIT_QUESTION_OPTION_VALUE_SUCCESS = 'EDIT_QUESTION_OPTION_VALUE_SUCCESS';
 export const DELETE_QUESTION_OPTION_SUCCESS = 'DELETE_QUESTION_OPTION_SUCCESS';
 
+export const CHANGE_QUESTION_LABEL_SUCCESS = 'CHANGE_QUESTION_LABEL_SUCCESS';
+
+export const CHANGE_SUGGESTED_ANSWERS_SUCCESS = 'CHANGE_SUGGESTED_ANSWERS_SUCCESS';
+
 export const UPLOAD_JSON_SUCCESS = 'UPLOAD_JSON_SUCCESS';
 export const CLEAR_FORM_ERROR = 'CLEAR_FORM_ERROR';
 export const MOVE_PAGE_SUCCESS = 'MOVE_PAGE_SUCCESS';
@@ -71,6 +75,8 @@ export const DISABLE_BACK_BUTTON_SUCCESS = 'DISABLE_BACK_BUTTON_SUCCESS';
 export const UPDATE_NEXT_QUESTION_TARGET_SUCCESS = 'UPDATE_NEXT_QUESTION_TARGET_SUCCESS';
 export const RESET_NEXT_QUESTION_TARGET_SUCCESS = 'RESET_NEXT_QUESTION_TARGET_SUCCESS';
 export const UPDATE_QUESTION_ANSWERS_SUCCESS = 'UPDATE_QUESTION_ANSWERS_SUCCESS';
+
+export const POST_QUESTION_SUGGESTION = '';
 
 export const BOOTSTRAP_CLASSES = {
   input: 'form-control',
@@ -82,10 +88,77 @@ export const BOOTSTRAP_CLASSES = {
   checkboxListItem: 'checkbox',
   checkboxList: 'clean-list',
   controlButton: 'btn btn-dark pull-right',
-  backButton: 'btn btn-default pull-left',
+  backButton: 'btn btn-hollow btn-back',
   errorMessage: 'alert alert-danger',
   questionPostText: 'push-top',
   buttonBar: 'button-bar',
+  questionPanels: 'winterfell-question-panels',
+  questionPanel: 'winterfell-question-panel',
+  postBodyHeader: 'post-body-header',
+  buttonBar: 'winterfell-button-bar',
+  postBodyHeaderText: 'post-body-header-text',
+  postBodyHeaderIcon: 'post-body-header-icon',
+  progressBarIncomplete: 'winterfell-progress-incomplete',
+  progressBarComplete: 'winterfell-progress-complete',
+  progressBarTitle: 'winterfell-progress-title',
+  progressBarLegend: 'winterfell-progress-legend',
+  progressBar: 'winterfell-progressbar',
+  postBodyHeader: 'post-body-header',
+  postBodyHeaderText: 'post-body-header-text',
+  postBodyHeaderIcon: 'post-body-header-icon',
+};
+export const PROGRESS = {
+  showBar: true,
+  showPercent: true,
+  preText: '',
+  postText: '',
+  position: 'top',
+  legendPosition: 'inline',
+  variation: 'classic',
+};
+export const PANEL_CONSTANTS = {
+  suggestionHintText: 'Click on suggested answers to apply',
+  postBodyHeaderText: 'Tips and commons answers',
+  titleIcon: 'https://assets.lawpath.com/images/svg/open-book.svg',
+  titleIcon: 'https://assets.lawpath.com/images/svg/open-book.svg',
+  tooltipContent:
+    '<span>This field has been <br/>pre-filled. Click <a>here</a> to edit <br/> your pre-filled information</span>',
+};
+
+export const DEFAULT_SUGGESTIONS = [
+  {
+    id: 1,
+    content: `Users on our Legal Advice Subscription ($69/month) can book unlimited 30 minute calls with a lawyer to assist with and review up to four pages of a document - <a herf="/consultations" target="_blank" >Learn more</a>`,
+  },
+  {
+    id: 2,
+    content: `Keep your address private and have Lawpath manage and store all your mail - learn more about our <a href="/solutions/business-solutions/virtual-office" target="_blank" >Virtual Office</a>.`,
+  },
+  {
+    id: 3,
+    content: `Did you know you can eSign unlimited documents for free with Lawpath? You can eSign completed documents or uploaded documents from <a href="/documents/my-documents" target="_blank" >My document library</a>.`,
+  },
+  {
+    id: 4,
+    content: `The user feed on your dashboard updates with recommended next steps after you complete documents and perform actions.`,
+  },
+  {
+    id: 5,
+    content: `Keep all your legal documents together - Upload and securely store documents on the Lawpath platform for free in your <a href="/documents?filter=popular" target="_blank" >document library</a>.`,
+  },
+  {
+    id: 6,
+    content: `Create, edit and customise unlimited legal documents with a subscription to any of our annual legal plans - <a href-"/about/pricing" target="_blank" >Learn more</a>`,
+  },
+];
+
+export const SUGGESION_PANEL_DEFAULT = {
+  classes: {
+    panel: 'winterfell-suggestion-panel',
+    body: 'suggestion-body',
+  },
+  titleTextClass: 'suggestion-tittle',
+  titleText: '',
 };
 
 export const INPUT_TYPE_OPTIONS = [
@@ -120,6 +193,45 @@ export const INPUT_TYPE_OPTIONS = [
   {
     text: 'checkbox',
     value: 'checkboxInput',
+  },
+];
+
+export const QUESTION_LABEL_OPTIONS = [
+  {
+    text: 'Full name',
+    value: 'full_name',
+  },
+  {
+    text: 'Phone number',
+    value: 'phone_number',
+  },
+  {
+    text: 'Email',
+    value: 'email_address',
+  },
+  {
+    text: 'Business name',
+    value: 'business_name',
+  },
+  {
+    text: 'ABN',
+    value: 'abn',
+  },
+  {
+    text: 'ACN',
+    value: 'acn',
+  },
+  {
+    text: 'Address',
+    value: 'address',
+  },
+  {
+    text: 'Address state',
+    value: 'address_state',
+  },
+  {
+    text: 'Website address',
+    value: 'website_address',
   },
 ];
 

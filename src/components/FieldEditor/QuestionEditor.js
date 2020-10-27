@@ -1,145 +1,106 @@
-import React, { PureComponent } from 'react';
-import { connect } from 'react-redux';
+import React, { useState } from 'react';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { fromJS } from 'immutable';
 import {
-  editQuestionId,
   editQuestion,
   editQuestionText,
   editQuestionPostText,
-  editQuestionOptionText,
-  editQuestionOptionValue,
-  addQuestionOption,
-  deleteQuestion,
-  deleteQuestionOption,
   changeQuestionType,
-  changeCurrentEditingField,
-  updateNextQuestionTarget,
+  changeQuestionLabel,
 } from '../../actions/winterfellFormBuilderActions';
 import FieldGroup from '../InputTypes/FieldGroup';
 import DeleteQuestionButton from '../FormMenu/DeleteQuestionButton';
 import AddQuestionButton from '../FormMenu/AddQuestionButton';
 import SelectInput from '../InputTypes/SelectInput';
 import ButtonBarEditor from './ButtonBarEditor';
-import { INPUT_TYPE_OPTIONS } from '../../common/constants';
+import { INPUT_TYPE_OPTIONS, QUESTION_LABEL_OPTIONS } from '../../common/constants';
 import QuestionOptionEditor from './QuestionOptionEditor';
+import InputTags from '../InputTypes/InputTags';
 
-class QuestionEditor extends PureComponent {
-  constructor(props) {
-    super(props);
-    const {
-      questionSetId,
-      questionId,
-      question,
-      questionText,
-      questionPostText,
-      questionInputType,
-      questionInputOptions,
-      questionTarget,
-      questionTargetMatch,
-    } = props;
+const QuestionEditor = ({
+  currentQuestionPanelIndex,
+  currentQuestionSetIndex,
+  currentQuestionIndex,
+}) => {
+  const questionSetQueryPath = [
+    'form',
+    'schema',
+    'questionSets',
+    currentQuestionSetIndex,
+    'questions',
+    currentQuestionIndex,
+  ];
+  const dispatch = useDispatch();
+  const questionSetId = useSelector((state) =>
+    state.getIn([...questionSetQueryPath, 'questionSetId']),
+  );
+  const questionId = useSelector((state) => state.getIn([...questionSetQueryPath, 'questionId']));
+  const question = useSelector((state) => state.getIn([...questionSetQueryPath, 'question']));
+  const questionText = useSelector((state) => state.getIn([...questionSetQueryPath, 'text']));
+  const questionLabelType = useSelector((state) => state.getIn([...questionSetQueryPath, 'label']));
+  const questionPostText = useSelector((state) =>
+    state.getIn([...questionSetQueryPath, 'postText']),
+  );
+  const questionInputType = useSelector((state) =>
+    state.getIn([...questionSetQueryPath, 'input', 'type']),
+  );
+  const questionInputOptions = useSelector((state) =>
+    state.getIn([...questionSetQueryPath, 'input', 'options']),
+  );
+  const [editQuestionId, setEditQuestionId] = useState(true);
 
-    this.state = {
-      questionSetId,
-      questionId,
-      question,
-      questionText,
-      questionPostText,
-      questionInputType,
-      questionInputOptions: questionInputOptions.toJS(),
-      editQuestionId: true,
-      showConditionalPage: new Array(questionInputOptions.count()),
-      showConditionalQuestions: new Array(questionInputOptions.count()),
-      questionTarget,
-      questionTargetMatch,
-    };
-
-    this.onChange = this.onChange.bind(this);
-    this.onSelect = this.onSelect.bind(this);
-    this.onEditQuestionIdClick = this.onEditQuestionIdClick.bind(this);
-    this.onUpdateNextQuestionTarget = this.onUpdateNextQuestionTarget.bind(this);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      questionId: nextProps.questionId,
-      question: nextProps.question,
-      questionText: nextProps.questionText,
-      questionPostText: nextProps.questionPostText,
-      questionInputType: nextProps.questionInputType,
-      questionInputOptions: nextProps.questionInputOptions.toJS(),
-      questionTarget: nextProps.questionTarget,
-      questionTargetMatch: nextProps.questionTargetMatch,
-    });
-  }
-
-  onChange(event) {
+  const onChange = (event) => {
     const { name, value } = event.target;
-    const { currentQuestionSetIndex, currentQuestionIndex } = this.props;
-    this.setState({ [name]: value });
     switch (name) {
       case 'questionId':
-        this.props.editQuestionId(currentQuestionSetIndex, currentQuestionIndex, value);
+        dispatch(editQuestionId(currentQuestionSetIndex, currentQuestionIndex, value));
         break;
       case 'question':
-        this.props.editQuestion(currentQuestionSetIndex, currentQuestionIndex, value);
+        dispatch(editQuestion(currentQuestionSetIndex, currentQuestionIndex, value));
         break;
       case 'questionText':
-        this.props.editQuestionText(currentQuestionSetIndex, currentQuestionIndex, value);
+        dispatch(editQuestionText(currentQuestionSetIndex, currentQuestionIndex, value));
         break;
       case 'questionPostText':
-        this.props.editQuestionPostText(currentQuestionSetIndex, currentQuestionIndex, value);
+        dispatch(editQuestionPostText(currentQuestionSetIndex, currentQuestionIndex, value));
         break;
       default:
     }
-  }
+  };
 
-  onSelect(questionType) {
-    const { currentQuestionSetIndex, currentQuestionIndex } = this.props;
-    this.setState({ questionInputType: questionType });
-    if (questionType !== '') {
-      this.props.changeQuestionType(currentQuestionSetIndex, currentQuestionIndex, questionType);
+  const onSelect = (questionType, event) => {
+    const { name } = event.target;
+    switch (name) {
+      case 'questionInputType':
+        if (questionType !== '') {
+          dispatch(changeQuestionType(currentQuestionSetIndex, currentQuestionIndex, questionType));
+        }
+        break;
+      case 'questionLabelType':
+        dispatch(changeQuestionLabel(currentQuestionSetIndex, currentQuestionIndex, questionType));
+        break;
+      default:
+        break;
     }
-  }
+  };
 
-  onEditQuestionIdClick() {
-    this.setState({ editQuestionId: !this.state.editQuestionId });
-  }
+  const onEditQuestionIdClick = () => {
+    setEditQuestionId(!editQuestionId);
+  };
 
-  onUpdateNextQuestionTarget() {
-    const { currentQuestionPanelIndex, questionId } = this.props;
-    this.props.updateNextQuestionTarget(
-      currentQuestionPanelIndex,
-      questionId,
-      this.state.questionTargetMatch,
-      this.state.questionTarget,
-    );
-  }
-
-  render() {
-    const {
-      questionSetId,
-      questionId,
-      question,
-      questionText,
-      questionPostText,
-      questionInputType,
-      questionInputOptions,
-      currentQuestionPanelIndex,
-    } = this.props;
-
-    return (
-      <form>
-        { this.props.currentQuestionIndex > -1 &&
+  return (
+    <form>
+      {currentQuestionIndex > -1 && (
         <div>
           <div className="form-group">
             <FieldGroup
               id="questionSetId"
               name="questionSetId"
               label="Question Set ID"
-              onChange={this.onChange}
+              onChange={onChange}
               placeholder={questionSetId}
-              value={this.state.questionSetId}
+              value={questionSetId}
               disabled
             />
           </div>
@@ -148,19 +109,15 @@ class QuestionEditor extends PureComponent {
               id="questionId"
               name="questionId"
               label="Question ID"
-              onChange={this.onChange}
+              onChange={onChange}
               placeholder={questionId}
-              value={this.state.questionId}
-              disabled={this.state.editQuestionId}
+              value={questionId}
+              disabled={editQuestionId}
             />
           </div>
           <div className="form-group">
             <label htmlFor="edit-question-id" id="edit-question-id-label">
-              <input
-                id="edit-question-id"
-                type="checkbox"
-                onClick={this.onEditQuestionIdClick}
-              />
+              <input id="edit-question-id" type="checkbox" onClick={onEditQuestionIdClick} />
               &nbsp;edit question id (not recommended)
             </label>
           </div>
@@ -169,9 +126,9 @@ class QuestionEditor extends PureComponent {
               id="question"
               name="question"
               label="Question"
-              onChange={this.onChange}
+              onChange={onChange}
               placeholder={question}
-              value={this.state.question}
+              value={question}
             />
           </div>
           <div className="form-group">
@@ -180,8 +137,8 @@ class QuestionEditor extends PureComponent {
               name="questionText"
               label="Question Pre Text"
               placeholder={questionText}
-              onChange={this.onChange}
-              value={this.state.questionText}
+              onChange={onChange}
+              value={questionText}
             />
           </div>
           <div className="form-group">
@@ -190,60 +147,73 @@ class QuestionEditor extends PureComponent {
               name="questionPostText"
               label="Question Post Text"
               placeholder={questionPostText}
-              onChange={this.onChange}
-              value={this.state.questionPostText}
+              onChange={onChange}
+              value={questionPostText}
             />
           </div>
           <div className="form-group">
-            <label htmlFor="questionInputType">
-              Question Type
-            </label>
+            <label htmlFor="questionInputType">Question Type</label>
             <SelectInput
               id="questionInputType"
+              name="questionInputType"
               labelId="questionInputType"
               options={INPUT_TYPE_OPTIONS}
-              onSelect={this.onSelect}
-              displayValue={this.props.questionInputType}
+              onSelect={onSelect}
+              displayValue={questionInputType}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="questionLabelType">Question label type</label>
+            <SelectInput
+              id="questionLabelType"
+              name="questionLabelType"
+              labelId="questionLabelType"
+              options={QUESTION_LABEL_OPTIONS}
+              onSelect={onSelect}
+              displayValue={questionLabelType}
             />
           </div>
         </div>
-        }
-        {
-          (questionInputType === 'checkboxOptionsInput' ||
-          questionInputType === 'selectInput' ||
-          questionInputType === 'radioOptionsInput') &&
-          questionInputOptions &&
-          this.props.currentQuestionIndex > -1 &&
+      )}
+      {(questionInputType === 'checkboxOptionsInput' ||
+        questionInputType === 'selectInput' ||
+        questionInputType === 'radioOptionsInput') &&
+        questionInputOptions &&
+        currentQuestionIndex > -1 && (
           <QuestionOptionEditor
-            questionInputOptions={this.props.questionInputOptions}
-            questionId={this.props.questionId}
-            currentQuestionPanelIndex={this.props.currentQuestionPanelIndex}
-            currentQuestionSetIndex={this.props.currentQuestionSetIndex}
-            currentQuestionIndex={this.props.currentQuestionIndex}
+            questionInputOptions={questionInputOptions}
+            questionId={questionId}
+            currentQuestionPanelIndex={currentQuestionPanelIndex}
+            currentQuestionSetIndex={currentQuestionSetIndex}
+            currentQuestionIndex={currentQuestionIndex}
           />
-        }
-        <ButtonBarEditor
-          currentQuestionPanelIndex={currentQuestionPanelIndex}
+        )}
+      <div className="form-group">
+        <label htmlFor="questionLabelType">Suggested answers</label>
+        <InputTags
+          currentQuestionSetIndex={currentQuestionSetIndex}
+          currentQuestionIndex={currentQuestionIndex}
         />
-        <div className="btn-group">
-          { this.props.currentQuestionIndex > -1 &&
-            <DeleteQuestionButton
-              currentQuestionSetIndex={this.props.currentQuestionSetIndex}
-              currentQuestionIndex={this.props.currentQuestionIndex}
-            />
-          }
-          { this.props.currentQuestionIndex > -1 &&
-          <AddQuestionButton
-            questionSetId={this.props.questionSetId}
-            currentQuestionSetIndex={this.props.currentQuestionSetIndex}
+      </div>
+      <ButtonBarEditor currentQuestionPanelIndex={currentQuestionPanelIndex} />
+      <div className="btn-group">
+        {currentQuestionIndex > -1 && (
+          <DeleteQuestionButton
+            currentQuestionSetIndex={currentQuestionSetIndex}
+            currentQuestionIndex={currentQuestionIndex}
           />
-          }
-        </div>
-        <br />
-      </form>
-    );
-  }
-}
+        )}
+        {currentQuestionIndex > -1 && (
+          <AddQuestionButton
+            questionSetId={questionSetId}
+            currentQuestionSetIndex={currentQuestionSetIndex}
+          />
+        )}
+      </div>
+      <br />
+    </form>
+  );
+};
 
 QuestionEditor.propTypes = {
   editQuestionId: PropTypes.func.isRequired,
@@ -277,45 +247,4 @@ QuestionEditor.defaultProps = {
   questionTargetMatch: '',
 };
 
-function mapStateToProps(state, ownProps) {
-  return {
-    questionSetId: state.getIn(['form', 'schema', 'questionSets', ownProps.currentQuestionSetIndex,
-      'questionSetId']),
-    questionId: state.getIn(['form', 'schema', 'questionSets', ownProps.currentQuestionSetIndex,
-      'questions', ownProps.currentQuestionIndex, 'questionId']),
-    question: state.getIn(['form', 'schema', 'questionSets', ownProps.currentQuestionSetIndex,
-      'questions', ownProps.currentQuestionIndex, 'question']),
-    questionText: state.getIn(['form', 'schema', 'questionSets', ownProps.currentQuestionSetIndex,
-      'questions', ownProps.currentQuestionIndex, 'text']),
-    questionPostText: state.getIn(['form', 'schema', 'questionSets', ownProps.currentQuestionSetIndex,
-      'questions', ownProps.currentQuestionIndex, 'postText']),
-    questionInputType: state.getIn(['form', 'schema', 'questionSets', ownProps.currentQuestionSetIndex,
-      'questions', ownProps.currentQuestionIndex, 'input', 'type']),
-    questionInputOptions: state.getIn(['form', 'schema', 'questionSets', ownProps.currentQuestionSetIndex,
-      'questions', ownProps.currentQuestionIndex, 'input', 'options']),
-    currentQuestionSetIndex: ownProps.currentQuestionSetIndex,
-    currentQuestionIndex: ownProps.currentQuestionIndex,
-    questionTarget: state.getIn(['form', 'schema', 'questionPanels', ownProps.currentQuestionPanelIndex,
-      'action', 'conditions', 0, 'target']),
-    questionTargetMatch: state.getIn(['form', 'schema', 'questionPanels', ownProps.currentQuestionPanelIndex,
-      'action', 'conditions', 0, 'value']),
-  };
-}
-
-export default connect(
-  mapStateToProps,
-  {
-    editQuestionId,
-    editQuestion,
-    editQuestionText,
-    editQuestionPostText,
-    editQuestionOptionText,
-    editQuestionOptionValue,
-    addQuestionOption,
-    deleteQuestion,
-    deleteQuestionOption,
-    changeQuestionType,
-    changeCurrentEditingField,
-    updateNextQuestionTarget,
-  })(QuestionEditor);
-
+export default QuestionEditor;

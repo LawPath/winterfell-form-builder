@@ -40,6 +40,8 @@ import {
   UPDATE_NEXT_QUESTION_TARGET_SUCCESS,
   RESET_NEXT_QUESTION_TARGET_SUCCESS,
   UPDATE_QUESTION_ANSWERS_SUCCESS,
+  CHANGE_QUESTION_LABEL_SUCCESS,
+  CHANGE_SUGGESTED_ANSWERS_SUCCESS,
 } from '../common/constants';
 
 export const updateErrorMessage = (message) => {
@@ -184,6 +186,24 @@ export const changeQuestionType = (currentQuestionSetIndex, currentQuestionIndex
   return {
     type: CHANGE_QUESTION_TYPE_SUCCESS,
     payload: { currentQuestionSetIndex, currentQuestionIndex, questionType },
+  };
+};
+
+export const changeQuestionLabel = (currentQuestionSetIndex, currentQuestionIndex, labelType) => {
+  return {
+    type: CHANGE_QUESTION_LABEL_SUCCESS,
+    payload: { currentQuestionSetIndex, currentQuestionIndex, labelType },
+  };
+};
+
+export const changeSuggestedAnswers = (
+  currentQuestionSetIndex,
+  currentQuestionIndex,
+  suggestions,
+) => {
+  return {
+    type: CHANGE_SUGGESTED_ANSWERS_SUCCESS,
+    payload: { currentQuestionSetIndex, currentQuestionIndex, suggestions },
   };
 };
 

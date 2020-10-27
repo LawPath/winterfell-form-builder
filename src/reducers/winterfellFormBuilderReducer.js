@@ -40,6 +40,9 @@ import {
   UPDATE_NEXT_QUESTION_TARGET_SUCCESS,
   RESET_NEXT_QUESTION_TARGET_SUCCESS,
   UPDATE_QUESTION_ANSWERS_SUCCESS,
+  CHANGE_QUESTION_LABEL_SUCCESS,
+  CHANGE_SUGGESTED_ANSWERS_SUCCESS,
+  SUGGESION_PANEL_DEFAULT,
 } from '../common/constants';
 
 const initialState = fromJS({
@@ -74,8 +77,7 @@ function winterfellFormBuilderReducer(state = initialState, action) {
         .set('schema', fromJS(action.payload.schema));
     }
     case SAVE_FORM_SUCCESS: {
-      return state
-        .set('title', action.payload.fileName);
+      return state.set('title', action.payload.fileName);
     }
     case EDIT_PAGE_ID_SUCCESS: {
       const { questionPanelIndex, text } = action.payload;
@@ -87,118 +89,195 @@ function winterfellFormBuilderReducer(state = initialState, action) {
     }
     case EDIT_PAGE_HEADER_SUCCESS: {
       const { questionPanelIndex, header } = action.payload;
-      return state
-        .setIn(['schema', 'questionPanels', questionPanelIndex, 'panelHeader'], header);
+      return state.setIn(['schema', 'questionPanels', questionPanelIndex, 'panelHeader'], header);
     }
     case EDIT_PAGE_TEXT_SUCCESS: {
       const { questionPanelIndex, text } = action.payload;
-      return state
-        .setIn(['schema', 'questionPanels', questionPanelIndex, 'panelText'], text);
+      return state.setIn(['schema', 'questionPanels', questionPanelIndex, 'panelText'], text);
     }
     case EDIT_QUESTION_SET_HEADER_SUCCESS: {
       const { currentQuestionSetIndex, header } = action.payload;
-      return state
-        .setIn(['schema', 'questionSets', currentQuestionSetIndex, 'questionSetHeader'], header);
+      return state.setIn(
+        ['schema', 'questionSets', currentQuestionSetIndex, 'questionSetHeader'],
+        header,
+      );
     }
     case EDIT_QUESTION_SET_TEXT_SUCCESS: {
       const { currentQuestionSetIndex, text } = action.payload;
-      return state
-        .setIn(['schema', 'questionSets', currentQuestionSetIndex, 'questionSetText'], text);
+      return state.setIn(
+        ['schema', 'questionSets', currentQuestionSetIndex, 'questionSetText'],
+        text,
+      );
     }
     case EDIT_QUESTION_ID_SUCCESS: {
       const { currentQuestionSetIndex, currentQuestionIndex, text } = action.payload;
-      return state
-        .setIn(['schema', 'questionSets', currentQuestionSetIndex, 'questions',
-          currentQuestionIndex, 'questionId'], text);
+      return state.setIn(
+        [
+          'schema',
+          'questionSets',
+          currentQuestionSetIndex,
+          'questions',
+          currentQuestionIndex,
+          'questionId',
+        ],
+        text,
+      );
     }
     case EDIT_QUESTION_SUCCESS: {
       const { currentQuestionSetIndex, currentQuestionIndex, text } = action.payload;
-      return state
-        .setIn(['schema', 'questionSets', currentQuestionSetIndex, 'questions',
-          currentQuestionIndex, 'question'], text);
+      return state.setIn(
+        [
+          'schema',
+          'questionSets',
+          currentQuestionSetIndex,
+          'questions',
+          currentQuestionIndex,
+          'question',
+        ],
+        text,
+      );
     }
     case EDIT_QUESTION_TEXT_SUCCESS: {
       const { currentQuestionSetIndex, currentQuestionIndex, text } = action.payload;
-      return state
-        .setIn(['schema', 'questionSets', currentQuestionSetIndex, 'questions',
-          currentQuestionIndex, 'text'], text);
+      return state.setIn(
+        [
+          'schema',
+          'questionSets',
+          currentQuestionSetIndex,
+          'questions',
+          currentQuestionIndex,
+          'text',
+        ],
+        text,
+      );
     }
     case EDIT_QUESTION_POST_TEXT_SUCCESS: {
       const { currentQuestionSetIndex, currentQuestionIndex, text } = action.payload;
-      return state
-        .setIn(['schema', 'questionSets', currentQuestionSetIndex, 'questions',
-          currentQuestionIndex, 'postText'], text);
+      return state.setIn(
+        [
+          'schema',
+          'questionSets',
+          currentQuestionSetIndex,
+          'questions',
+          currentQuestionIndex,
+          'postText',
+        ],
+        text,
+      );
     }
     case EDIT_NEXT_BUTTON_TEXT_SUCCESS: {
       const { currentQuestionPanelIndex, text } = action.payload;
-      return state
-        .setIn(['schema', 'questionPanels', currentQuestionPanelIndex, 'button', 'text'], text);
+      return state.setIn(
+        ['schema', 'questionPanels', currentQuestionPanelIndex, 'button', 'text'],
+        text,
+      );
     }
     case EDIT_BACK_BUTTON_TEXT_SUCCESS: {
       const { currentQuestionPanelIndex, text } = action.payload;
-      return state
-        .setIn(['schema', 'questionPanels', currentQuestionPanelIndex, 'backButton', 'text'], text);
+      return state.setIn(
+        ['schema', 'questionPanels', currentQuestionPanelIndex, 'backButton', 'text'],
+        text,
+      );
     }
     case DISABLE_BACK_BUTTON_SUCCESS: {
       const { currentQuestionPanelIndex, disabled } = action.payload;
-      return state
-        .setIn(['schema', 'questionPanels', currentQuestionPanelIndex, 'backButton', 'disabled'], disabled);
+      return state.setIn(
+        ['schema', 'questionPanels', currentQuestionPanelIndex, 'backButton', 'disabled'],
+        disabled,
+      );
     }
     case EDIT_NEXT_BUTTON_ACTION_SUCCESS: {
       const { currentQuestionPanelIndex, text } = action.payload;
-      return state
-        .setIn(['schema', 'questionPanels', currentQuestionPanelIndex, 'action', 'default', 'action'], text);
+      return state.setIn(
+        ['schema', 'questionPanels', currentQuestionPanelIndex, 'action', 'default', 'action'],
+        text,
+      );
     }
     case EDIT_NEXT_BUTTON_TARGET_SUCCESS: {
       const { currentQuestionPanelIndex, text } = action.payload;
-      return state
-        .setIn(['schema', 'questionPanels', currentQuestionPanelIndex, 'action', 'default', 'target'], text);
+      return state.setIn(
+        ['schema', 'questionPanels', currentQuestionPanelIndex, 'action', 'default', 'target'],
+        text,
+      );
     }
     case ADD_QUESTION_OPTION_SUCCESS: {
-      const {
-        key,
-        questionOptionText,
-        questionOptionValue,
-      } = action.payload;
+      const { key, questionOptionText, questionOptionValue } = action.payload;
       const newOption = fromJS({ text: questionOptionText, value: questionOptionValue });
       if (state.getIn(key)) {
-        return state
-          .updateIn(key, arr =>
-            arr.push(newOption));
+        return state.updateIn(key, (arr) => arr.push(newOption));
       }
-      return state
-        .setIn(key, fromJS([newOption]));
+      return state.setIn(key, fromJS([newOption]));
     }
     case CHANGE_QUESTION_TYPE_SUCCESS: {
       const { currentQuestionSetIndex, currentQuestionIndex, questionType } = action.payload;
-      return state
-        .setIn(['schema', 'questionSets', currentQuestionSetIndex, 'questions',
-          currentQuestionIndex, 'input', 'type'], questionType);
+      return state.setIn(
+        [
+          'schema',
+          'questionSets',
+          currentQuestionSetIndex,
+          'questions',
+          currentQuestionIndex,
+          'input',
+          'type',
+        ],
+        questionType,
+      );
     }
-    case EDIT_QUESTION_OPTION_TEXT_SUCCESS: {
-      const { path, text } = action.payload;
-      return state
-        .setIn([...path, 'text'], text);
+    case CHANGE_QUESTION_LABEL_SUCCESS: {
+      const { currentQuestionSetIndex, currentQuestionIndex, labelType } = action.payload;
+      return state.setIn(
+        [
+          'schema',
+          'questionSets',
+          currentQuestionSetIndex,
+          'questions',
+          currentQuestionIndex,
+          'label',
+        ],
+        labelType,
+      );
     }
-    case EDIT_QUESTION_OPTION_VALUE_SUCCESS: {
-      const { path, value } = action.payload;
-      return state
-        .setIn([...path, 'value'], value);
-    }
-    case DELETE_QUESTION_SUCCESS: {
+    case CHANGE_SUGGESTED_ANSWERS_SUCCESS: {
       const {
         currentQuestionSetIndex,
         currentQuestionIndex,
+        suggestions,
       } = action.payload;
+      return state.setIn(
+        [
+          'schema',
+          'questionSets',
+          currentQuestionSetIndex,
+          'questions',
+          currentQuestionIndex,
+          'suggestions',
+        ],
+        suggestions,
+      );
+    }
+    case EDIT_QUESTION_OPTION_TEXT_SUCCESS: {
+      const { path, text } = action.payload;
+      return state.setIn([...path, 'text'], text);
+    }
+    case EDIT_QUESTION_OPTION_VALUE_SUCCESS: {
+      const { path, value } = action.payload;
+      return state.setIn([...path, 'value'], value);
+    }
+    case DELETE_QUESTION_SUCCESS: {
+      const { currentQuestionSetIndex, currentQuestionIndex } = action.payload;
       return state
         .set('currentQuestionIndex', -1)
-        .deleteIn(['schema', 'questionSets', currentQuestionSetIndex, 'questions',
-          currentQuestionIndex]);
+        .deleteIn([
+          'schema',
+          'questionSets',
+          currentQuestionSetIndex,
+          'questions',
+          currentQuestionIndex,
+        ]);
     }
     case DELETE_QUESTION_OPTION_SUCCESS: {
       const { path } = action.payload;
-      return state
-        .deleteIn(path);
+      return state.deleteIn(path);
     }
     case CHANGE_EDITING_FIELD_SUCCESS: {
       const { currentEditingField, currentQuestionSetIndex, currentQuestionIndex } = action.payload;
@@ -211,18 +290,20 @@ function winterfellFormBuilderReducer(state = initialState, action) {
       return state
         .set('title', action.payload.title)
         .set('currentQuestionPanelIndex', 0)
-        .set('schema', fromJS({
-          classes: BOOTSTRAP_CLASSES,
-          formPanels: [],
-          questionPanels: [],
-          questionSets: [],
-        }));
+        .set(
+          'schema',
+          fromJS({
+            classes: BOOTSTRAP_CLASSES,
+            formPanels: [],
+            questionPanels: [],
+            questionSets: [],
+            suggestionPanel: SUGGESION_PANEL_DEFAULT,
+          }),
+        );
     case EDIT_FORM_TITLE_SUCCESS:
-      return state
-        .set('title', action.payload.title);
+      return state.set('title', action.payload.title);
     case UPDATE_FORM_SUCCESS:
-      return state
-        .update('schema', () => fromJS(action.payload.schema));
+      return state.update('schema', () => fromJS(action.payload.schema));
     case ADD_PAGE_SUCCESS: {
       const formPanelsCount = state.getIn(['schema', 'formPanels']).count() + 1;
 
@@ -239,15 +320,18 @@ function winterfellFormBuilderReducer(state = initialState, action) {
       };
 
       return state
-        .updateIn(['schema', 'formPanels'], arr =>
-          arr.push(fromJS(newFormPanel)))
-        .updateIn(['schema', 'questionPanels'], arr =>
-          arr.push(fromJS(newQuestionPanel)));
+        .updateIn(['schema', 'formPanels'], (arr) => arr.push(fromJS(newFormPanel)))
+        .updateIn(['schema', 'questionPanels'], (arr) => arr.push(fromJS(newQuestionPanel)));
     }
     case ADD_QUESTION_SET_SUCCESS: {
       const currentQuestionPanelIndex = state.get('currentQuestionPanelIndex');
 
-      const questionSetCount = state.getIn(['schema', 'questionPanels', currentQuestionPanelIndex, 'questionSets']).size;
+      const questionSetCount = state.getIn([
+        'schema',
+        'questionPanels',
+        currentQuestionPanelIndex,
+        'questionSets',
+      ]).size;
 
       const newQuestionSetId = {
         index: questionSetCount,
@@ -273,15 +357,16 @@ function winterfellFormBuilderReducer(state = initialState, action) {
       };
 
       return state
-        .updateIn(['schema', 'questionPanels', currentQuestionPanelIndex, 'questionSets'], arr =>
-          arr.push(fromJS(newQuestionSetId)))
-        .updateIn(['schema', 'questionSets'], arr =>
-          arr.push(fromJS(newQuestionSet)));
+        .updateIn(['schema', 'questionPanels', currentQuestionPanelIndex, 'questionSets'], (arr) =>
+          arr.push(fromJS(newQuestionSetId)),
+        )
+        .updateIn(['schema', 'questionSets'], (arr) => arr.push(fromJS(newQuestionSet)));
     }
     case ADD_QUESTION_SUCCESS: {
       const currentQuestionSetIndex = state.get('currentQuestionSetIndex');
 
-      const questionCount = state.getIn(['schema', 'questionSets', currentQuestionSetIndex, 'questions']).count() + 1;
+      const questionCount =
+        state.getIn(['schema', 'questionSets', currentQuestionSetIndex, 'questions']).count() + 1;
 
       const newQuestion = {
         questionId: action.payload.questionId || `question-id-${questionCount}`,
@@ -294,18 +379,13 @@ function winterfellFormBuilderReducer(state = initialState, action) {
         },
       };
 
-      return state
-        .updateIn(['schema', 'questionSets', currentQuestionSetIndex, 'questions'], arr =>
-          arr.push(fromJS(newQuestion)));
+      return state.updateIn(
+        ['schema', 'questionSets', currentQuestionSetIndex, 'questions'],
+        (arr) => arr.push(fromJS(newQuestion)),
+      );
     }
     case ADD_CONDITIONAL_QUESTION_SUCCESS: {
-      const {
-        path,
-        questionId,
-        question,
-        questionText,
-        questionType,
-      } = action.payload;
+      const { path, questionId, question, questionText, questionType } = action.payload;
 
       const conditionalQuestions = state.getIn([...path, 'conditionalQuestions']);
 
@@ -316,28 +396,23 @@ function winterfellFormBuilderReducer(state = initialState, action) {
         text: questionText,
         input: {
           type: questionType || 'textInput',
-          options: questionType === 'checkBoxOptions' || questionType === 'radioOptions' ||
-            questionType === 'select' ? [] : undefined,
+          options:
+            questionType === 'checkBoxOptions' ||
+            questionType === 'radioOptions' ||
+            questionType === 'select'
+              ? []
+              : undefined,
         },
       };
       if (conditionalQuestionCount === 0) {
-        return state
-          .setIn([...path, 'conditionalQuestions'], fromJS([newConditionalQuestion]));
+        return state.setIn([...path, 'conditionalQuestions'], fromJS([newConditionalQuestion]));
       }
-      return state
-        .updateIn([...path, 'conditionalQuestions'], arr =>
-          arr.push(fromJS(newConditionalQuestion)));
+      return state.updateIn([...path, 'conditionalQuestions'], (arr) =>
+        arr.push(fromJS(newConditionalQuestion)),
+      );
     }
     case SAVE_CONDITIONAL_QUESTION_SUCCESS: {
-      const {
-        path,
-        questionId,
-        question,
-        text,
-        postText,
-        type,
-        options,
-      } = action.payload;
+      const { path, questionId, question, text, postText, type, options } = action.payload;
 
       const newConditionalQuestion = {
         questionId,
@@ -349,22 +424,24 @@ function winterfellFormBuilderReducer(state = initialState, action) {
           options: type !== 'textInput' ? options : undefined,
         },
       };
-      return state
-        .setIn(path, fromJS(newConditionalQuestion));
+      return state.setIn(path, fromJS(newConditionalQuestion));
     }
     case DELETE_CONDITIONAL_QUESTION_SUCCESS: {
       const { path } = action.payload;
 
-      return state
-        .deleteIn(path);
+      return state.deleteIn(path);
     }
     case UPDATE_QUESTION_SUCCESS: {
       const { questionSetIndex, questionIndex, question, questionText } = action.payload;
       return state
-        .setIn(['schema', 'questionSets', questionSetIndex,
-          'questions', questionIndex, 'question'], question)
-        .setIn(['schema', 'questionSets', questionSetIndex,
-          'questions', questionIndex, 'text'], questionText);
+        .setIn(
+          ['schema', 'questionSets', questionSetIndex, 'questions', questionIndex, 'question'],
+          question,
+        )
+        .setIn(
+          ['schema', 'questionSets', questionSetIndex, 'questions', questionIndex, 'text'],
+          questionText,
+        );
     }
     case MOVE_PAGE_SUCCESS: {
       const { oldIndex, newIndex } = action.payload;
@@ -376,13 +453,15 @@ function winterfellFormBuilderReducer(state = initialState, action) {
       const oldFormPanelId = state.getIn(['schema', 'formPanels', oldIndex, 'panelId']);
       const oldQuestionPanel = state.getIn(['schema', 'questionPanels', oldIndex]).toJS();
 
-      if (oldIndex < newIndex) { // moving page down
+      if (oldIndex < newIndex) {
+        // moving page down
         for (let i = oldIndex; i < newIndex; i += 1) {
           oldFormPanels[i].panelId = oldFormPanels[i + 1].panelId;
           oldQuestionPanels[i] = oldQuestionPanels[i + 1];
         }
       }
-      if (oldIndex > newIndex) { // moving page up
+      if (oldIndex > newIndex) {
+        // moving page up
         for (let i = oldIndex; i > newIndex; i -= 1) {
           oldFormPanels[i].panelId = oldFormPanels[i - 1].panelId;
           oldQuestionPanels[i] = oldQuestionPanels[i - 1];
@@ -404,27 +483,46 @@ function winterfellFormBuilderReducer(state = initialState, action) {
         action: 'GOTO',
       };
       const currentQuestionPanelIndex = state.get('currentQuestionPanelIndex');
-      const currentConditions = state.getIn(['schema', 'questionPanels', currentQuestionPanelIndex, 'action', 'conditions']);
-      const optionIndex = currentConditions.findIndex(condition => condition.get('value') === action.payload.value);
+      const currentConditions = state.getIn([
+        'schema',
+        'questionPanels',
+        currentQuestionPanelIndex,
+        'action',
+        'conditions',
+      ]);
+      const optionIndex = currentConditions.findIndex(
+        (condition) => condition.get('value') === action.payload.value,
+      );
       if (optionIndex !== -1) {
-        return state
-          .setIn(['schema', 'questionPanels', currentQuestionPanelIndex, 'action', 'conditions', optionIndex],
-            fromJS(newQuestionCondition));
+        return state.setIn(
+          [
+            'schema',
+            'questionPanels',
+            currentQuestionPanelIndex,
+            'action',
+            'conditions',
+            optionIndex,
+          ],
+          fromJS(newQuestionCondition),
+        );
       }
-      return state
-        .updateIn(['schema', 'questionPanels', currentQuestionPanelIndex, 'action', 'conditions'], arr =>
-          arr.push(fromJS(newQuestionCondition)));
+      return state.updateIn(
+        ['schema', 'questionPanels', currentQuestionPanelIndex, 'action', 'conditions'],
+        (arr) => arr.push(fromJS(newQuestionCondition)),
+      );
     }
     case RESET_NEXT_QUESTION_TARGET_SUCCESS: {
       const currentQuestionPanelIndex = state.get('currentQuestionPanelIndex');
 
-      return state
-        .setIn(['schema', 'questionPanels', currentQuestionPanelIndex, 'action', 'conditions'],
-          state.getIn(['schema', 'questionPanels', currentQuestionPanelIndex, 'action', 'conditions']).filter(o => o.get('value') !== action.payload.value));
+      return state.setIn(
+        ['schema', 'questionPanels', currentQuestionPanelIndex, 'action', 'conditions'],
+        state
+          .getIn(['schema', 'questionPanels', currentQuestionPanelIndex, 'action', 'conditions'])
+          .filter((o) => o.get('value') !== action.payload.value),
+      );
     }
     case UPDATE_QUESTION_ANSWERS_SUCCESS: {
-      return state
-        .set('questionAnswers', fromJS(action.payload.questionAnswers));
+      return state.set('questionAnswers', fromJS(action.payload.questionAnswers));
     }
     default:
       return state;

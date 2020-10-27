@@ -1,5 +1,7 @@
 "use strict";
 
+var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
+
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 Object.defineProperty(exports, "__esModule", {
@@ -7,91 +9,51 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
-var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
+var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
 
-var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
-
-var _assertThisInitialized2 = _interopRequireDefault(require("@babel/runtime/helpers/assertThisInitialized"));
-
-var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));
-
-var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
-
-var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
-
-var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
-
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
+var SelectInput = function SelectInput(_ref) {
+  var displayValue = _ref.displayValue,
+      options = _ref.options,
+      name = _ref.name,
+      classes = _ref.classes,
+      required = _ref.required,
+      onSelect = _ref.onSelect;
 
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+  var _useState = (0, _react.useState)(displayValue),
+      _useState2 = (0, _slicedToArray2["default"])(_useState, 2),
+      value = _useState2[0],
+      setValue = _useState2[1];
 
-var SelectInput = /*#__PURE__*/function (_React$Component) {
-  (0, _inherits2["default"])(SelectInput, _React$Component);
+  (0, _react.useEffect)(function () {
+    setValue(displayValue);
+  }, [displayValue]);
 
-  var _super = _createSuper(SelectInput);
+  var handleChange = function handleChange(e) {
+    setValue(e.target.value);
+    onSelect(e.target.value, e);
+  };
 
-  function SelectInput() {
-    var _this;
-
-    (0, _classCallCheck2["default"])(this, SelectInput);
-
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    _this = _super.call.apply(_super, [this].concat(args));
-    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "state", {
-      value: _this.props.displayValue
-    });
-    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "handleChange", function (e) {
-      _this.setState({
-        value: e.target.value
-      });
-
-      _this.props.onSelect(e.target.value);
-    });
-    return _this;
-  }
-
-  (0, _createClass2["default"])(SelectInput, [{
-    key: "componentWillReceiveProps",
-    value: function componentWillReceiveProps(nextProps) {
-      this.setState({
-        value: nextProps.displayValue
-      });
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this2 = this;
-
-      var options = this.props.options && this.props.options.map(function (opt, index) {
-        return /*#__PURE__*/_react["default"].createElement("option", {
-          key: index,
-          value: opt.value
-        }, opt.text);
-      });
-      return /*#__PURE__*/_react["default"].createElement("select", {
-        name: this.props.name,
-        className: this.props.classes.select,
-        value: this.state.value,
-        required: this.props.required ? 'required' : undefined,
-        onChange: this.handleChange,
-        onSelect: function onSelect() {
-          return _this2.props.onSelect;
-        },
-        autoComplete: this.props.name
-      }, /*#__PURE__*/_react["default"].createElement("option", {
-        value: ""
-      }, "\xA0"), options);
-    }
-  }]);
-  return SelectInput;
-}(_react["default"].Component);
+  return /*#__PURE__*/_react["default"].createElement("select", {
+    name: name,
+    className: classes.select,
+    value: value,
+    required: required ? 'required' : undefined,
+    onChange: handleChange,
+    onSelect: onSelect,
+    autoComplete: name
+  }, /*#__PURE__*/_react["default"].createElement("option", {
+    value: ""
+  }, "\xA0"), options && options.map(function (opt, index) {
+    return /*#__PURE__*/_react["default"].createElement("option", {
+      key: index,
+      value: opt.value
+    }, opt.text);
+  }));
+};
 
 SelectInput.propTypes = {
   displayValue: _propTypes["default"].string,

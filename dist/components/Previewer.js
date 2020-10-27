@@ -9,17 +9,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
-var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
+var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 
-var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
-
-var _assertThisInitialized2 = _interopRequireDefault(require("@babel/runtime/helpers/assertThisInitialized"));
-
-var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));
-
-var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
-
-var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
+var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -37,9 +29,13 @@ var _addressInputType = _interopRequireDefault(require("../components/InputTypes
 
 var _textAreaInputType = _interopRequireDefault(require("../components/InputTypes/textAreaInputType"));
 
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
+var _SuggestionInputs = _interopRequireDefault(require("./InputTypes/SuggestionInputs"));
 
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+var _constants = require("../common/constants");
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 var onRenderDefault = function onRenderDefault() {
   console.log('Great news! Winterfell rendered successfully');
@@ -58,85 +54,105 @@ var onSubmitDefault = function onSubmitDefault(questionAndAnswers, target) {
   console.log('-----'); // alert('Submitted. Check the console to see the answers!');
 };
 
-var Previewer = /*#__PURE__*/function (_Component) {
-  (0, _inherits2["default"])(Previewer, _Component);
+var Previewer = function Previewer(_ref) {
+  var _ref$currentPanelId = _ref.currentPanelId,
+      currentPanelId = _ref$currentPanelId === void 0 ? null : _ref$currentPanelId,
+      _ref$schema = _ref.schema,
+      schema = _ref$schema === void 0 ? {} : _ref$schema,
+      _ref$onRender = _ref.onRender,
+      onRender = _ref$onRender === void 0 ? onRenderDefault : _ref$onRender,
+      _ref$onSubmit = _ref.onSubmit,
+      onSubmit = _ref$onSubmit === void 0 ? onSubmitDefault : _ref$onSubmit,
+      _ref$onSwitchPanel = _ref.onSwitchPanel,
+      onSwitchPanel = _ref$onSwitchPanel === void 0 ? onSwitchPanelDefault : _ref$onSwitchPanel,
+      _ref$questionAnswers = _ref.questionAnswers,
+      questionAnswers = _ref$questionAnswers === void 0 ? {} : _ref$questionAnswers,
+      _ref$onUpdate = _ref.onUpdate,
+      onUpdate = _ref$onUpdate === void 0 ? function () {} : _ref$onUpdate;
 
-  var _super = _createSuper(Previewer);
+  var _useState = (0, _react.useState)(!schema.suggestionPanel ? _objectSpread(_objectSpread({}, schema), {}, {
+    suggestionPanel: _constants.SUGGESION_PANEL_DEFAULT
+  }) : schema),
+      _useState2 = (0, _slicedToArray2["default"])(_useState, 2),
+      localSchema = _useState2[0],
+      setLocalSchema = _useState2[1];
 
-  function Previewer(props) {
-    var _this;
+  var dispatch = (0, _reactRedux.useDispatch)();
+  (0, _react.useEffect)(function () {
+    schema.questionPanels.forEach(function (qp) {
+      qp.progress = _constants.PROGRESS;
+    });
 
-    (0, _classCallCheck2["default"])(this, Previewer);
-    _this = _super.call(this, props);
-    _this.onUpdateQuestionAnswers = _this.onUpdateQuestionAnswers.bind((0, _assertThisInitialized2["default"])(_this));
-    return _this;
-  }
-
-  (0, _createClass2["default"])(Previewer, [{
-    key: "onUpdateQuestionAnswers",
-    value: function onUpdateQuestionAnswers(questionAndAnswers) {
-      console.log('Question Updated! The current set of answers is: ', questionAndAnswers);
-      this.props.updateQuestionAnswers(questionAndAnswers);
+    if (!schema.suggestionPanel) {
+      setLocalSchema(_objectSpread(_objectSpread({}, schema), {}, {
+        suggestionPanel: _constants.SUGGESION_PANEL_DEFAULT
+      }));
+      return;
     }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this2 = this;
 
-      var _this$props = this.props,
-          schema = _this$props.schema,
-          currentPanelId = _this$props.currentPanelId,
-          onRender = _this$props.onRender,
-          onSwitchPanel = _this$props.onSwitchPanel,
-          onSubmit = _this$props.onSubmit,
-          questionAnswers = _this$props.questionAnswers;
+    setLocalSchema(schema);
+  }, [schema]);
 
-      _winterfell["default"].addInputTypes({
-        dateInput: _DateInputType["default"],
-        addressInput: _addressInputType["default"],
-        textAreaInput: _textAreaInputType["default"]
+  var onUpdateQuestionAnswers = function onUpdateQuestionAnswers(questionAndAnswers) {
+    dispatch((0, _winterfellFormBuilderActions.updateQuestionAnswers)(questionAndAnswers));
+  };
+
+  var onClickSuggestion = function onClickSuggestion(event, _ref2) {
+    var questionId = _ref2.questionId,
+        item = _ref2.item;
+    var selectedAnswer = {};
+    selectedAnswer[questionId] = item.id;
+    dispatch((0, _winterfellFormBuilderActions.updateQuestionAnswers)(selectedAnswer));
+  };
+
+  _winterfell["default"].addInputTypes({
+    dateInput: _DateInputType["default"],
+    addressInput: _addressInputType["default"],
+    textAreaInput: _textAreaInputType["default"]
+  });
+
+  var displayWinterFellForm = function displayWinterFellForm() {
+    return localSchema.formPanels.map(function (formPanel, index) {
+      localSchema.suggestionPanel = _constants.SUGGESION_PANEL_DEFAULT;
+      localSchema.panelConstants = _constants.PANEL_CONSTANTS;
+      localSchema.defaultSuggestions = _constants.DEFAULT_SUGGESTIONS;
+      localSchema.classes = _constants.BOOTSTRAP_CLASSES;
+      localSchema.formPanels[index].progress = _constants.PROGRESS;
+      return formPanel.panelId === currentPanelId && /*#__PURE__*/_react["default"].createElement(_winterfell["default"], {
+        schema: localSchema,
+        disableSubmit: true,
+        onRender: onRender,
+        onUpdate: onUpdateQuestionAnswers,
+        onSwitchPanel: onSwitchPanel,
+        onSubmit: onSubmit,
+        questionAnswers: questionAnswers,
+        panelId: currentPanelId,
+        key: index
+      }) || currentPanelId === 'Select Page' && /*#__PURE__*/_react["default"].createElement(_winterfell["default"], {
+        schema: localSchema,
+        disableSubmit: true,
+        onRender: onRender,
+        onUpdate: onUpdate,
+        onSwitchPanel: onSwitchPanel,
+        onSubmit: onSubmit,
+        questionAnswers: questionAnswers
       });
+    });
+  };
 
-      var displayWinterFellForm = function displayWinterFellForm() {
-        return schema.formPanels.map(function (formPanel, index) {
-          return formPanel.panelId === currentPanelId && /*#__PURE__*/_react["default"].createElement(_winterfell["default"], {
-            schema: schema,
-            disableSubmit: true,
-            onRender: onRender,
-            onUpdate: _this2.onUpdateQuestionAnswers,
-            onSwitchPanel: onSwitchPanel,
-            onSubmit: onSubmit,
-            questionAnswers: questionAnswers,
-            panelId: currentPanelId,
-            key: index
-          }) || currentPanelId === 'Select Page' && /*#__PURE__*/_react["default"].createElement(_winterfell["default"], {
-            schema: schema,
-            disableSubmit: true,
-            onRender: onRender,
-            onUpdate: _this2.onUpdate,
-            onSwitchPanel: onSwitchPanel,
-            onSubmit: onSubmit,
-            questionAnswers: questionAnswers
-          });
-        });
-      };
-
-      return /*#__PURE__*/_react["default"].createElement("div", {
-        className: "card p-3"
-      }, schema && schema.formPanels && schema.formPanels.length > 0 && currentPanelId && currentPanelId !== 'Select Page' && displayWinterFellForm());
-    }
-  }]);
-  return Previewer;
-}(_react.Component);
+  return /*#__PURE__*/_react["default"].createElement("div", {
+    className: "winterfell-panel-preview card p-3"
+  }, localSchema && localSchema.formPanels && localSchema.formPanels.length > 0 && currentPanelId && currentPanelId !== 'Select Page' && displayWinterFellForm());
+};
 
 Previewer.propTypes = {
-  currentPanelId: _propTypes["default"].string,
+  currentPanelId: _propTypes["default"].number.isRequired,
   schema: _propTypes["default"].object.isRequired,
   onRender: _propTypes["default"].func,
-  updateQuestionAnswers: _propTypes["default"].func,
   onSubmit: _propTypes["default"].func,
   onSwitchPanel: _propTypes["default"].func,
-  questionAnswers: _propTypes["default"].object
+  questionAnswers: _propTypes["default"].object,
+  onUpdate: _propTypes["default"].func
 };
 Previewer.defaultProps = {
   currentPanelId: null,
@@ -145,12 +161,7 @@ Previewer.defaultProps = {
   onSubmit: onSubmitDefault,
   onSwitchPanel: onSwitchPanelDefault,
   questionAnswers: {},
-  onUpdate: function onUpdate() {},
-  updateQuestionAnswers: function updateQuestionAnswers() {}
+  onUpdate: function onUpdate() {}
 };
-
-var _default = (0, _reactRedux.connect)(null, {
-  updateQuestionAnswers: _winterfellFormBuilderActions.updateQuestionAnswers
-})(Previewer);
-
+var _default = Previewer;
 exports["default"] = _default;
