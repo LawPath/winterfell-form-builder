@@ -17,7 +17,7 @@ class RadioButtonOptionsInput extends React.Component {
     let currentValue = this.state.value;
 
     if (e.target.checked) {
-      currentValue = currentValue.filter(v => v !== e.target.value);
+      currentValue = currentValue.filter((v) => v !== e.target.value);
     }
 
     this.setState({ value: currentValue });
@@ -29,7 +29,7 @@ class RadioButtonOptionsInput extends React.Component {
     if (e.target.checked) {
       currentValue.push(e.target.value);
     } else {
-      currentValue = currentValue.filter(v => v !== e.target.value);
+      currentValue = currentValue.filter((v) => v !== e.target.value);
     }
 
     this.setState({ value: currentValue });
@@ -38,11 +38,8 @@ class RadioButtonOptionsInput extends React.Component {
   render() {
     return (
       <ul className={this.props.classes.checkboxList}>
-        {this.props.options.map(opt =>
-          (<li
-            key={opt.value}
-            className={this.props.classes.checkboxListItem}
-          >
+        {this.props.options.map((opt) => (
+          <li key={opt.value} className={this.props.classes.checkboxListItem}>
             <label
               className={this.props.classes.checkboxLabel}
               htmlFor={`${this.props.name}-${opt.value}`}
@@ -63,8 +60,8 @@ class RadioButtonOptionsInput extends React.Component {
               />
               {opt.text}
             </label>
-          </li>),
-        )}
+          </li>
+        ))}
       </ul>
     );
   }

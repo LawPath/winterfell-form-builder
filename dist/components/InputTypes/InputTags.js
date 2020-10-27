@@ -1,7 +1,5 @@
 "use strict";
 
-var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
-
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 Object.defineProperty(exports, "__esModule", {
@@ -11,9 +9,7 @@ exports["default"] = void 0;
 
 var _toConsumableArray2 = _interopRequireDefault(require("@babel/runtime/helpers/toConsumableArray"));
 
-var _react = _interopRequireWildcard(require("react"));
-
-var _propTypes = _interopRequireDefault(require("prop-types"));
+var _react = _interopRequireDefault(require("react"));
 
 var _reactTagInput = require("react-tag-input");
 
@@ -35,10 +31,7 @@ var defaultClassnames = {
 var SUGGESTION_COMPONENT = 'suggestion';
 
 var setData = function setData(data) {
-  return (0, _immutable.Map)({
-    name: SUGGESTION_COMPONENT,
-    data: data
-  });
+  return (0, _immutable.List)(data);
 };
 
 var InputTags = function InputTags(_ref) {
@@ -46,7 +39,7 @@ var InputTags = function InputTags(_ref) {
       currentQuestionIndex = _ref.currentQuestionIndex,
       _ref$placeholder = _ref.placeholder,
       placeholder = _ref$placeholder === void 0 ? defaultPlaceholder : _ref$placeholder;
-  var path = ['form', 'schema', 'questionSets', currentQuestionSetIndex, 'questions', currentQuestionIndex, 'postQuestionComponent', 'data'];
+  var path = ['form', 'schema', 'questionSets', currentQuestionSetIndex, 'questions', currentQuestionIndex, 'suggestions'];
   var tags = (0, _reactRedux.useSelector)(function (state) {
     var results = state.getIn(path);
     return !results ? [] : _immutable.List.isList(results) ? results.toJS() : results;
@@ -81,7 +74,8 @@ var InputTags = function InputTags(_ref) {
     handleDelete: handleDelete,
     handleAddition: handleAddition,
     handleDrag: handleDrag,
-    delimiters: delimiters
+    delimiters: delimiters,
+    autofocus: false
   });
 };
 

@@ -42,6 +42,7 @@ import {
   UPDATE_QUESTION_ANSWERS_SUCCESS,
   CHANGE_QUESTION_LABEL_SUCCESS,
   CHANGE_SUGGESTED_ANSWERS_SUCCESS,
+  SUGGESION_PANEL_DEFAULT,
 } from '../common/constants';
 
 const initialState = fromJS({
@@ -240,7 +241,7 @@ function winterfellFormBuilderReducer(state = initialState, action) {
       const {
         currentQuestionSetIndex,
         currentQuestionIndex,
-        postQuestionComponent,
+        suggestions,
       } = action.payload;
       return state.setIn(
         [
@@ -249,9 +250,9 @@ function winterfellFormBuilderReducer(state = initialState, action) {
           currentQuestionSetIndex,
           'questions',
           currentQuestionIndex,
-          'postQuestionComponent',
+          'suggestions',
         ],
-        postQuestionComponent,
+        suggestions,
       );
     }
     case EDIT_QUESTION_OPTION_TEXT_SUCCESS: {
@@ -296,6 +297,7 @@ function winterfellFormBuilderReducer(state = initialState, action) {
             formPanels: [],
             questionPanels: [],
             questionSets: [],
+            suggestionPanel: SUGGESION_PANEL_DEFAULT,
           }),
         );
     case EDIT_FORM_TITLE_SUCCESS:

@@ -1,0 +1,60 @@
+/* Variables.scss  */
+$white: #ffffff;
+$black: #000000;
+
+$ocean-boat-blue: #0075bf;
+$ocean-boat-blue-darken: transparentize($ocean-boat-blue, 0.7);
+
+$wild-passion: #dc493a;
+$caribbean-green: #00c08b;
+$midnight-blue: #1c355e;
+$mango-tango: #ff7f40;
+$aqua-dream: #4cc8ed;
+$epic-purple: #60269e;
+$butter-canary: #ffb71b;
+$musical-oyster: #d2d8df;
+$royal-peacock: #00568b;
+$oxford-blue: #091f3c;
+$athens-grey: #e6e9ed;
+$melting-icicle: #8bc0e1;
+$pure-snow: #fafbfc;
+$shadow-blue: #7a8aa0;
+$golden-hour: #e8a719;
+$lemon-meringue: #ffeabc;
+$artful-ivory: #a6b1c0;
+$polar-snow: #bcc4cf;
+$blue-lagoon: #bdebf8;
+$sea-pink: #efaca5;
+$iceberg: #d0f3e9;
+$misty-rose: #ffe7dc;
+$atomic-tangerine: #ff9662;
+$early-sky: #e7f2f9;
+$milky-ivory: #eef0f3;
+$first-tide: #b9d9ed;
+$simmering-bay: #909eb0;
+$bouncing-green: #009e72;
+$roasting-wine: #b53c30;
+$seashell: #fff6e4;
+$spring-linen: #fbeeed;
+$rose-garden: #e26a5d;
+$default-height: 55px;
+$white-smoke: #F6F7F9;
+
+/** Variables for the Toastify Notification Icons*/
+$successIcon: 'https://assets.lawpath.com/images/svg/notification-icons/success-icon.svg';
+$successIcon-close: 'https://assets.lawpath.com/images/svg/notification-icons/success-x.svg';
+$warningIcon: 'https://assets.lawpath.com/images/svg/notification-icons/warning-icon.svg';
+$warningIcon-close: 'https://assets.lawpath.com/images/svg/notification-icons/warning-x.svg';
+$errorIcon: 'https://assets.lawpath.com/images/svg/notification-icons/error-icon.svg';
+$errorIcon-close: 'https://assets.lawpath.com/images/svg/notification-icons/error-x.svg';
+$infoIcon: 'https://assets.lawpath.com/images/svg/notification-icons/info-icon.svg';
+$infoIcon-close: 'https://assets.lawpath.com/images/svg/notification-icons/info-x.svg';
+
+/** Mixin variable for Lawpath Icons */
+@mixin imgIcon {
+  .img-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 0.5rem;
+  }
+}

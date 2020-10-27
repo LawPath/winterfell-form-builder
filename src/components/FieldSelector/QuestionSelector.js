@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { RadioButtonOptionsInput, CheckboxOptionsInput, SelectInput } from '../InputTypes/';
 
-const Suggestions = ({ data }) => (
+const Suggestions = ({ data = [] }) => (
   <div>
     <div>
       <label>Suggestions</label>

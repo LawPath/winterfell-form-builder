@@ -24,8 +24,16 @@ function FieldEditor(props) {
       currentQuestionPanelIndex = props.currentQuestionPanelIndex,
       currentQuestionSetIndex = props.currentQuestionSetIndex,
       currentQuestionIndex = props.currentQuestionIndex;
-  return /*#__PURE__*/_react["default"].createElement("div", {
-    className: "winterfell-form-builder-field-editor bg-light p-3"
+  return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement("a", {
+    "class": "btn btn-outline-primary w-100 mb-3",
+    "data-toggle": "collapse",
+    href: "#winterfell-form-builder-field-editor",
+    role: "button",
+    "aria-expanded": "false",
+    "aria-controls": "collapseExample"
+  }, "Open form builder editor"), /*#__PURE__*/_react["default"].createElement("div", {
+    id: "winterfell-form-builder-field-editor",
+    className: "winterfell-form-builder-field-editor collapse bg-light p-3"
   }, (currentEditingField === 'page' || currentEditingField === 'pageSort') && /*#__PURE__*/_react["default"].createElement(_PageEditor["default"], {
     currentQuestionPanelIndex: currentQuestionPanelIndex
   }), currentEditingField === 'questionSet' && /*#__PURE__*/_react["default"].createElement(_QuestionSetEditor["default"], {
@@ -36,7 +44,7 @@ function FieldEditor(props) {
     currentQuestionIndex: currentQuestionIndex
   }), currentEditingField === 'buttons' && /*#__PURE__*/_react["default"].createElement(_ButtonBarEditor["default"], {
     currentQuestionPanelIndex: currentQuestionPanelIndex
-  }));
+  })));
 }
 
 FieldEditor.propTypes = {

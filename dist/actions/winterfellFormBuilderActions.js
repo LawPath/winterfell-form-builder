@@ -270,13 +270,13 @@ var changeQuestionLabel = function changeQuestionLabel(currentQuestionSetIndex, 
 
 exports.changeQuestionLabel = changeQuestionLabel;
 
-var changeSuggestedAnswers = function changeSuggestedAnswers(currentQuestionSetIndex, currentQuestionIndex, postQuestionComponent) {
+var changeSuggestedAnswers = function changeSuggestedAnswers(currentQuestionSetIndex, currentQuestionIndex, suggestions) {
   return {
     type: _constants.CHANGE_SUGGESTED_ANSWERS_SUCCESS,
     payload: {
       currentQuestionSetIndex: currentQuestionSetIndex,
       currentQuestionIndex: currentQuestionIndex,
-      postQuestionComponent: postQuestionComponent
+      suggestions: suggestions
     }
   };
 };

@@ -199,11 +199,11 @@ export const changeQuestionLabel = (currentQuestionSetIndex, currentQuestionInde
 export const changeSuggestedAnswers = (
   currentQuestionSetIndex,
   currentQuestionIndex,
-  postQuestionComponent,
+  suggestions,
 ) => {
   return {
     type: CHANGE_SUGGESTED_ANSWERS_SUCCESS,
-    payload: { currentQuestionSetIndex, currentQuestionIndex, postQuestionComponent },
+    payload: { currentQuestionSetIndex, currentQuestionIndex, suggestions },
   };
 };
 

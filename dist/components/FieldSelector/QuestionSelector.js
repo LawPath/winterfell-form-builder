@@ -14,7 +14,8 @@ var _propTypes = _interopRequireDefault(require("prop-types"));
 var _InputTypes = require("../InputTypes/");
 
 var Suggestions = function Suggestions(_ref) {
-  var data = _ref.data;
+  var _ref$data = _ref.data,
+      data = _ref$data === void 0 ? [] : _ref$data;
   return /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("label", null, "Suggestions")), /*#__PURE__*/_react["default"].createElement("div", null, data.map(function (item) {
     return /*#__PURE__*/_react["default"].createElement("span", {
       className: "badge badge-primary m-1"

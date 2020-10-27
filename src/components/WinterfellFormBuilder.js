@@ -44,6 +44,7 @@ class WinterfellFormBuilder extends Component {
       errorMessage,
       title,
     } = this.props;
+
     return (
       <div className="container-fluid winterfell-form-builder">
         <div className="row">
@@ -90,7 +91,7 @@ class WinterfellFormBuilder extends Component {
           </div>
         ) : (
           <div className="row winterfell-form-builder-editor">
-            <div className="col-6" id="questionEditor">
+            <div className="col-5" id="questionEditor">
               <h3>Page Editor</h3>
               <div className="btn-group">
                 <AddPageButton />
@@ -115,7 +116,7 @@ class WinterfellFormBuilder extends Component {
                 />
               )}
             </div>
-            <div className="col-6 winterfell-form-builder-page-editor">
+            <div className="col-7 winterfell-form-builder-page-editor">
               <QuestionPanels
                 title={title}
                 schema={this.props.schema}

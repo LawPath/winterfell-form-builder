@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Winterfell from 'winterfell';
 import { connect, useDispatch } from 'react-redux';
@@ -8,6 +8,13 @@ import DateInputType from '../components/InputTypes/DateInputType';
 import addressInputType from '../components/InputTypes/addressInputType';
 import textAreaInputType from '../components/InputTypes/textAreaInputType';
 import SuggestionInputs from './InputTypes/SuggestionInputs';
+import {
+  BOOTSTRAP_CLASSES,
+  DEFAULT_SUGGESTIONS,
+  PANEL_CONSTANTS,
+  PROGRESS,
+  SUGGESION_PANEL_DEFAULT,
+} from '../common/constants';
 
 const onRenderDefault = () => {
   console.log('Great news! Winterfell rendered successfully');
@@ -36,11 +43,24 @@ const Previewer = ({
   questionAnswers = {},
   onUpdate = () => {},
 }) => {
+  const [localSchema, setLocalSchema] = useState(
+    !schema.suggestionPanel ? { ...schema, suggestionPanel: SUGGESION_PANEL_DEFAULT } : schema,
+  );
   const dispatch = useDispatch();
 
-  const onUpdateQuestionAnswers = (questionAndAnswers) => {
-    console.log('Question Updated! The current set of answers is: ', questionAndAnswers);
+  useEffect(() => {
+    schema.questionPanels.forEach((qp) => {
+      qp.progress = PROGRESS;
+    });
 
+    if (!schema.suggestionPanel) {
+      setLocalSchema({ ...schema, suggestionPanel: SUGGESION_PANEL_DEFAULT });
+      return;
+    }
+    setLocalSchema(schema);
+  }, [schema]);
+
+  const onUpdateQuestionAnswers = (questionAndAnswers) => {
     dispatch(updateQuestionAnswers(questionAndAnswers));
   };
 
@@ -55,14 +75,18 @@ const Previewer = ({
     addressInput: addressInputType,
     textAreaInput: textAreaInputType,
   });
-  Winterfell.addPostQuestionComponent('suggestion', SuggestionInputs);
-
   const displayWinterFellForm = () =>
-    schema.formPanels.map((formPanel, index) => {
+    localSchema.formPanels.map((formPanel, index) => {
+      localSchema.suggestionPanel = SUGGESION_PANEL_DEFAULT;
+      localSchema.panelConstants = PANEL_CONSTANTS;
+      localSchema.defaultSuggestions = DEFAULT_SUGGESTIONS;
+      localSchema.classes = BOOTSTRAP_CLASSES;
+      localSchema.formPanels[index].progress = PROGRESS;
+
       return (
         (formPanel.panelId === currentPanelId && (
           <Winterfell
-            schema={schema}
+            schema={localSchema}
             disableSubmit
             onRender={onRender}
             onUpdate={onUpdateQuestionAnswers}
@@ -75,23 +99,23 @@ const Previewer = ({
         )) ||
         (currentPanelId === 'Select Page' && (
           <Winterfell
-            schema={schema}
+            schema={localSchema}
             disableSubmit
             onRender={onRender}
             onUpdate={onUpdate}
             onSwitchPanel={onSwitchPanel}
             onSubmit={onSubmit}
             questionAnswers={questionAnswers}
-          />  
+          />
         ))
       );
     });
 
   return (
-    <div className="card p-3">
-      {schema &&
-        schema.formPanels &&
-        schema.formPanels.length > 0 &&
+    <div className="winterfell-panel-preview card p-3">
+      {localSchema &&
+        localSchema.formPanels &&
+        localSchema.formPanels.length > 0 &&
         currentPanelId &&
         currentPanelId !== 'Select Page' &&
         displayWinterFellForm()}

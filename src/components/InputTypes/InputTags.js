@@ -14,7 +14,7 @@ const defaultClassnames = { tagInputField: 'form-control' };
 
 const SUGGESTION_COMPONENT = 'suggestion';
 const setData = (data) => {
-  return Map({ name: SUGGESTION_COMPONENT, data: data });
+  return List(data);
 };
 
 const InputTags = ({
@@ -29,8 +29,7 @@ const InputTags = ({
     currentQuestionSetIndex,
     'questions',
     currentQuestionIndex,
-    'postQuestionComponent',
-    'data',
+    'suggestions',
   ];
   const tags = useSelector((state) => {
     const results = state.getIn(path);
@@ -75,6 +74,7 @@ const InputTags = ({
       handleAddition={handleAddition}
       handleDrag={handleDrag}
       delimiters={delimiters}
+      autofocus={false}
     />
   );
 };

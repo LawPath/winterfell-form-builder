@@ -1,3 +1,5 @@
+@import './variables';
+
 .winterfell-form-builder {
   .btn-group {
     display: flex;
@@ -147,11 +149,190 @@
 }
 
 .winterfell-form-builder-tab-bar {
-  position: fixed;
   background-color: #fff;
   z-index: 5;
   width: 100%;
   position: -webkit-sticky;
   position: sticky;
   top: 0;
+}
+
+.winterfell-question-panel {
+  display: grid;
+  grid-template-rows: auto auto auto 20vh auto;
+  grid-template-areas:
+    'header'
+    'body'
+    'postBodyHeader'
+    'postBody'
+    'footer';
+
+  .question-panel-header {
+    grid-area: header;
+  }
+  .question-panel-body {
+    grid-area: body;
+    padding: 20px;
+  }
+  .question-panel-post-body-header {
+    padding: 20px 20px 0 20px;
+    grid-area: postBodyHeader;
+  }
+  .question-panel-post-body {
+    grid-area: postBody;
+    padding: 0px 20px 20px 20px;
+    overflow-y: auto;
+  }
+  .question-panel-footer {
+    grid-area: footer;
+    padding: 0px 20px;
+  }
+}
+.winterfell-suggestion-panel {
+  padding: 15px;
+  background-color: $early-sky;
+  height: 100%;
+  padding: 0 15px;
+  overflow-y: auto;
+
+  // .suggestion-header {
+  //   margin-bottom: 20px;
+
+  //   > img {
+  //     height: 18px;
+  //     margin-right: 10px;
+  //   }
+  //   .suggestion-header-text {
+  //     font-size: 16px;
+  //     font-weight: bold;
+  //     color: $oxford-blue;
+  //   }
+  // }
+  .suggestion-body {
+    .suggestion-item {
+      display: inline-block;
+      padding: 5px 20px;
+      margin: 5px 5px 5px 0px;
+      border-radius: 30px;
+      font-size: 16px;
+      background-color: #fff;
+    }
+  }
+}
+
+.question-panel-post-body-header {
+  .post-body-header {
+    background-color: $early-sky;
+    padding: 15px;
+
+    .post-body-header-icon {
+      height: 18px;
+      margin-right: 10px;
+    }
+    .post-body-header-text {
+      font-size: 16px;
+      font-weight: bold;
+      color: $oxford-blue;
+    }
+  }
+}
+.question-panel-footer {
+  background-color: #bcc4cf;
+  .prefill-action-bar {
+    padding: 5px 0;
+
+    .prefill-action-bar-icon {
+      height: 18px;
+      margin-right: 10px;
+    }
+    .prefill-action-bar-text {
+      font-size: 13px;
+      color: $oxford-blue;
+      font-weight: bold;
+    }
+    .prefill-action-bar-action {
+      float: right;
+    }
+  }
+}
+.winterfell-progress-incomplete {
+  height: 100%;
+  background-color: inherit;
+  position: relative;
+
+  .winterfell-progress-complete {
+    height: 30px;
+    line-height: 30px;
+    text-align: right;
+    padding-right: 5px;
+    background-color: $ocean-boat-blue;
+    color: $white-smoke;
+    -webkit-transition: width 1s ease;
+    transition: width 1s ease;
+  }
+}
+
+.winterfell-button-bar {
+  text-align: right;
+  margin-top: 20px;
+  border: none;
+  background: inherit;
+
+  .btn {
+    border-bottom: none;
+
+    &.no-button,
+    &.yes-button {
+      margin-left: 5px;
+    }
+
+    &.no-button {
+      margin-left: 0;
+      margin-right: 5px;
+    }
+
+    &.btn-back {
+      float: left;
+    }
+
+    &.btn-hollow {
+      border: 1px solid #007cba;
+      color: #007cba;
+      background-color: #fff;
+
+      &:hover {
+        background-color: #007cba;
+        color: #fff;
+      }
+    }
+  }
+
+  &::after {
+    content: '';
+    clear: both;
+    display: table;
+  }
+
+  &.final-btn-cont {
+    @media (max-width: 62em) {
+      display: flex;
+      flex-direction: column-reverse;
+      .btn {
+        width: 100%;
+        margin: 0px 0px 10px;
+      }
+    }
+  }
+}
+
+.winterfell-progressbar {
+  position: relative;
+  height: 30px;
+  // background-color: $white-smoke;
+  padding: unset;
+  border: none;
+}
+
+.winterfell-panel-preview {
+  background: #fafbfc 0% 0% no-repeat padding-box;
 }

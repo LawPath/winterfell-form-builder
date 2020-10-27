@@ -1,13 +1,17 @@
 "use strict";
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-
 var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports["default"] = void 0;
+
+var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
+
+var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -26,6 +30,12 @@ var _addressInputType = _interopRequireDefault(require("../components/InputTypes
 var _textAreaInputType = _interopRequireDefault(require("../components/InputTypes/textAreaInputType"));
 
 var _SuggestionInputs = _interopRequireDefault(require("./InputTypes/SuggestionInputs"));
+
+var _constants = require("../common/constants");
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 var onRenderDefault = function onRenderDefault() {
   console.log('Great news! Winterfell rendered successfully');
@@ -59,10 +69,31 @@ var Previewer = function Previewer(_ref) {
       questionAnswers = _ref$questionAnswers === void 0 ? {} : _ref$questionAnswers,
       _ref$onUpdate = _ref.onUpdate,
       onUpdate = _ref$onUpdate === void 0 ? function () {} : _ref$onUpdate;
+
+  var _useState = (0, _react.useState)(!schema.suggestionPanel ? _objectSpread(_objectSpread({}, schema), {}, {
+    suggestionPanel: _constants.SUGGESION_PANEL_DEFAULT
+  }) : schema),
+      _useState2 = (0, _slicedToArray2["default"])(_useState, 2),
+      localSchema = _useState2[0],
+      setLocalSchema = _useState2[1];
+
   var dispatch = (0, _reactRedux.useDispatch)();
+  (0, _react.useEffect)(function () {
+    schema.questionPanels.forEach(function (qp) {
+      qp.progress = _constants.PROGRESS;
+    });
+
+    if (!schema.suggestionPanel) {
+      setLocalSchema(_objectSpread(_objectSpread({}, schema), {}, {
+        suggestionPanel: _constants.SUGGESION_PANEL_DEFAULT
+      }));
+      return;
+    }
+
+    setLocalSchema(schema);
+  }, [schema]);
 
   var onUpdateQuestionAnswers = function onUpdateQuestionAnswers(questionAndAnswers) {
-    console.log('Question Updated! The current set of answers is: ', questionAndAnswers);
     dispatch((0, _winterfellFormBuilderActions.updateQuestionAnswers)(questionAndAnswers));
   };
 
@@ -80,12 +111,15 @@ var Previewer = function Previewer(_ref) {
     textAreaInput: _textAreaInputType["default"]
   });
 
-  _winterfell["default"].addPostQuestionComponent('suggestion', _SuggestionInputs["default"]);
-
   var displayWinterFellForm = function displayWinterFellForm() {
-    return schema.formPanels.map(function (formPanel, index) {
+    return localSchema.formPanels.map(function (formPanel, index) {
+      localSchema.suggestionPanel = _constants.SUGGESION_PANEL_DEFAULT;
+      localSchema.panelConstants = _constants.PANEL_CONSTANTS;
+      localSchema.defaultSuggestions = _constants.DEFAULT_SUGGESTIONS;
+      localSchema.classes = _constants.BOOTSTRAP_CLASSES;
+      localSchema.formPanels[index].progress = _constants.PROGRESS;
       return formPanel.panelId === currentPanelId && /*#__PURE__*/_react["default"].createElement(_winterfell["default"], {
-        schema: schema,
+        schema: localSchema,
         disableSubmit: true,
         onRender: onRender,
         onUpdate: onUpdateQuestionAnswers,
@@ -95,7 +129,7 @@ var Previewer = function Previewer(_ref) {
         panelId: currentPanelId,
         key: index
       }) || currentPanelId === 'Select Page' && /*#__PURE__*/_react["default"].createElement(_winterfell["default"], {
-        schema: schema,
+        schema: localSchema,
         disableSubmit: true,
         onRender: onRender,
         onUpdate: onUpdate,
@@ -107,8 +141,8 @@ var Previewer = function Previewer(_ref) {
   };
 
   return /*#__PURE__*/_react["default"].createElement("div", {
-    className: "card p-3"
-  }, schema && schema.formPanels && schema.formPanels.length > 0 && currentPanelId && currentPanelId !== 'Select Page' && displayWinterFellForm());
+    className: "winterfell-panel-preview card p-3"
+  }, localSchema && localSchema.formPanels && localSchema.formPanels.length > 0 && currentPanelId && currentPanelId !== 'Select Page' && displayWinterFellForm());
 };
 
 Previewer.propTypes = {

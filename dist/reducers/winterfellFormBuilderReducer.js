@@ -211,8 +211,8 @@ function winterfellFormBuilderReducer() {
         var _action$payload18 = action.payload,
             _currentQuestionSetIndex8 = _action$payload18.currentQuestionSetIndex,
             _currentQuestionIndex6 = _action$payload18.currentQuestionIndex,
-            postQuestionComponent = _action$payload18.postQuestionComponent;
-        return state.setIn(['schema', 'questionSets', _currentQuestionSetIndex8, 'questions', _currentQuestionIndex6, 'postQuestionComponent'], postQuestionComponent);
+            suggestions = _action$payload18.suggestions;
+        return state.setIn(['schema', 'questionSets', _currentQuestionSetIndex8, 'questions', _currentQuestionIndex6, 'suggestions'], suggestions);
       }
 
     case _constants.EDIT_QUESTION_OPTION_TEXT_SUCCESS:
@@ -259,7 +259,8 @@ function winterfellFormBuilderReducer() {
         classes: _constants.BOOTSTRAP_CLASSES,
         formPanels: [],
         questionPanels: [],
-        questionSets: []
+        questionSets: [],
+        suggestionPanel: _constants.SUGGESION_PANEL_DEFAULT
       }));
 
     case _constants.EDIT_FORM_TITLE_SUCCESS:
