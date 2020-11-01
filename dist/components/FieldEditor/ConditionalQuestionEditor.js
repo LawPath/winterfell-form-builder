@@ -127,8 +127,9 @@ var ConditionalQuestionEditor = /*#__PURE__*/function (_PureComponent) {
           /*#__PURE__*/
           // return #2
           _react["default"].createElement("div", {
+            className: "w-100 mt-3",
             key: ix
-          }, /*#__PURE__*/_react["default"].createElement("div", {
+          }, /*#__PURE__*/_react["default"].createElement("hr", null), /*#__PURE__*/_react["default"].createElement("div", {
             className: "form-group"
           }, /*#__PURE__*/_react["default"].createElement(_FieldGroup["default"], {
             id: "questionId",
@@ -186,17 +187,18 @@ var ConditionalQuestionEditor = /*#__PURE__*/function (_PureComponent) {
             currentQuestionPanelIndex: _this2.props.currentQuestionPanelIndex,
             currentQuestionSetIndex: _this2.props.currentQuestionSetIndex,
             path: conditionalPath
-          }), /*#__PURE__*/_react["default"].createElement("br", null), /*#__PURE__*/_react["default"].createElement("br", null), /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement(_FormMenu.DeleteConditionalQuestionButton, {
+          }), /*#__PURE__*/_react["default"].createElement("br", null), /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement(_FormMenu.DeleteConditionalQuestionButton, {
+            className: "w-50",
             path: conditionalPath,
             deleteConditionalQuestion: _this2.props.deleteConditionalQuestion
           }), /*#__PURE__*/_react["default"].createElement("button", {
             type: "button",
-            className: "btn btn-warning",
+            className: "btn w-50",
             title: "save this conditional question",
             onClick: function onClick() {
               return _this2.onSaveConditionalQuestion(ix, _this2.props.parentPath);
             }
-          }, "save")), /*#__PURE__*/_react["default"].createElement("br", null))
+          }, "save")), /*#__PURE__*/_react["default"].createElement("hr", null))
         ); // end of return #2
       }); // end of return #1
     }
@@ -204,13 +206,14 @@ var ConditionalQuestionEditor = /*#__PURE__*/function (_PureComponent) {
     key: "render",
     value: function render() {
       return /*#__PURE__*/_react["default"].createElement("div", {
-        className: "row winterfell-form-builder-conditional-questions alert alert-info"
+        className: "winterfell-form-builder-conditional-questions alert alert-info"
       }, /*#__PURE__*/_react["default"].createElement("div", {
-        className: "col"
+        className: "row w-100 m-0"
       }, /*#__PURE__*/_react["default"].createElement("h6", null, "Option '".concat(this.props.parentOptionText, "' Conditional Questions:")), /*#__PURE__*/_react["default"].createElement("h6", null, /*#__PURE__*/_react["default"].createElement("i", null, "Display these questions if this option is selected")), this.props.conditionalQuestions && this.getConditionalQuestions()), /*#__PURE__*/_react["default"].createElement("div", {
-        className: "col"
+        className: "row w-100 m-0"
       }, /*#__PURE__*/_react["default"].createElement("br", null), /*#__PURE__*/_react["default"].createElement(_FormMenu.AddConditionalQuestionButton, {
-        path: this.props.parentPath
+        path: this.props.parentPath,
+        className: "w-100"
       }), /*#__PURE__*/_react["default"].createElement("br", null)));
     }
   }]);

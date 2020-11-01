@@ -75,7 +75,7 @@ var DeleteQuestionButton = /*#__PURE__*/function (_Component) {
     value: function render() {
       return [/*#__PURE__*/_react["default"].createElement("button", {
         type: "button",
-        className: "btn btn-danger",
+        className: "btn btn-delete",
         "data-toggle": "modal",
         "data-target": "#deleteQuestion"
       }, "Delete question"), /*#__PURE__*/_react["default"].createElement("div", {
@@ -96,10 +96,10 @@ var DeleteQuestionButton = /*#__PURE__*/function (_Component) {
       }, "Are you sure you want to delete this question?"), /*#__PURE__*/_react["default"].createElement("div", {
         className: "modal-footer"
       }, /*#__PURE__*/_react["default"].createElement("button", {
-        className: "btn btn-danger",
+        className: "btn btn-delete",
         "data-dismiss": "modal"
       }, "Cancel"), /*#__PURE__*/_react["default"].createElement("button", {
-        className: "btn btn-dark",
+        className: "btn",
         "data-dismiss": "modal",
         onClick: this.onConfirmDelete
       }, "Confirm Delete")))))];

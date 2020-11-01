@@ -68,12 +68,12 @@ var DeleteQuestionOptionButton = /*#__PURE__*/function (_Component) {
     value: function render() {
       return [/*#__PURE__*/_react["default"].createElement("button", {
         type: "button",
-        className: "btn btn-danger",
+        className: "btn btn-delete",
         "data-toggle": "modal",
         "data-target": "#deleteQuestionOptionButton"
       }, /*#__PURE__*/_react["default"].createElement("i", {
         className: "material-icons"
-      }, "delete"), /*#__PURE__*/_react["default"].createElement("span", null, "delete this option")), /*#__PURE__*/_react["default"].createElement("div", {
+      }, "delete")), /*#__PURE__*/_react["default"].createElement("div", {
         className: "modal fade",
         id: "deleteQuestionOptionButton",
         tabIndex: "-1",

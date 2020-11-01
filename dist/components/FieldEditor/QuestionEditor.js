@@ -65,7 +65,7 @@ var QuestionEditor = function QuestionEditor(_ref) {
     return state.getIn([].concat(questionSetQueryPath, ['input', 'type']));
   });
   var questionInputOptions = (0, _reactRedux.useSelector)(function (state) {
-    return state.getIn([].concat(questionSetQueryPath, ['input', 'options']));
+    return state.getIn([].concat(questionSetQueryPath, ['input', 'options'])) || (0, _immutable.fromJS)([]);
   });
 
   var _useState = (0, _react.useState)(true),

@@ -73,14 +73,15 @@ var DeleteConditionalQuestionButton = /*#__PURE__*/function (_Component) {
     value: function render() {
       return [/*#__PURE__*/_react["default"].createElement("button", {
         type: "button",
-        className: "btn btn-danger",
+        className: "btn btn-delete ".concat(this.props.className ? this.props.className : ''),
         title: "delete this conditional question",
         "data-toggle": "modal",
         "data-target": "#deleteConditionalQuestion"
       }, "delete"), /*#__PURE__*/_react["default"].createElement("div", {
-        className: "modal fade",
+        className: "modal fade preview-modal",
         id: "deleteConditionalQuestion",
-        tabIndex: "-1"
+        tabIndex: "-1",
+        "data-backdrop": "false"
       }, /*#__PURE__*/_react["default"].createElement("div", {
         className: "modal-dialog bg-white"
       }, /*#__PURE__*/_react["default"].createElement("div", {
@@ -94,10 +95,11 @@ var DeleteConditionalQuestionButton = /*#__PURE__*/function (_Component) {
       }, "Are you sure you want to delete this conditional question?"), /*#__PURE__*/_react["default"].createElement("div", {
         className: "modal-footer"
       }, /*#__PURE__*/_react["default"].createElement("button", {
-        className: "btn btn-danger",
+        className: "btn btn-delete",
         "data-dismiss": "modal"
       }, "Cancel"), /*#__PURE__*/_react["default"].createElement("button", {
-        className: "btn btn-dark",
+        className: "btn",
+        "data-dismiss": "modal",
         onClick: this.onConfirmDelete
       }, "Confirm Delete")))))];
     }

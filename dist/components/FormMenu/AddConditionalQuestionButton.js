@@ -103,15 +103,16 @@ var AddConditionalQuestionButton = /*#__PURE__*/function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      return [/*#__PURE__*/_react["default"].createElement("button", {
+      return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement("button", {
         type: "button",
-        className: "btn btn-dark btn-block",
+        className: "btn ".concat(this.props.className ? this.props.className : ''),
         "data-toggle": "modal",
         "data-target": "#createForm"
       }, "add conditional question"), /*#__PURE__*/_react["default"].createElement("div", {
-        className: "modal fade",
+        className: "modal fade preview-modal",
         id: "createForm",
-        tabIndex: "-1"
+        tabIndex: "-1",
+        "data-backdrop": "false"
       }, /*#__PURE__*/_react["default"].createElement("div", {
         className: "modal-dialog bg-white"
       }, /*#__PURE__*/_react["default"].createElement("div", {
@@ -153,13 +154,13 @@ var AddConditionalQuestionButton = /*#__PURE__*/function (_Component) {
       })))), /*#__PURE__*/_react["default"].createElement("div", {
         className: "modal-footer"
       }, /*#__PURE__*/_react["default"].createElement("button", {
-        className: "btn btn-danger",
+        className: "btn btn-delete",
         "data-dismiss": "modal"
       }, "Cancel"), /*#__PURE__*/_react["default"].createElement("button", {
-        className: "btn btn-dark",
+        className: "btn",
         onClick: this.onFormUpdate,
         "data-dismiss": "modal"
-      }, "Save changes")))))];
+      }, "Save changes"))))));
     }
   }]);
   return AddConditionalQuestionButton;
