@@ -12,6 +12,7 @@ class CheckboxOptionsInput extends React.Component {
 
   handleChange(e) {
     let currentValue = this.state.value;
+
     if (e.target.checked) {
       currentValue.push(e.target.value);
     } else {
