@@ -41,82 +41,79 @@ class AddConditionalQuestionButton extends Component {
     e.preventDefault();
     const { path } = this.props;
     const { questionId, question, questionText, questionType } = this.state;
-    this.props.addConditionalQuestion(
-      path,
-      questionId,
-      question,
-      questionText,
-      questionType,
-    );
+    this.props.addConditionalQuestion(path, questionId, question, questionText, questionType);
     this.setState({ showModal: false });
   }
 
   render() {
-    return [
-      <button
-        type="button"
-        className="btn btn-dark btn-block"
-        data-toggle="modal"
-        data-target="#createForm"
-      >add conditional question
-      </button>,
-      <div className="modal fade" id="createForm" tabIndex="-1">
-        <div className="modal-dialog bg-white">
-          <div className="modal-content">
-            <div className="modal-header">
-              <div className="modal-title">Add a new conditional question to this question</div>
-            </div>
-            <div className="modal-body">
-              <form>
-                <div className="form-group">
-                  <FieldGroup
-                    id="questionId"
-                    name="questionId"
-                    label="Question ID"
-                    onChange={this.onChange}
-                    placeholder="(optional)"
-                    value={this.state.questionId}
-                  />
-                </div>
-                <div className="form-group">
-                  <FieldGroup
-                    id="question"
-                    name="question"
-                    label="Enter Question"
-                    onChange={this.onChange}
-                    placeholder=""
-                    value={this.state.question}
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="questionType">
-                    Select Question Type
-                </label>
-                  <SelectInput
-                    id="questionType"
-                    labelId="questionType"
-                    options={INPUT_TYPE_OPTIONS}
-                    onSelect={this.onSelect}
-                    displayValue={this.state.questionType}
-                  />
-                </div>
-              </form>
-            </div>
-            <div className="modal-footer">
-              <button
-                className="btn btn-danger"
-                data-dismiss="modal"
-              >Cancel</button>
-              <button
-                className="btn btn-dark"
-                onClick={this.onFormUpdate}
-                data-dismiss="modal"
-              >Save changes</button>
+    return (
+      <>
+        <button
+          type="button"
+          className={`btn ${this.props.className ? this.props.className : ''}`}
+          data-toggle="modal"
+          data-target="#createForm"
+        >
+          add conditional question
+        </button>
+        <div
+          className="modal fade preview-modal"
+          id="createForm"
+          tabIndex="-1"
+          data-backdrop="false"
+        >
+          <div className="modal-dialog bg-white">
+            <div className="modal-content">
+              <div className="modal-header">
+                <div className="modal-title">Add a new conditional question to this question</div>
+              </div>
+              <div className="modal-body">
+                <form>
+                  <div className="form-group">
+                    <FieldGroup
+                      id="questionId"
+                      name="questionId"
+                      label="Question ID"
+                      onChange={this.onChange}
+                      placeholder="(optional)"
+                      value={this.state.questionId}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <FieldGroup
+                      id="question"
+                      name="question"
+                      label="Enter Question"
+                      onChange={this.onChange}
+                      placeholder=""
+                      value={this.state.question}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="questionType">Select Question Type</label>
+                    <SelectInput
+                      id="questionType"
+                      labelId="questionType"
+                      options={INPUT_TYPE_OPTIONS}
+                      onSelect={this.onSelect}
+                      displayValue={this.state.questionType}
+                    />
+                  </div>
+                </form>
+              </div>
+              <div className="modal-footer">
+                <button className="btn btn-delete" data-dismiss="modal">
+                  Cancel
+                </button>
+                <button className="btn" onClick={this.onFormUpdate} data-dismiss="modal">
+                  Save changes
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>,
-    ];
+      </>
+    );
   }
 }
 
@@ -131,4 +128,3 @@ function mapStateToProps(state, ownProps) {
   };
 }
 export default connect(mapStateToProps, { addConditionalQuestion })(AddConditionalQuestionButton);
-

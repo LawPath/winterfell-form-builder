@@ -30,7 +30,7 @@ class DeleteQuestionButton extends Component {
     return [
       <button
         type="button"
-        className="btn btn-danger"
+        className="btn btn-delete"
         data-toggle="modal"
         data-target="#deleteQuestion"
       >
@@ -44,10 +44,10 @@ class DeleteQuestionButton extends Component {
             </div>
             <div className="modal-body">Are you sure you want to delete this question?</div>
             <div className="modal-footer">
-              <button className="btn btn-danger" data-dismiss="modal">
+              <button className="btn btn-delete" data-dismiss="modal">
                 Cancel
               </button>
-              <button className="btn btn-dark" data-dismiss="modal" onClick={this.onConfirmDelete}>
+              <button className="btn" data-dismiss="modal" onClick={this.onConfirmDelete}>
                 Confirm Delete
               </button>
             </div>

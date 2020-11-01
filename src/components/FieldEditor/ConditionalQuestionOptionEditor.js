@@ -20,9 +20,7 @@ class ConditionalQuestionOptionEditor extends PureComponent {
   constructor(props) {
     super(props);
 
-    const {
-      questionInputOptions,
-    } = props;
+    const { questionInputOptions } = props;
 
     this.state = {
       questionInputOptions: questionInputOptions || [],
@@ -43,7 +41,7 @@ class ConditionalQuestionOptionEditor extends PureComponent {
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      questionInputOptions: nextProps.questionInputOptions,
+      questionInputOptions: nextProps.questionInputOptions ? nextProps.questionInputOptions : [],
     });
   }
 
@@ -66,27 +64,37 @@ class ConditionalQuestionOptionEditor extends PureComponent {
   onShowConditonalClick(index, event) {
     const showConditionalPageCopy = [...this.state.showConditionalPage];
     const showConditionalQuestionsCopy = [...this.state.showConditionalQuestions];
-    const currentConditionalPageSelected =
-      showConditionalPageCopy.findIndex(showCondition => showCondition);
-    const currentConditionalQuestionSelected =
-      showConditionalQuestionsCopy.findIndex(showCondition => showCondition);
+    const currentConditionalPageSelected = showConditionalPageCopy.findIndex(
+      (showCondition) => showCondition,
+    );
+    const currentConditionalQuestionSelected = showConditionalQuestionsCopy.findIndex(
+      (showCondition) => showCondition,
+    );
 
     // Turn off the existing choices
     if (currentConditionalPageSelected !== -1) {
-      showConditionalPageCopy[currentConditionalPageSelected] =
-        !showConditionalPageCopy[currentConditionalPageSelected];
+      showConditionalPageCopy[currentConditionalPageSelected] = !showConditionalPageCopy[
+        currentConditionalPageSelected
+      ];
     }
     if (currentConditionalQuestionSelected !== -1) {
-      showConditionalQuestionsCopy[currentConditionalQuestionSelected] =
-        !showConditionalQuestionsCopy[currentConditionalQuestionSelected];
+      showConditionalQuestionsCopy[
+        currentConditionalQuestionSelected
+      ] = !showConditionalQuestionsCopy[currentConditionalQuestionSelected];
     }
     // Turn on the selected choice
-    if ((event.target.id === 'showConditionalQuestion' || event.target.id === 'showConditionalQuestionButton')
-      && index !== currentConditionalQuestionSelected) {
+    if (
+      (event.target.id === 'showConditionalQuestion' ||
+        event.target.id === 'showConditionalQuestionButton') &&
+      index !== currentConditionalQuestionSelected
+    ) {
       showConditionalQuestionsCopy[index] = !showConditionalQuestionsCopy[index];
     }
-    if ((event.target.id === 'showConditionalPage' || event.target.id === 'showConditionalPageButton')
-      && index !== currentConditionalPageSelected) {
+    if (
+      (event.target.id === 'showConditionalPage' ||
+        event.target.id === 'showConditionalPageButton') &&
+      index !== currentConditionalPageSelected
+    ) {
       showConditionalPageCopy[index] = !showConditionalPageCopy[index];
     }
 
@@ -117,94 +125,103 @@ class ConditionalQuestionOptionEditor extends PureComponent {
   }
 
   render() {
-    const {
-      questionInputOptions,
-      questionId,
-      path,
-    } = this.props;
-
+    const { questionInputOptions, questionId, path } = this.props;
     return (
       <div>
-        { questionInputOptions &&
-          <p><b>Options</b></p>
-        }
-        {!this.state.questionInputOptions.length &&
-          <div>No options</div>
-        }
+        {questionInputOptions && (
+          <p>
+            <b>Options</b>
+          </p>
+        )}
+        {!this.state.questionInputOptions.length && <div>No options</div>}
         {this.state.questionInputOptions &&
           this.state.questionInputOptions.map((option, ix) => (
-            <div key={`${ix}`} >
+            <div key={`${ix}`}>
               <div className="input-group winterfell-form-builder-conditional-question">
                 <input
                   className="form-control"
                   type="text"
                   name={this.state.questionInputOptions[ix].text}
                   value={this.state.questionInputOptions[ix].text}
-                  onChange={event => this.onOptionTextChange(event, ix)}
+                  onChange={(event) => this.onOptionTextChange(event, ix)}
                 />
                 <input
                   className="form-control"
                   type="text"
                   name={this.state.questionInputOptions[ix].value}
                   value={this.state.questionInputOptions[ix].value}
-                  onChange={event => this.onOptionValueChange(event, ix)}
+                  onChange={(event) => this.onOptionValueChange(event, ix)}
                 />
-                <div>
-                  <DeleteQuestionOptionButton
-                    onDeleteQuestionOption={() => this.props.deleteQuestionOption([...path, 'input', 'options', ix])}
-                  />
-                </div>
-                <div>
+                <div className="row justify-content-end w-100 m-0">
                   <button
                     type="button"
-                    onClick={event => this.onShowConditonalClick(ix, event)}
+                    className="btn btn-delete"
+                    onClick={() => {
+                      this.props.deleteQuestionOption([...path, 'input', 'options', ix]);
+                    }}
+                  >
+                    <i className="material-icons">delete</i>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={(event) => this.onShowConditonalClick(ix, event)}
                     className="btn btn-warning"
                     id="showConditionalPageButton"
                   >
-                    {this.state.showConditionalPage && !this.state.showConditionalPage[ix] &&
-                    <i className="material-icons" id="showConditionalPage" >share</i>}
-                    {this.state.showConditionalPage && this.state.showConditionalPage[ix] &&
-                    <i className="material-icons" id="showConditionalPage" >remove_circle </i>}
+                    {this.state.showConditionalPage && !this.state.showConditionalPage[ix] && (
+                      <i className="material-icons" id="showConditionalPage">
+                        share
+                      </i>
+                    )}
+                    {this.state.showConditionalPage && this.state.showConditionalPage[ix] && (
+                      <i className="material-icons" id="showConditionalPage">
+                        remove_circle
+                      </i>
+                    )}
                   </button>
-                </div>
-                <div>
                   <button
                     type="button"
                     id="showConditionalQuestionButton"
-                    onClick={event => this.onShowConditonalClick(ix, event)}
-                    className="btn btn-dark"
+                    onClick={(event) => this.onShowConditonalClick(ix, event)}
+                    className="btn"
                   >
                     {this.state.showConditionalQuestions &&
-                    !this.state.showConditionalQuestions[ix] &&
-                    <i className="material-icons" id="showConditionalPage" >menu</i>}
+                      !this.state.showConditionalQuestions[ix] && (
+                        <i className="material-icons" id="showConditionalPage">
+                          menu
+                        </i>
+                      )}
                     {this.state.showConditionalQuestions &&
-                    this.state.showConditionalQuestions[ix] &&
-                    <i className="material-icons" id="showConditionalPage" >remove_circle </i>}
+                      this.state.showConditionalQuestions[ix] && (
+                        <i className="material-icons" id="showConditionalPage">
+                          remove_circle
+                        </i>
+                      )}
                   </button>
                 </div>
 
-                {this.state.showConditionalPage[ix] &&
+                {this.state.showConditionalPage[ix] && (
                   <ConditionalPageEditor
                     questionOptionIndex={ix}
                     questionId={questionId}
                     text={this.state.questionInputOptions[ix].text}
                   />
-                }
-                {this.state.showConditionalQuestions[ix] &&
+                )}
+                {this.state.showConditionalQuestions[ix] && (
                   <ConditionalQuestionEditor
                     parentPath={[...path, 'input', 'options', ix]}
                     parentOptionText={this.state.questionInputOptions[ix].text}
                   />
-                }
+                )}
               </div>
-            </div>))
-            }
+            </div>
+          ))}
         <br />
         <div>
           <AddQuestionOptionButton
             questionOptionText={this.state.questionOptionText}
             questionOptionValue={this.state.questionOptionValue}
-            onChange={e => this.onAddOptionChange(e)}
+            onChange={(e) => this.onAddOptionChange(e)}
             onClick={this.onAddOption}
           />
         </div>
@@ -223,16 +240,13 @@ ConditionalQuestionOptionEditor.propTypes = {
   path: PropTypes.array.isRequired,
 };
 
-export default connect(
-  null,
-  {
-    editQuestionOptionText,
-    editQuestionOptionValue,
-    addQuestionOption,
-    deleteQuestion,
-    deleteQuestionOption,
-    changeQuestionType,
-    changeCurrentEditingField,
-    updateNextQuestionTarget,
-  })(ConditionalQuestionOptionEditor);
-
+export default connect(null, {
+  editQuestionOptionText,
+  editQuestionOptionValue,
+  addQuestionOption,
+  deleteQuestion,
+  deleteQuestionOption,
+  changeQuestionType,
+  changeCurrentEditingField,
+  updateNextQuestionTarget,
+})(ConditionalQuestionOptionEditor);

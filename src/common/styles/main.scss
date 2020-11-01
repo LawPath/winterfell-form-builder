@@ -109,7 +109,7 @@
   position: absolute;
   left: 105%;
   width: 100%;
-  z-index: 10;
+  z-index: 5;
   border: 1px solid #337ab7;
 }
 .winterfell-form-builder-field-editor .winterfell-form-builder-conditional-page {
@@ -336,4 +336,15 @@
 
 .winterfell-panel-preview {
   background: #fafbfc 0% 0% no-repeat padding-box;
+}
+.preview-modal {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.btn {
+  &.btn-warning {
+    color: $oxford-blue;
+    background-color: $vanila-sky;
+    border-color: $vanila-sky;
+  }
 }

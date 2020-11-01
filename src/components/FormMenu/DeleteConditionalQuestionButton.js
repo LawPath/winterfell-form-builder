@@ -30,13 +30,19 @@ class DeleteConditionalQuestionButton extends Component {
     return [
       <button
         type="button"
-        className="btn btn-danger"
+        className={`btn btn-delete ${this.props.className ? this.props.className : ''}`}
         title="delete this conditional question"
         data-toggle="modal"
         data-target="#deleteConditionalQuestion"
-      >delete
+      >
+        delete
       </button>,
-      <div className="modal fade" id="deleteConditionalQuestion" tabIndex="-1">
+      <div
+        className="modal fade preview-modal"
+        id="deleteConditionalQuestion"
+        tabIndex="-1"
+        data-backdrop="false"
+      >
         <div className="modal-dialog bg-white">
           <div className="modal-content">
             <div className="modal-header">
@@ -46,14 +52,12 @@ class DeleteConditionalQuestionButton extends Component {
               Are you sure you want to delete this conditional question?
             </div>
             <div className="modal-footer">
-              <button
-                className="btn btn-danger"
-                data-dismiss="modal"
-              >Cancel</button>
-              <button
-                className="btn btn-dark"
-                onClick={this.onConfirmDelete}
-              >Confirm Delete</button>
+              <button className="btn btn-delete" data-dismiss="modal">
+                Cancel
+              </button>
+              <button className="btn" data-dismiss="modal" onClick={this.onConfirmDelete}>
+                Confirm Delete
+              </button>
             </div>
           </div>
         </div>
@@ -68,4 +72,3 @@ DeleteConditionalQuestionButton.propTypes = {
 };
 
 export default connect(null, { deleteConditionalQuestion })(DeleteConditionalQuestionButton);
-

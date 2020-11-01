@@ -42,11 +42,11 @@ const QuestionEditor = ({
   const questionPostText = useSelector((state) =>
     state.getIn([...questionSetQueryPath, 'postText']),
   );
-  const questionInputType = useSelector((state) =>
-    state.getIn([...questionSetQueryPath, 'input', 'type']),
-  );
-  const questionInputOptions = useSelector((state) =>
-    state.getIn([...questionSetQueryPath, 'input', 'options']),
+  const questionInputType = useSelector((state) => {
+    return state.getIn([...questionSetQueryPath, 'input', 'type']);
+  });
+  const questionInputOptions = useSelector(
+    (state) => state.getIn([...questionSetQueryPath, 'input', 'options']) || fromJS([]),
   );
   const [editQuestionId, setEditQuestionId] = useState(true);
 

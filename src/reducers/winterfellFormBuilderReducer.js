@@ -238,11 +238,7 @@ function winterfellFormBuilderReducer(state = initialState, action) {
       );
     }
     case CHANGE_SUGGESTED_ANSWERS_SUCCESS: {
-      const {
-        currentQuestionSetIndex,
-        currentQuestionIndex,
-        suggestions,
-      } = action.payload;
+      const { currentQuestionSetIndex, currentQuestionIndex, suggestions } = action.payload;
       return state.setIn(
         [
           'schema',
