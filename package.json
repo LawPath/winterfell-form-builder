@@ -55,7 +55,7 @@
     "react-sortable-hoc": "^1.11.0",
     "react-tag-input": "^6.4.3",
     "validator": "^13.1.1",
-    "winterfell": "https://github.com/LawPath/Winterfell.git#d962a4975609e396ef321e156bedfd4a3d7239c1"
+    "winterfell": "https://github.com/LawPath/Winterfell.git#6708adf353255d2f0ff43feaaa054c9ea897b27e"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.5",
