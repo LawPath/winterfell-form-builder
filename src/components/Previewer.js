@@ -7,7 +7,6 @@ import { updateQuestionAnswers } from '../actions/winterfellFormBuilderActions';
 import DateInputType from '../components/InputTypes/DateInputType';
 import addressInputType from '../components/InputTypes/addressInputType';
 import textAreaInputType from '../components/InputTypes/textAreaInputType';
-import SuggestionInputs from './InputTypes/SuggestionInputs';
 import {
   BOOTSTRAP_CLASSES,
   DEFAULT_SUGGESTIONS,
@@ -15,6 +14,7 @@ import {
   PROGRESS,
   SUGGESION_PANEL_DEFAULT,
 } from '../common/constants';
+import SuggestionSet from './InputTypes/SuggestionSet';
 
 const onRenderDefault = () => {
   console.log('Great news! Winterfell rendered successfully');
@@ -95,6 +95,7 @@ const Previewer = ({
             questionAnswers={questionAnswers}
             panelId={currentPanelId}
             key={index}
+            answersSuggestionComponent={SuggestionSet}
           />
         )) ||
         (currentPanelId === 'Select Page' && (
@@ -106,6 +107,7 @@ const Previewer = ({
             onSwitchPanel={onSwitchPanel}
             onSubmit={onSubmit}
             questionAnswers={questionAnswers}
+            answersSuggestionComponent={SuggestionSet}
           />
         ))
       );
