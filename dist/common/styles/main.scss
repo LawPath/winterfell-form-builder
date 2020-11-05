@@ -159,33 +159,20 @@
 }
 
 .winterfell-question-panel {
-  display: grid;
-  grid-template-rows: auto auto auto 20vh auto;
-  grid-template-areas:
-    'header'
-    'body'
-    'postBodyHeader'
-    'postBody'
-    'footer';
-
   .question-panel-header {
-    grid-area: header;
   }
   .question-panel-body {
-    grid-area: body;
     padding: 20px;
   }
   .question-panel-post-body-header {
     padding: 20px 20px 0 20px;
-    grid-area: postBodyHeader;
   }
   .question-panel-post-body {
-    grid-area: postBody;
     padding: 0px 20px 20px 20px;
+    height: 20vh;
     overflow-y: auto;
   }
   .question-panel-footer {
-    grid-area: footer;
     padding: 0px 20px;
   }
 }
@@ -196,19 +183,6 @@
   padding: 0 15px;
   overflow-y: auto;
 
-  // .suggestion-header {
-  //   margin-bottom: 20px;
-
-  //   > img {
-  //     height: 18px;
-  //     margin-right: 10px;
-  //   }
-  //   .suggestion-header-text {
-  //     font-size: 16px;
-  //     font-weight: bold;
-  //     color: $oxford-blue;
-  //   }
-  // }
   .suggestion-body {
     .suggestion-item {
       display: inline-block;
@@ -253,6 +227,31 @@
     }
     .prefill-action-bar-action {
       float: right;
+    }
+
+    .switch-control {
+      display: block;
+
+      .switch-btn {
+        color: #fff;
+        line-height: 22px;
+        font-size: 11px;
+        padding-left: 3px;
+      }
+      &.switch-control-inactive {
+        .react-switch-bg {
+          &:hover {
+            background-color: $first-tide !important;
+          }
+        }
+      }
+      &.switch-control-active {
+        .react-switch-bg {
+          &:hover {
+            background-color: $bouncing-green !important;
+          }
+        }
+      }
     }
   }
 }
@@ -346,5 +345,23 @@
     color: $oxford-blue;
     background-color: $vanila-sky;
     border-color: $vanila-sky;
+  }
+}
+
+.input-group-append {
+  &.prefill-icon:hover {
+    background-color: khaki;
+  }
+  .prefill-icon {
+    width: 20px;
+    height: 20px;
+    display: block;
+    background: url(https://assets.lawpath.com/images/svg/editor/builder.svg) 0 0/100% 100%
+      no-repeat;
+    background-position: center;
+    &:hover {
+      background: url(https://assets.lawpath.com/images/svg/prefill-blue.svg) 0 0/ 100% 100% no-repeat;
+      background-position: center;
+    }
   }
 }
