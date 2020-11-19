@@ -70,8 +70,8 @@ var QuestionEditor = function QuestionEditor(_ref) {
 
   var _useState = (0, _react.useState)(true),
       _useState2 = (0, _slicedToArray2["default"])(_useState, 2),
-      editQuestionId = _useState2[0],
-      setEditQuestionId = _useState2[1];
+      isEditQuestionId = _useState2[0],
+      setIsEditQuestionId = _useState2[1];
 
   var onChange = function onChange(event) {
     var _event$target = event.target,
@@ -80,7 +80,7 @@ var QuestionEditor = function QuestionEditor(_ref) {
 
     switch (name) {
       case 'questionId':
-        dispatch(editQuestionId(currentQuestionSetIndex, currentQuestionIndex, value));
+        dispatch((0, _winterfellFormBuilderActions.editQuestionId)(currentQuestionSetIndex, currentQuestionIndex, value));
         break;
 
       case 'question':
@@ -120,7 +120,7 @@ var QuestionEditor = function QuestionEditor(_ref) {
   };
 
   var onEditQuestionIdClick = function onEditQuestionIdClick() {
-    setEditQuestionId(!editQuestionId);
+    setIsEditQuestionId(!isEditQuestionId);
   };
 
   return /*#__PURE__*/_react["default"].createElement("form", null, currentQuestionIndex > -1 && /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("div", {
@@ -142,7 +142,7 @@ var QuestionEditor = function QuestionEditor(_ref) {
     onChange: onChange,
     placeholder: questionId,
     value: questionId,
-    disabled: editQuestionId
+    disabled: isEditQuestionId
   })), /*#__PURE__*/_react["default"].createElement("div", {
     className: "form-group"
   }, /*#__PURE__*/_react["default"].createElement("label", {

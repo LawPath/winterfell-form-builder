@@ -7,6 +7,7 @@ import {
   editQuestionText,
   editQuestionPostText,
   changeQuestionType,
+  editQuestionId,
   changeQuestionLabel,
 } from '../../actions/winterfellFormBuilderActions';
 import FieldGroup from '../InputTypes/FieldGroup';
@@ -48,7 +49,7 @@ const QuestionEditor = ({
   const questionInputOptions = useSelector(
     (state) => state.getIn([...questionSetQueryPath, 'input', 'options']) || fromJS([]),
   );
-  const [editQuestionId, setEditQuestionId] = useState(true);
+  const [isEditQuestionId, setIsEditQuestionId] = useState(true);
 
   const onChange = (event) => {
     const { name, value } = event.target;
@@ -86,7 +87,7 @@ const QuestionEditor = ({
   };
 
   const onEditQuestionIdClick = () => {
-    setEditQuestionId(!editQuestionId);
+    setIsEditQuestionId(!isEditQuestionId);
   };
 
   return (
@@ -112,7 +113,7 @@ const QuestionEditor = ({
               onChange={onChange}
               placeholder={questionId}
               value={questionId}
-              disabled={editQuestionId}
+              disabled={isEditQuestionId}
             />
           </div>
           <div className="form-group">
