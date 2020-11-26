@@ -390,6 +390,7 @@ export const saveConditionalQuestion = (
   text,
   postText,
   type,
+  label,
   options,
 ) => {
   return {
@@ -401,6 +402,7 @@ export const saveConditionalQuestion = (
       text,
       postText,
       type,
+      label,
       options,
     },
   };

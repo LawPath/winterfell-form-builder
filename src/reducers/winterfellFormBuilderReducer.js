@@ -408,13 +408,14 @@ function winterfellFormBuilderReducer(state = initialState, action) {
       );
     }
     case SAVE_CONDITIONAL_QUESTION_SUCCESS: {
-      const { path, questionId, question, text, postText, type, options } = action.payload;
+      const { path, questionId, question, text, postText, type, label, options } = action.payload;
 
       const newConditionalQuestion = {
         questionId,
         question,
         text,
         postText,
+        label,
         input: {
           type: type || 'textInput',
           options: type !== 'textInput' ? options : undefined,

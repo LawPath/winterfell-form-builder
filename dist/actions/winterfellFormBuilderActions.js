@@ -504,7 +504,7 @@ var resetNextQuestionTarget = function resetNextQuestionTarget(currentQuestionPa
 
 exports.resetNextQuestionTarget = resetNextQuestionTarget;
 
-var saveConditionalQuestion = function saveConditionalQuestion(path, questionId, question, text, postText, type, options) {
+var saveConditionalQuestion = function saveConditionalQuestion(path, questionId, question, text, postText, type, label, options) {
   return {
     type: _constants.SAVE_CONDITIONAL_QUESTION_SUCCESS,
     payload: {
@@ -514,6 +514,7 @@ var saveConditionalQuestion = function saveConditionalQuestion(path, questionId,
       text: text,
       postText: postText,
       type: type,
+      label: label,
       options: options
     }
   };
