@@ -10,7 +10,7 @@ import FieldGroup from '../InputTypes/FieldGroup';
 import { AddConditionalQuestionButton, DeleteConditionalQuestionButton } from '../FormMenu/';
 import SelectInput from '../InputTypes/SelectInput';
 import ConditionalQuestionOptionEditor from './ConditionalQuestionOptionEditor';
-import { INPUT_TYPE_OPTIONS } from '../../common/constants';
+import { INPUT_TYPE_OPTIONS, QUESTION_LABEL_OPTIONS } from '../../common/constants';
 
 class ConditionalQuestionEditor extends PureComponent {
   constructor(props) {
@@ -46,8 +46,14 @@ class ConditionalQuestionEditor extends PureComponent {
     this.setState({ conditionalQuestions: copyConditionalQuestions });
   }
 
+  onLabelSelect(questionLabel, index) {
+    const copyConditionalQuestions = Object.assign([], this.state.conditionalQuestions);
+    copyConditionalQuestions[index].label = questionLabel;
+    this.setState({ conditionalQuestions: copyConditionalQuestions });
+  }
+
   onSaveConditionalQuestion(conditionalQuestionIndex, path) {
-    const { questionId, question, text, postText, input } = this.state.conditionalQuestions[
+    const { questionId, question, text, postText, input, label } = this.state.conditionalQuestions[
       conditionalQuestionIndex
     ];
     const newPath = Object.assign([], path);
@@ -60,13 +66,14 @@ class ConditionalQuestionEditor extends PureComponent {
       text,
       postText,
       input.type,
+      label,
       input.options,
     );
   }
 
   getConditionalQuestions() {
     return this.state.conditionalQuestions.map((conditionalQuestion, ix) => {
-      const { questionId, question, text, postText, input } = conditionalQuestion;
+      const { questionId, question, text, postText, input, label } = conditionalQuestion;
 
       const conditionalPath = Object.assign([], this.props.parentPath);
 
@@ -120,6 +127,17 @@ class ConditionalQuestionEditor extends PureComponent {
               options={INPUT_TYPE_OPTIONS}
               onSelect={(e) => this.onSelect(e, ix)}
               displayValue={input.type}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="questionLabelType">Question label type</label>
+            <SelectInput
+              id="questionLabelType"
+              name="questionLabelType"
+              labelId="questionLabelType"
+              options={QUESTION_LABEL_OPTIONS}
+              onSelect={(e) => this.onLabelSelect(e, ix)}
+              displayValue={label}
             />
           </div>
           {(input.type === 'checkboxOptionsInput' ||

@@ -381,12 +381,14 @@ function winterfellFormBuilderReducer() {
             _text12 = _action$payload24.text,
             postText = _action$payload24.postText,
             type = _action$payload24.type,
+            label = _action$payload24.label,
             options = _action$payload24.options;
         var _newConditionalQuestion = {
           questionId: _questionId,
           question: _question,
           text: _text12,
           postText: postText,
+          label: label,
           input: {
             type: type || 'textInput',
             options: type !== 'textInput' ? options : undefined

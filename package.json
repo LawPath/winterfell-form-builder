@@ -1,6 +1,6 @@
 {
   "name": "winterfell-form-builder",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Generate JSON schema for Winterfell form",
   "main": "dist/index.js",
   "scripts": {
@@ -113,9 +113,9 @@
     "rimraf": "^3.0.2",
     "sass-loader": "^9.0.2",
     "style-loader": "^1.2.1",
+    "styled-components": "^5.2.1",
     "vinyl-buffer": "^1.0.1",
     "webpack": "4.44.0",
-    "webpack-dev-server": "3.11.0",
-    "styled-components": "^5.2.1"
+    "webpack-dev-server": "3.11.0"
   }
 }

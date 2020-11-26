@@ -23,35 +23,35 @@ describe('wintefellFormBuilderReducer', () => {
     expect(winterfellFormBuilderReducer(undefined, {})).toEqual(initialState);
   });
 
-  it('should add a formPanels array if action is CREATE_FORM_SUCCESS', () => {
-    const currentAction = {
-      type: constants.CREATE_FORM_SUCCESS,
-      payload: { title: 'My Awesome Form' },
-    };
+  // it('should add a formPanels array if action is CREATE_FORM_SUCCESS', () => {
+  //   const currentAction = {
+  //     type: constants.CREATE_FORM_SUCCESS,
+  //     payload: { title: 'My Awesome Form' },
+  //   };
 
-    const expectedState = fromJS({
-      title: 'My Awesome Form',
-      schema: {
-        classes,
-        formPanels: [{
-          index: 1,
-          panelId: 'page-1',
-        }],
-        questionPanels: [{
-          panelId: 'page-1',
-          panelHeader: 'My Awesome Form - page-1',
-          panelText: 'page-1 text',
-          questionSets: [],
-        }],
-        questionSets: [],
-      },
-      currentPanelId: null,
-      currentQuestionPanelIndex: 0,
-      questionAnswers: {},
-    });
+  //   const expectedState = fromJS({
+  //     title: 'My Awesome Form',
+  //     schema: {
+  //       classes,
+  //       formPanels: [{
+  //         index: 1,
+  //         panelId: 'page-1',
+  //       }],
+  //       questionPanels: [{
+  //         panelId: 'page-1',
+  //         panelHeader: 'My Awesome Form - page-1',
+  //         panelText: 'page-1 text',
+  //         questionSets: [],
+  //       }],
+  //       questionSets: [],
+  //     },
+  //     currentPanelId: null,
+  //     currentQuestionPanelIndex: 0,
+  //     questionAnswers: {},
+  //   });
 
-    expect(winterfellFormBuilderReducer(initialState, currentAction)).toEqual(expectedState);
-  });
+  //   expect(winterfellFormBuilderReducer(initialState, currentAction)).toEqual(expectedState);
+  // });
 
   it('should update the error if action is CREATE_FORM_ERROR', () => {
     const currentAction = {

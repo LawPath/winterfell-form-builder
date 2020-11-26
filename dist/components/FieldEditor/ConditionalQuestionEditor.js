@@ -96,6 +96,15 @@ var ConditionalQuestionEditor = /*#__PURE__*/function (_PureComponent) {
       });
     }
   }, {
+    key: "onLabelSelect",
+    value: function onLabelSelect(questionLabel, index) {
+      var copyConditionalQuestions = Object.assign([], this.state.conditionalQuestions);
+      copyConditionalQuestions[index].label = questionLabel;
+      this.setState({
+        conditionalQuestions: copyConditionalQuestions
+      });
+    }
+  }, {
     key: "onSaveConditionalQuestion",
     value: function onSaveConditionalQuestion(conditionalQuestionIndex, path) {
       var _this$state$condition = this.state.conditionalQuestions[conditionalQuestionIndex],
@@ -103,11 +112,12 @@ var ConditionalQuestionEditor = /*#__PURE__*/function (_PureComponent) {
           question = _this$state$condition.question,
           text = _this$state$condition.text,
           postText = _this$state$condition.postText,
-          input = _this$state$condition.input;
+          input = _this$state$condition.input,
+          label = _this$state$condition.label;
       var newPath = Object.assign([], path);
       newPath.push('conditionalQuestions');
       newPath.push(conditionalQuestionIndex);
-      this.props.saveConditionalQuestion(newPath, questionId, question, text, postText, input.type, input.options);
+      this.props.saveConditionalQuestion(newPath, questionId, question, text, postText, input.type, label, input.options);
     }
   }, {
     key: "getConditionalQuestions",
@@ -119,7 +129,8 @@ var ConditionalQuestionEditor = /*#__PURE__*/function (_PureComponent) {
             question = conditionalQuestion.question,
             text = conditionalQuestion.text,
             postText = conditionalQuestion.postText,
-            input = conditionalQuestion.input;
+            input = conditionalQuestion.input,
+            label = conditionalQuestion.label;
         var conditionalPath = Object.assign([], _this2.props.parentPath);
         conditionalPath.push('conditionalQuestions');
         conditionalPath.push(ix);
@@ -181,6 +192,19 @@ var ConditionalQuestionEditor = /*#__PURE__*/function (_PureComponent) {
               return _this2.onSelect(e, ix);
             },
             displayValue: input.type
+          })), /*#__PURE__*/_react["default"].createElement("div", {
+            className: "form-group"
+          }, /*#__PURE__*/_react["default"].createElement("label", {
+            htmlFor: "questionLabelType"
+          }, "Question label type"), /*#__PURE__*/_react["default"].createElement(_SelectInput["default"], {
+            id: "questionLabelType",
+            name: "questionLabelType",
+            labelId: "questionLabelType",
+            options: _constants.QUESTION_LABEL_OPTIONS,
+            onSelect: function onSelect(e) {
+              return _this2.onLabelSelect(e, ix);
+            },
+            displayValue: label
           })), (input.type === 'checkboxOptionsInput' || input.type === 'selectInput' || input.type === 'radioOptionsInput') && /*#__PURE__*/_react["default"].createElement(_ConditionalQuestionOptionEditor["default"], {
             questionInputOptions: input.options,
             questionId: questionId,
