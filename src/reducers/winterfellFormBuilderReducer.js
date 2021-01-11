@@ -509,7 +509,7 @@ function winterfellFormBuilderReducer(state = initialState, action) {
           (arr) => arr.push(fromJS(newQuestionCondition)),
         );
       }
-      return state.updateIn(
+      return state.setIn(
         ['schema', 'questionPanels', currentQuestionPanelIndex, 'action', 'conditions'],
         fromJS([newQuestionCondition]),
       );

@@ -476,7 +476,7 @@ function winterfellFormBuilderReducer() {
           });
         }
 
-        return state.updateIn(['schema', 'questionPanels', _currentQuestionPanelIndex7, 'action', 'conditions'], (0, _immutable.fromJS)([newQuestionCondition]));
+        return state.setIn(['schema', 'questionPanels', _currentQuestionPanelIndex7, 'action', 'conditions'], (0, _immutable.fromJS)([newQuestionCondition]));
       }
 
     case _constants.RESET_NEXT_QUESTION_TARGET_SUCCESS:
