@@ -48,6 +48,7 @@ var UploadJSONButton = /*#__PURE__*/function (_Component) {
       schema: '',
       fileName: ''
     };
+    _this.cancelBtnRef = /*#__PURE__*/(0, _react.createRef)();
     _this.onChange = _this.onChange.bind((0, _assertThisInitialized2["default"])(_this));
     _this.onJSONUpload = _this.onJSONUpload.bind((0, _assertThisInitialized2["default"])(_this));
     return _this;
@@ -78,6 +79,7 @@ var UploadJSONButton = /*#__PURE__*/function (_Component) {
     value: function onJSONUpload(e) {
       e.preventDefault();
       this.props.uploadJSON(this.state.schema, this.state.fileName);
+      this.cancelBtnRef.current.click();
       this.setState({
         showModal: false
       });
@@ -124,6 +126,7 @@ var UploadJSONButton = /*#__PURE__*/function (_Component) {
       }))), /*#__PURE__*/_react["default"].createElement("div", {
         className: "modal-footer"
       }, /*#__PURE__*/_react["default"].createElement("button", {
+        ref: this.cancelBtnRef,
         className: "btn btn-danger",
         "data-dismiss": "modal"
       }, "Cancel"), /*#__PURE__*/_react["default"].createElement("button", {

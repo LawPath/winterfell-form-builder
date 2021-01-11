@@ -75,7 +75,7 @@ var SaveFormButton = /*#__PURE__*/function (_Component) {
     key: "onJSONSave",
     value: function onJSONSave(e) {
       e.preventDefault();
-      (0, _jsFileDownload["default"])(JSON.stringify(this.props.schema.toJS()), this.state.filename);
+      (0, _jsFileDownload["default"])(JSON.stringify(this.props.schema.toJS()), "".concat(this.state.filename, ".json"));
       this.props.saveJSON(this.props.schema.toJS(), this.state.filename);
       this.setState({
         showModal: false
@@ -87,8 +87,8 @@ var SaveFormButton = /*#__PURE__*/function (_Component) {
       return [/*#__PURE__*/_react["default"].createElement("button", {
         className: "btn btn-block btn-dark",
         "data-toggle": "modal",
-        "data-target": "#uploadButton",
-        key: "uploadButton",
+        "data-target": "#downloadButton",
+        key: "downloadButton",
         title: "Export",
         disabled: !this.props.schema || this.props.schema === 'null'
       }, /*#__PURE__*/_react["default"].createElement("i", {
@@ -97,9 +97,9 @@ var SaveFormButton = /*#__PURE__*/function (_Component) {
         className: "icon-menu"
       }, "Export")), /*#__PURE__*/_react["default"].createElement("div", {
         className: "modal fade",
-        id: "uploadButton",
+        id: "downloadButton",
         tabIndex: "-1",
-        key: "uploadButtonModal"
+        key: "downloadButtonModal"
       }, /*#__PURE__*/_react["default"].createElement("div", {
         className: "modal-dialog bg-white"
       }, /*#__PURE__*/_react["default"].createElement("div", {

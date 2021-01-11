@@ -31,7 +31,7 @@ class SaveFormButton extends Component {
 
   onJSONSave(e) {
     e.preventDefault();
-    fileDownload(JSON.stringify(this.props.schema.toJS()), this.state.filename);
+    fileDownload(JSON.stringify(this.props.schema.toJS()), `${this.state.filename}.json`);
     this.props.saveJSON(this.props.schema.toJS(), this.state.filename);
     this.setState({ showModal: false });
   }
@@ -41,15 +41,15 @@ class SaveFormButton extends Component {
       <button
         className="btn btn-block btn-dark"
         data-toggle="modal"
-        data-target="#uploadButton"
-        key="uploadButton"
+        data-target="#downloadButton"
+        key="downloadButton"
         title="Export"
         disabled={!this.props.schema || this.props.schema === 'null'}
       >
         <i className="material-icons">unarchive</i>
         <span className="icon-menu">Export</span>
       </button>,
-      <div className="modal fade" id="uploadButton" tabIndex="-1" key="uploadButtonModal">
+      <div className="modal fade" id="downloadButton" tabIndex="-1" key="downloadButtonModal">
         <div className="modal-dialog bg-white">
           <div className="modal-content">
             <div className="modal-header">

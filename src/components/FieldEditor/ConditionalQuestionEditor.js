@@ -2,20 +2,21 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { fromJS } from 'immutable';
-import { saveConditionalQuestion, deleteConditionalQuestion } from '../../actions/winterfellFormBuilderActions';
+import {
+  saveConditionalQuestion,
+  deleteConditionalQuestion,
+} from '../../actions/winterfellFormBuilderActions';
 import FieldGroup from '../InputTypes/FieldGroup';
 import { AddConditionalQuestionButton, DeleteConditionalQuestionButton } from '../FormMenu/';
 import SelectInput from '../InputTypes/SelectInput';
 import ConditionalQuestionOptionEditor from './ConditionalQuestionOptionEditor';
-import { INPUT_TYPE_OPTIONS } from '../../common/constants';
+import { INPUT_TYPE_OPTIONS, QUESTION_LABEL_OPTIONS } from '../../common/constants';
 
 class ConditionalQuestionEditor extends PureComponent {
   constructor(props) {
     super(props);
 
-    const {
-      conditionalQuestions,
-    } = props;
+    const { conditionalQuestions } = props;
 
     this.state = {
       conditionalQuestions: conditionalQuestions.toJS(),
@@ -45,14 +46,16 @@ class ConditionalQuestionEditor extends PureComponent {
     this.setState({ conditionalQuestions: copyConditionalQuestions });
   }
 
+  onLabelSelect(questionLabel, index) {
+    const copyConditionalQuestions = Object.assign([], this.state.conditionalQuestions);
+    copyConditionalQuestions[index].label = questionLabel;
+    this.setState({ conditionalQuestions: copyConditionalQuestions });
+  }
+
   onSaveConditionalQuestion(conditionalQuestionIndex, path) {
-    const {
-      questionId,
-      question,
-      text,
-      postText,
-      input,
-    } = this.state.conditionalQuestions[conditionalQuestionIndex];
+    const { questionId, question, text, postText, input, label } = this.state.conditionalQuestions[
+      conditionalQuestionIndex
+    ];
     const newPath = Object.assign([], path);
     newPath.push('conditionalQuestions');
     newPath.push(conditionalQuestionIndex);
@@ -63,30 +66,29 @@ class ConditionalQuestionEditor extends PureComponent {
       text,
       postText,
       input.type,
+      label,
       input.options,
     );
   }
 
   getConditionalQuestions() {
-    return (this.state.conditionalQuestions.map((conditionalQuestion, ix) => {
-      const {
-        questionId,
-        question,
-        text,
-        postText,
-        input,
-      } = conditionalQuestion;
+    return this.state.conditionalQuestions.map((conditionalQuestion, ix) => {
+      const { questionId, question, text, postText, input, label } = conditionalQuestion;
+
       const conditionalPath = Object.assign([], this.props.parentPath);
+
       conditionalPath.push('conditionalQuestions');
       conditionalPath.push(ix);
-      return ( // return #2
-        <div key={ix}>
+      return (
+        // return #2
+        <div className="w-100 mt-3" key={ix}>
+          <hr />
           <div className="form-group">
             <FieldGroup
               id="questionId"
               name="questionId"
               label={`Conditional Question ID ${ix + 1}:`}
-              onChange={e => this.onChange(e, ix)}
+              onChange={(e) => this.onChange(e, ix)}
               value={questionId}
             />
           </div>
@@ -95,7 +97,7 @@ class ConditionalQuestionEditor extends PureComponent {
               id="question"
               name="question"
               label={`Conditional Question ${ix + 1}:`}
-              onChange={e => this.onChange(e, ix)}
+              onChange={(e) => this.onChange(e, ix)}
               value={question}
             />
           </div>
@@ -104,7 +106,7 @@ class ConditionalQuestionEditor extends PureComponent {
               id="text"
               name="text"
               label={`Conditional Question Pre Text ${ix + 1}:`}
-              onChange={e => this.onChange(e, ix)}
+              onChange={(e) => this.onChange(e, ix)}
               value={text}
             />
           </div>
@@ -113,26 +115,34 @@ class ConditionalQuestionEditor extends PureComponent {
               id="postText"
               name="postText"
               label={`Conditional Question Post Text ${ix + 1}:`}
-              onChange={e => this.onChange(e, ix)}
+              onChange={(e) => this.onChange(e, ix)}
               value={postText}
             />
           </div>
           <div className="form-group">
-            <label htmlFor="questionInputType">
-              Question Type
-            </label>
+            <label htmlFor="questionInputType">Question Type</label>
             <SelectInput
               id="questionInputType"
               labelId="questionInputType"
               options={INPUT_TYPE_OPTIONS}
-              onSelect={e => this.onSelect(e, ix)}
+              onSelect={(e) => this.onSelect(e, ix)}
               displayValue={input.type}
             />
           </div>
-          {
-            (input.type === 'checkboxOptionsInput' ||
+          <div className="form-group">
+            <label htmlFor="questionLabelType">Question label type</label>
+            <SelectInput
+              id="questionLabelType"
+              name="questionLabelType"
+              labelId="questionLabelType"
+              options={QUESTION_LABEL_OPTIONS}
+              onSelect={(e) => this.onLabelSelect(e, ix)}
+              displayValue={label}
+            />
+          </div>
+          {(input.type === 'checkboxOptionsInput' ||
             input.type === 'selectInput' ||
-            input.type === 'radioOptionsInput') &&
+            input.type === 'radioOptionsInput') && (
             <ConditionalQuestionOptionEditor
               questionInputOptions={input.options}
               questionId={questionId}
@@ -140,42 +150,42 @@ class ConditionalQuestionEditor extends PureComponent {
               currentQuestionSetIndex={this.props.currentQuestionSetIndex}
               path={conditionalPath}
             />
-          }
-          <br />
+          )}
           <br />
           <div>
             <DeleteConditionalQuestionButton
+              className="w-50"
               path={conditionalPath}
               deleteConditionalQuestion={this.props.deleteConditionalQuestion}
             />
             <button
               type="button"
-              className="btn btn-warning"
+              className="btn w-50"
               title="save this conditional question"
               onClick={() => this.onSaveConditionalQuestion(ix, this.props.parentPath)}
-            >save
+            >
+              save
             </button>
           </div>
-          <br />
-        </div>); // end of return #2
-    }));  // end of return #1
+          <hr />
+        </div>
+      ); // end of return #2
+    }); // end of return #1
   }
 
   render() {
     return (
-      <div className="row winterfell-form-builder-conditional-questions alert alert-info">
-        <div className="col">
+      <div className="winterfell-form-builder-conditional-questions alert alert-info">
+        <div className="row w-100 m-0">
+          <h6>{`Option '${this.props.parentOptionText}' Conditional Questions:`}</h6>
           <h6>
-            {`Option '${this.props.parentOptionText}' Conditional Questions:`}
+            <i>Display these questions if this option is selected</i>
           </h6>
-          <h6><i>Display these questions if this option is selected</i></h6>
-          { this.props.conditionalQuestions && this.getConditionalQuestions() }
+          {this.props.conditionalQuestions && this.getConditionalQuestions()}
         </div>
-        <div className="col">
+        <div className="row w-100 m-0">
           <br />
-          <AddConditionalQuestionButton
-            path={this.props.parentPath}
-          />
+          <AddConditionalQuestionButton path={this.props.parentPath} className="w-100" />
           <br />
         </div>
       </div>
@@ -203,7 +213,6 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  { saveConditionalQuestion, deleteConditionalQuestion })(ConditionalQuestionEditor);
-
+export default connect(mapStateToProps, { saveConditionalQuestion, deleteConditionalQuestion })(
+  ConditionalQuestionEditor,
+);

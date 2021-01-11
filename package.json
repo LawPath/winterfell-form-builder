@@ -1,6 +1,6 @@
 {
   "name": "winterfell-form-builder",
-  "version": "0.0.1",
+  "version": "0.0.5",
   "description": "Generate JSON schema for Winterfell form",
   "main": "dist/index.js",
   "scripts": {
@@ -37,11 +37,11 @@
   "license": "MIT",
   "peerDependencies": {
     "react": ">=16.9.0",
+    "react-dnd": "^5.0.0",
+    "react-dnd-html5-backend": "^3.0.2",
     "react-dom": ">=16.9.0",
     "react-redux": ">=7.1.0",
-    "winterfell": ">=1.1.4",
-    "react-dnd": "^5.0.0",
-    "react-dnd-html5-backend": "^3.0.2"
+    "winterfell": ">=1.1.4"
   },
   "dependencies": {
     "immutable": "^3.8.2",
@@ -55,7 +55,7 @@
     "react-sortable-hoc": "^1.11.0",
     "react-tag-input": "^6.4.3",
     "validator": "^13.1.1",
-    "winterfell": "https://github.com/LawPath/Winterfell.git#1a9a8aaacfd9c8814923ca195cd128c2a021e082"
+    "winterfell": "https://github.com/LawPath/Winterfell.git#b665a641f2bea363d8f8b92fd66cce1644d4398e"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.5",
@@ -99,6 +99,8 @@
     "postcss-nested": "^4.2.3",
     "pre-commit": "^1.2.2",
     "react": "16.9.0",
+    "react-dnd": "^5.0.0",
+    "react-dnd-html5-backend": "^3.0.2",
     "react-dom": "16.9.0",
     "react-hot-loader": "^4.12.21",
     "react-redux": "^7.1.0",
@@ -111,10 +113,9 @@
     "rimraf": "^3.0.2",
     "sass-loader": "^9.0.2",
     "style-loader": "^1.2.1",
+    "styled-components": "^5.2.1",
     "vinyl-buffer": "^1.0.1",
     "webpack": "4.44.0",
-    "webpack-dev-server": "3.11.0",
-    "react-dnd": "^5.0.0",
-    "react-dnd-html5-backend": "^3.0.2"
+    "webpack-dev-server": "3.11.0"
   }
 }

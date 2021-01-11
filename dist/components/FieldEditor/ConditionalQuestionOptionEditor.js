@@ -77,7 +77,7 @@ var ConditionalQuestionOptionEditor = /*#__PURE__*/function (_PureComponent) {
     key: "componentWillReceiveProps",
     value: function componentWillReceiveProps(nextProps) {
       this.setState({
-        questionInputOptions: nextProps.questionInputOptions
+        questionInputOptions: nextProps.questionInputOptions ? nextProps.questionInputOptions : []
       });
     }
   }, {
@@ -196,11 +196,17 @@ var ConditionalQuestionOptionEditor = /*#__PURE__*/function (_PureComponent) {
           onChange: function onChange(event) {
             return _this2.onOptionValueChange(event, ix);
           }
-        }), /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement(_DeleteQuestionOptionButton["default"], {
-          onDeleteQuestionOption: function onDeleteQuestionOption() {
-            return _this2.props.deleteQuestionOption([].concat((0, _toConsumableArray2["default"])(path), ['input', 'options', ix]));
+        }), /*#__PURE__*/_react["default"].createElement("div", {
+          className: "row justify-content-end w-100 m-0"
+        }, /*#__PURE__*/_react["default"].createElement("button", {
+          type: "button",
+          className: "btn btn-delete",
+          onClick: function onClick() {
+            _this2.props.deleteQuestionOption([].concat((0, _toConsumableArray2["default"])(path), ['input', 'options', ix]));
           }
-        })), /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("button", {
+        }, /*#__PURE__*/_react["default"].createElement("i", {
+          className: "material-icons"
+        }, "delete")), /*#__PURE__*/_react["default"].createElement("button", {
           type: "button",
           onClick: function onClick(event) {
             return _this2.onShowConditonalClick(ix, event);
@@ -213,20 +219,20 @@ var ConditionalQuestionOptionEditor = /*#__PURE__*/function (_PureComponent) {
         }, "share"), _this2.state.showConditionalPage && _this2.state.showConditionalPage[ix] && /*#__PURE__*/_react["default"].createElement("i", {
           className: "material-icons",
           id: "showConditionalPage"
-        }, "remove_circle "))), /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("button", {
+        }, "remove_circle")), /*#__PURE__*/_react["default"].createElement("button", {
           type: "button",
           id: "showConditionalQuestionButton",
           onClick: function onClick(event) {
             return _this2.onShowConditonalClick(ix, event);
           },
-          className: "btn btn-dark"
+          className: "btn"
         }, _this2.state.showConditionalQuestions && !_this2.state.showConditionalQuestions[ix] && /*#__PURE__*/_react["default"].createElement("i", {
           className: "material-icons",
           id: "showConditionalPage"
         }, "menu"), _this2.state.showConditionalQuestions && _this2.state.showConditionalQuestions[ix] && /*#__PURE__*/_react["default"].createElement("i", {
           className: "material-icons",
           id: "showConditionalPage"
-        }, "remove_circle "))), _this2.state.showConditionalPage[ix] && /*#__PURE__*/_react["default"].createElement(_ConditionalPageEditor["default"], {
+        }, "remove_circle"))), _this2.state.showConditionalPage[ix] && /*#__PURE__*/_react["default"].createElement(_ConditionalPageEditor["default"], {
           questionOptionIndex: ix,
           questionId: questionId,
           text: _this2.state.questionInputOptions[ix].text

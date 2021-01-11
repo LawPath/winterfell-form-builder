@@ -29,9 +29,9 @@ var _addressInputType = _interopRequireDefault(require("../components/InputTypes
 
 var _textAreaInputType = _interopRequireDefault(require("../components/InputTypes/textAreaInputType"));
 
-var _SuggestionInputs = _interopRequireDefault(require("./InputTypes/SuggestionInputs"));
-
 var _constants = require("../common/constants");
+
+var _SuggestionSet = _interopRequireDefault(require("./InputTypes/SuggestionSet"));
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -127,7 +127,8 @@ var Previewer = function Previewer(_ref) {
         onSubmit: onSubmit,
         questionAnswers: questionAnswers,
         panelId: currentPanelId,
-        key: index
+        key: index,
+        answersSuggestionComponent: _SuggestionSet["default"]
       }) || currentPanelId === 'Select Page' && /*#__PURE__*/_react["default"].createElement(_winterfell["default"], {
         schema: localSchema,
         disableSubmit: true,
@@ -135,7 +136,8 @@ var Previewer = function Previewer(_ref) {
         onUpdate: onUpdate,
         onSwitchPanel: onSwitchPanel,
         onSubmit: onSubmit,
-        questionAnswers: questionAnswers
+        questionAnswers: questionAnswers,
+        answersSuggestionComponent: _SuggestionSet["default"]
       });
     });
   };

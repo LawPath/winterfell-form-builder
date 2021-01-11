@@ -16,7 +16,7 @@ class CheckboxOptionsInput extends React.Component {
     if (e.target.checked) {
       currentValue.push(e.target.value);
     } else {
-      currentValue = currentValue.filter(v => v !== e.target.value);
+      currentValue = currentValue.filter((v) => v !== e.target.value);
     }
 
     this.setState({ value: currentValue });
@@ -25,11 +25,8 @@ class CheckboxOptionsInput extends React.Component {
   render() {
     return (
       <ul className={this.props.classes.checkboxList}>
-        {this.props.options.map(opt =>
-          (<li
-            key={opt.value}
-            className={this.props.classes.checkboxListItem}
-          >
+        {this.props.options.map((opt) => (
+          <li key={opt.value} className={this.props.classes.checkboxListItem}>
             <div className="form-group">
               <label
                 className={this.props.classes.checkboxLabel}
@@ -51,8 +48,8 @@ class CheckboxOptionsInput extends React.Component {
                 {opt.text}
               </label>
             </div>
-          </li>),
-        )}
+          </li>
+        ))}
       </ul>
     );
   }

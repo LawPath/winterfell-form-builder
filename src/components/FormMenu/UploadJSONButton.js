@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { uploadJSON } from '../../actions/winterfellFormBuilderActions';
@@ -13,6 +13,7 @@ class UploadJSONButton extends Component {
       fileName: '',
     };
 
+    this.cancelBtnRef = createRef();
     this.onChange = this.onChange.bind(this);
     this.onJSONUpload = this.onJSONUpload.bind(this);
   }
@@ -34,6 +35,7 @@ class UploadJSONButton extends Component {
   onJSONUpload(e) {
     e.preventDefault();
     this.props.uploadJSON(this.state.schema, this.state.fileName);
+    this.cancelBtnRef.current.click();
     this.setState({ showModal: false });
   }
 
@@ -45,7 +47,9 @@ class UploadJSONButton extends Component {
         data-target="#uploadJSON"
         key="uploadJSON"
         title="Upload Winterfell form"
-      ><i className="material-icons">archive</i><span className="icon-menu">Import</span>
+      >
+        <i className="material-icons">archive</i>
+        <span className="icon-menu">Import</span>
       </button>,
       <div className="modal fade" id="uploadJSON" tabIndex="-1" key="uploadJSONModal">
         <div className="modal-dialog bg-white">
@@ -55,27 +59,23 @@ class UploadJSONButton extends Component {
             </div>
             <div className="modal-body">
               Upload an existing Winterfell form.
-            <form>
-              <label
-                htmlFor="jsonUpload"
-              />
-              <input
-                name="schema"
-                id="jsonUpload"
-                type="file"
-                onChange={e => this.onChange(e)}
-              />
-            </form>
+              <form>
+                <label htmlFor="jsonUpload" />
+                <input
+                  name="schema"
+                  id="jsonUpload"
+                  type="file"
+                  onChange={(e) => this.onChange(e)}
+                />
+              </form>
             </div>
             <div className="modal-footer">
-              <button
-                className="btn btn-danger"
-                data-dismiss="modal"
-              >Cancel</button>
-              <button
-                className="btn btn-dark"
-                onClick={this.onJSONUpload}
-              >Continue</button>
+              <button ref={this.cancelBtnRef} className="btn btn-danger" data-dismiss="modal">
+                Cancel
+              </button>
+              <button className="btn btn-dark" onClick={this.onJSONUpload}>
+                Continue
+              </button>
             </div>
           </div>
         </div>
@@ -94,4 +94,3 @@ function mapStateToProps(state) {
   };
 }
 export default connect(mapStateToProps, { uploadJSON })(UploadJSONButton);
-

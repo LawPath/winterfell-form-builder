@@ -27,12 +27,11 @@ class DeleteQuestionOptionButton extends Component {
     return [
       <button
         type="button"
-        className="btn btn-danger"
+        className="btn btn-delete"
         data-toggle="modal"
         data-target="#deleteQuestionOptionButton"
       >
         <i className="material-icons">delete</i>
-        <span>delete this option</span>
       </button>,
       <div
         className="modal fade"

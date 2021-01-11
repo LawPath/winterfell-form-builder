@@ -381,12 +381,14 @@ function winterfellFormBuilderReducer() {
             _text12 = _action$payload24.text,
             postText = _action$payload24.postText,
             type = _action$payload24.type,
+            label = _action$payload24.label,
             options = _action$payload24.options;
         var _newConditionalQuestion = {
           questionId: _questionId,
           question: _question,
           text: _text12,
           postText: postText,
+          label: label,
           input: {
             type: type || 'textInput',
             options: type !== 'textInput' ? options : undefined
@@ -459,17 +461,22 @@ function winterfellFormBuilderReducer() {
         var _currentQuestionPanelIndex7 = state.get('currentQuestionPanelIndex');
 
         var currentConditions = state.getIn(['schema', 'questionPanels', _currentQuestionPanelIndex7, 'action', 'conditions']);
-        var optionIndex = currentConditions.findIndex(function (condition) {
-          return condition.get('value') === action.payload.value;
-        });
 
-        if (optionIndex !== -1) {
-          return state.setIn(['schema', 'questionPanels', _currentQuestionPanelIndex7, 'action', 'conditions', optionIndex], (0, _immutable.fromJS)(newQuestionCondition));
+        if (currentConditions) {
+          var optionIndex = currentConditions.findIndex(function (condition) {
+            return condition.get('value') === action.payload.value;
+          });
+
+          if (optionIndex !== -1) {
+            return state.setIn(['schema', 'questionPanels', _currentQuestionPanelIndex7, 'action', 'conditions', optionIndex], (0, _immutable.fromJS)(newQuestionCondition));
+          }
+
+          return state.updateIn(['schema', 'questionPanels', _currentQuestionPanelIndex7, 'action', 'conditions'], function (arr) {
+            return arr.push((0, _immutable.fromJS)(newQuestionCondition));
+          });
         }
 
-        return state.updateIn(['schema', 'questionPanels', _currentQuestionPanelIndex7, 'action', 'conditions'], function (arr) {
-          return arr.push((0, _immutable.fromJS)(newQuestionCondition));
-        });
+        return state.setIn(['schema', 'questionPanels', _currentQuestionPanelIndex7, 'action', 'conditions'], (0, _immutable.fromJS)([newQuestionCondition]));
       }
 
     case _constants.RESET_NEXT_QUESTION_TARGET_SUCCESS:
