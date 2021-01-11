@@ -487,25 +487,31 @@ function winterfellFormBuilderReducer(state = initialState, action) {
         'action',
         'conditions',
       ]);
-      const optionIndex = currentConditions.findIndex(
-        (condition) => condition.get('value') === action.payload.value,
-      );
-      if (optionIndex !== -1) {
-        return state.setIn(
-          [
-            'schema',
-            'questionPanels',
-            currentQuestionPanelIndex,
-            'action',
-            'conditions',
-            optionIndex,
-          ],
-          fromJS(newQuestionCondition),
+      if (currentConditions) {
+        const optionIndex = currentConditions.findIndex(
+          (condition) => condition.get('value') === action.payload.value,
+        );
+        if (optionIndex !== -1) {
+          return state.setIn(
+            [
+              'schema',
+              'questionPanels',
+              currentQuestionPanelIndex,
+              'action',
+              'conditions',
+              optionIndex,
+            ],
+            fromJS(newQuestionCondition),
+          );
+        }
+        return state.updateIn(
+          ['schema', 'questionPanels', currentQuestionPanelIndex, 'action', 'conditions'],
+          (arr) => arr.push(fromJS(newQuestionCondition)),
         );
       }
       return state.updateIn(
         ['schema', 'questionPanels', currentQuestionPanelIndex, 'action', 'conditions'],
-        (arr) => arr.push(fromJS(newQuestionCondition)),
+        fromJS([newQuestionCondition]),
       );
     }
     case RESET_NEXT_QUESTION_TARGET_SUCCESS: {
