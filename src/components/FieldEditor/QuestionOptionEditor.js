@@ -79,7 +79,7 @@ class QuestionOptionEditor extends PureComponent {
     this.props.editQuestionOptionValue(path, event.target.value);
   }
 
-  onDeleteQuestionOption(index) {
+  onDeleteQuestionOption = (index) => {
     const { currentQuestionSetIndex, currentQuestionIndex } = this.props;
     const path = [
       'schema',
@@ -203,7 +203,7 @@ class QuestionOptionEditor extends PureComponent {
                     <div className="input-group justify-content-end">
                       <DeleteQuestionOptionButton
                         questionOptionIndex={ix}
-                        onDeleteQuestionOption={() => this.onDeleteQuestionOption(ix)}
+                        onDeleteQuestionOption={this.onDeleteQuestionOption}
                       />
                       <button
                         type="button"

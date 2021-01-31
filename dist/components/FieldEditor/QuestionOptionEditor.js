@@ -11,8 +11,6 @@ exports["default"] = void 0;
 
 var _toConsumableArray2 = _interopRequireDefault(require("@babel/runtime/helpers/toConsumableArray"));
 
-var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
-
 var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
 
 var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
@@ -24,6 +22,8 @@ var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits
 var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
 
 var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
+
+var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -55,6 +55,14 @@ var QuestionOptionEditor = /*#__PURE__*/function (_PureComponent) {
 
     (0, _classCallCheck2["default"])(this, QuestionOptionEditor);
     _this = _super.call(this, props);
+    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "onDeleteQuestionOption", function (index) {
+      var _this$props = _this.props,
+          currentQuestionSetIndex = _this$props.currentQuestionSetIndex,
+          currentQuestionIndex = _this$props.currentQuestionIndex;
+      var path = ['schema', 'questionSets', currentQuestionSetIndex, 'questions', currentQuestionIndex, 'input', 'options', index];
+
+      _this.props.deleteQuestionOption(path);
+    });
     var questionInputOptions = props.questionInputOptions;
     _this.state = {
       questionInputOptions: questionInputOptions ? questionInputOptions.toJS() : [],
@@ -81,9 +89,9 @@ var QuestionOptionEditor = /*#__PURE__*/function (_PureComponent) {
   }, {
     key: "onOptionTextChange",
     value: function onOptionTextChange(event, index) {
-      var _this$props = this.props,
-          currentQuestionSetIndex = _this$props.currentQuestionSetIndex,
-          currentQuestionIndex = _this$props.currentQuestionIndex;
+      var _this$props2 = this.props,
+          currentQuestionSetIndex = _this$props2.currentQuestionSetIndex,
+          currentQuestionIndex = _this$props2.currentQuestionIndex;
       var questionInputOptions = Object.assign([], this.state.questionInputOptions);
       questionInputOptions[index].text = event.target.value;
       this.setState({
@@ -95,9 +103,9 @@ var QuestionOptionEditor = /*#__PURE__*/function (_PureComponent) {
   }, {
     key: "onOptionValueChange",
     value: function onOptionValueChange(event, index) {
-      var _this$props2 = this.props,
-          currentQuestionSetIndex = _this$props2.currentQuestionSetIndex,
-          currentQuestionIndex = _this$props2.currentQuestionIndex;
+      var _this$props3 = this.props,
+          currentQuestionSetIndex = _this$props3.currentQuestionSetIndex,
+          currentQuestionIndex = _this$props3.currentQuestionIndex;
       var questionInputOptions = Object.assign([], this.state.questionInputOptions);
       questionInputOptions[index].value = event.target.value;
       this.setState({
@@ -105,15 +113,6 @@ var QuestionOptionEditor = /*#__PURE__*/function (_PureComponent) {
       });
       var path = ['schema', 'questionSets', currentQuestionSetIndex, 'questions', currentQuestionIndex, 'input', 'options', index];
       this.props.editQuestionOptionValue(path, event.target.value);
-    }
-  }, {
-    key: "onDeleteQuestionOption",
-    value: function onDeleteQuestionOption(index) {
-      var _this$props3 = this.props,
-          currentQuestionSetIndex = _this$props3.currentQuestionSetIndex,
-          currentQuestionIndex = _this$props3.currentQuestionIndex;
-      var path = ['schema', 'questionSets', currentQuestionSetIndex, 'questions', currentQuestionIndex, 'input', 'options', index];
-      this.props.deleteQuestionOption(path);
     }
   }, {
     key: "onAddOptionChange",
@@ -214,9 +213,7 @@ var QuestionOptionEditor = /*#__PURE__*/function (_PureComponent) {
           className: "input-group justify-content-end"
         }, /*#__PURE__*/_react["default"].createElement(_DeleteQuestionOptionButton["default"], {
           questionOptionIndex: ix,
-          onDeleteQuestionOption: function onDeleteQuestionOption() {
-            return _this2.onDeleteQuestionOption(ix);
-          }
+          onDeleteQuestionOption: _this2.onDeleteQuestionOption
         }), /*#__PURE__*/_react["default"].createElement("button", {
           type: "button",
           onClick: function onClick(event) {

@@ -1,41 +1,26 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-class DeleteQuestionOptionButton extends Component {
-  constructor(props) {
-    super(props);
+const DeleteQuestionOptionButton = (props) => {
+  const { questionOptionIndex, onDeleteQuestionOption } = props;
 
-    this.state = {
-      showModal: false,
-    };
-
-    this.onConfirmDelete = this.onConfirmDelete.bind(this);
-  }
-
-  onClose(e) {
+  const onConfirmDelete = (e) => {
     e.preventDefault();
-    this.setState({ showModal: false });
-  }
-
-  onConfirmDelete(e) {
-    e.preventDefault();
-    this.setState({ showModal: false });
-    this.props.onDeleteQuestionOption();
-  }
-
-  render() {
-    return [
+    onDeleteQuestionOption(questionOptionIndex);
+  };
+  return (
+    <>
       <button
         type="button"
         className="btn btn-delete"
         data-toggle="modal"
-        data-target="#deleteQuestionOptionButton"
+        data-target={`#deleteQuestionOptionButton-${questionOptionIndex}`}
       >
         <i className="material-icons">delete</i>
-      </button>,
+      </button>
       <div
         className="modal fade"
-        id="deleteQuestionOptionButton"
+        id={`deleteQuestionOptionButton-${questionOptionIndex}`}
         tabIndex="-1"
         key="deleteQuestionOptionButtonModal"
       >
@@ -49,16 +34,21 @@ class DeleteQuestionOptionButton extends Component {
               <button className="btn btn-danger" data-dismiss="modal">
                 Cancel
               </button>
-              <button className="btn btn-dark" data-dismiss="modal" onClick={this.onConfirmDelete}>
+              <button
+                type="button"
+                className="btn btn-dark"
+                data-dismiss="modal"
+                onClick={onConfirmDelete}
+              >
                 Confirm Delete
               </button>
             </div>
           </div>
         </div>
-      </div>,
-    ];
-  }
-}
+      </div>
+    </>
+  );
+};
 
 DeleteQuestionOptionButton.propTypes = {
   onDeleteQuestionOption: PropTypes.func.isRequired,
