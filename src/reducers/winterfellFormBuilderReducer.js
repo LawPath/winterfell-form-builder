@@ -11,6 +11,7 @@ import {
   ADD_CONDITIONAL_QUESTION_SUCCESS,
   SAVE_CONDITIONAL_QUESTION_SUCCESS,
   DELETE_CONDITIONAL_QUESTION_SUCCESS,
+  UPDATE_CONDITIONAL_QUESTION_TYPE_SUCCESS,
   ADD_QUESTION_SET_SUCCESS,
   DELETE_QUESTION_SUCCESS,
   UPDATE_QUESTION_SUCCESS,
@@ -422,6 +423,10 @@ function winterfellFormBuilderReducer(state = initialState, action) {
         },
       };
       return state.setIn(path, fromJS(newConditionalQuestion));
+    }
+    case UPDATE_CONDITIONAL_QUESTION_TYPE_SUCCESS: {
+      const { path, type } = action.payload;
+      return state.setIn(path, type);
     }
     case DELETE_CONDITIONAL_QUESTION_SUCCESS: {
       const { path } = action.payload;

@@ -47,7 +47,7 @@ class ConditionalQuestionOptionEditor extends PureComponent {
 
   onOptionTextChange(event, index) {
     const { path } = this.props;
-    const questionInputOptions = Object.assign({}, this.state.questionInputOptions);
+    const questionInputOptions = [...this.state.questionInputOptions];
     questionInputOptions[index].text = event.target.value;
     this.setState({ questionInputOptions });
     this.props.editQuestionOptionText([...path, 'input', 'options', index], event.target.value);
@@ -55,7 +55,7 @@ class ConditionalQuestionOptionEditor extends PureComponent {
 
   onOptionValueChange(event, index) {
     const { path } = this.props;
-    const questionInputOptions = Object.assign({}, this.state.questionInputOptions);
+    const questionInputOptions = [...this.state.questionInputOptions];
     questionInputOptions[index].value = event.target.value;
     this.setState({ questionInputOptions });
     this.props.editQuestionOptionValue([...path, 'input', 'options', index], event.target.value);
@@ -187,13 +187,13 @@ class ConditionalQuestionOptionEditor extends PureComponent {
                   >
                     {this.state.showConditionalQuestions &&
                       !this.state.showConditionalQuestions[ix] && (
-                        <i className="material-icons" id="showConditionalPage">
+                        <i className="material-icons" id="showConditionalQuestion">
                           menu
                         </i>
                       )}
                     {this.state.showConditionalQuestions &&
                       this.state.showConditionalQuestions[ix] && (
-                        <i className="material-icons" id="showConditionalPage">
+                        <i className="material-icons" id="showConditionalQuestion">
                           remove_circle
                         </i>
                       )}

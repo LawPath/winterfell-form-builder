@@ -5,6 +5,7 @@ import { fromJS } from 'immutable';
 import {
   saveConditionalQuestion,
   deleteConditionalQuestion,
+  updateConditionalQuestionType,
 } from '../../actions/winterfellFormBuilderActions';
 import FieldGroup from '../InputTypes/FieldGroup';
 import { AddConditionalQuestionButton, DeleteConditionalQuestionButton } from '../FormMenu/';
@@ -41,9 +42,12 @@ class ConditionalQuestionEditor extends PureComponent {
   }
 
   onSelect(questionType, index) {
-    const copyConditionalQuestions = Object.assign([], this.state.conditionalQuestions);
+    const copyConditionalQuestions = [...this.state.conditionalQuestions];
     copyConditionalQuestions[index].input.type = questionType;
     this.setState({ conditionalQuestions: copyConditionalQuestions });
+
+    const path = [...this.props.parentPath, 'conditionalQuestions', index, 'input', 'type'];
+    this.props.updateConditionalQuestionType(path, questionType);
   }
 
   onLabelSelect(questionLabel, index) {
@@ -156,6 +160,7 @@ class ConditionalQuestionEditor extends PureComponent {
             <DeleteConditionalQuestionButton
               className="w-50"
               path={conditionalPath}
+              id={`conditionalQuestions-${ix}`}
               deleteConditionalQuestion={this.props.deleteConditionalQuestion}
             />
             <button
@@ -213,6 +218,8 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps, { saveConditionalQuestion, deleteConditionalQuestion })(
-  ConditionalQuestionEditor,
-);
+export default connect(mapStateToProps, {
+  saveConditionalQuestion,
+  deleteConditionalQuestion,
+  updateConditionalQuestionType,
+})(ConditionalQuestionEditor);

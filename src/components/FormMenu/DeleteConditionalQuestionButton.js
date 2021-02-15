@@ -33,13 +33,13 @@ class DeleteConditionalQuestionButton extends Component {
         className={`btn btn-delete ${this.props.className ? this.props.className : ''}`}
         title="delete this conditional question"
         data-toggle="modal"
-        data-target="#deleteConditionalQuestion"
+        data-target={`#deleteConditionalQuestion-${this.props.id}`}
       >
         delete
       </button>,
       <div
         className="modal fade preview-modal"
-        id="deleteConditionalQuestion"
+        id={`deleteConditionalQuestion-${this.props.id}`}
         tabIndex="-1"
         data-backdrop="false"
       >

@@ -42,6 +42,7 @@ import {
   UPDATE_QUESTION_ANSWERS_SUCCESS,
   CHANGE_QUESTION_LABEL_SUCCESS,
   CHANGE_SUGGESTED_ANSWERS_SUCCESS,
+  UPDATE_CONDITIONAL_QUESTION_TYPE_SUCCESS,
 } from '../common/constants';
 
 export const updateErrorMessage = (message) => {
@@ -412,6 +413,13 @@ export const deleteConditionalQuestion = (path) => {
   return {
     type: DELETE_CONDITIONAL_QUESTION_SUCCESS,
     payload: { path },
+  };
+};
+
+export const updateConditionalQuestionType = (path, type) => {
+  return {
+    type: UPDATE_CONDITIONAL_QUESTION_TYPE_SUCCESS,
+    payload: { path, type },
   };
 };
 
