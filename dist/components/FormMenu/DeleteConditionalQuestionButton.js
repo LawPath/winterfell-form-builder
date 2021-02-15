@@ -76,10 +76,10 @@ var DeleteConditionalQuestionButton = /*#__PURE__*/function (_Component) {
         className: "btn btn-delete ".concat(this.props.className ? this.props.className : ''),
         title: "delete this conditional question",
         "data-toggle": "modal",
-        "data-target": "#deleteConditionalQuestion"
+        "data-target": "#deleteConditionalQuestion-".concat(this.props.id)
       }, "delete"), /*#__PURE__*/_react["default"].createElement("div", {
         className: "modal fade preview-modal",
-        id: "deleteConditionalQuestion",
+        id: "deleteConditionalQuestion-".concat(this.props.id),
         tabIndex: "-1",
         "data-backdrop": "false"
       }, /*#__PURE__*/_react["default"].createElement("div", {

@@ -89,11 +89,13 @@ var ConditionalQuestionEditor = /*#__PURE__*/function (_PureComponent) {
   }, {
     key: "onSelect",
     value: function onSelect(questionType, index) {
-      var copyConditionalQuestions = Object.assign([], this.state.conditionalQuestions);
+      var copyConditionalQuestions = (0, _toConsumableArray2["default"])(this.state.conditionalQuestions);
       copyConditionalQuestions[index].input.type = questionType;
       this.setState({
         conditionalQuestions: copyConditionalQuestions
       });
+      var path = [].concat((0, _toConsumableArray2["default"])(this.props.parentPath), ['conditionalQuestions', index, 'input', 'type']);
+      this.props.updateConditionalQuestionType(path, questionType);
     }
   }, {
     key: "onLabelSelect",
@@ -214,6 +216,7 @@ var ConditionalQuestionEditor = /*#__PURE__*/function (_PureComponent) {
           }), /*#__PURE__*/_react["default"].createElement("br", null), /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement(_FormMenu.DeleteConditionalQuestionButton, {
             className: "w-50",
             path: conditionalPath,
+            id: "conditionalQuestions-".concat(ix),
             deleteConditionalQuestion: _this2.props.deleteConditionalQuestion
           }), /*#__PURE__*/_react["default"].createElement("button", {
             type: "button",
@@ -265,7 +268,8 @@ function mapStateToProps(state, ownProps) {
 
 var _default = (0, _reactRedux.connect)(mapStateToProps, {
   saveConditionalQuestion: _winterfellFormBuilderActions.saveConditionalQuestion,
-  deleteConditionalQuestion: _winterfellFormBuilderActions.deleteConditionalQuestion
+  deleteConditionalQuestion: _winterfellFormBuilderActions.deleteConditionalQuestion,
+  updateConditionalQuestionType: _winterfellFormBuilderActions.updateConditionalQuestionType
 })(ConditionalQuestionEditor);
 
 exports["default"] = _default;

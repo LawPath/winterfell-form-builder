@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.updateQuestionAnswers = exports.deleteConditionalQuestion = exports.saveConditionalQuestion = exports.resetNextQuestionTarget = exports.updateNextQuestionTarget = exports.movePage = exports.updateQuestion = exports.changeCurrentEditingField = exports.deleteQuestion = exports.addConditionalQuestion = exports.addQuestion = exports.addQuestionSet = exports.deletePage = exports.addPage = exports.updateForm = exports.goToPage = exports.deleteQuestionOption = exports.editQuestionOptionValue = exports.editQuestionOptionText = exports.addQuestionOption = exports.changeSuggestedAnswers = exports.changeQuestionLabel = exports.changeQuestionType = exports.onSelectNextButtonTarget = exports.onSelectNextButtonAction = exports.disableBackButton = exports.editBackButtonText = exports.editNextButtonText = exports.editQuestionPostText = exports.editQuestionText = exports.editQuestion = exports.editQuestionId = exports.editQuestionSetText = exports.editQuestionSetHeader = exports.editPageText = exports.editPageHeader = exports.editPageId = exports.editFormTitle = exports.saveJSON = exports.uploadJSON = exports.createForm = exports.clearErrorMessage = exports.updateErrorMessage = void 0;
+exports.updateQuestionAnswers = exports.updateConditionalQuestionType = exports.deleteConditionalQuestion = exports.saveConditionalQuestion = exports.resetNextQuestionTarget = exports.updateNextQuestionTarget = exports.movePage = exports.updateQuestion = exports.changeCurrentEditingField = exports.deleteQuestion = exports.addConditionalQuestion = exports.addQuestion = exports.addQuestionSet = exports.deletePage = exports.addPage = exports.updateForm = exports.goToPage = exports.deleteQuestionOption = exports.editQuestionOptionValue = exports.editQuestionOptionText = exports.addQuestionOption = exports.changeSuggestedAnswers = exports.changeQuestionLabel = exports.changeQuestionType = exports.onSelectNextButtonTarget = exports.onSelectNextButtonAction = exports.disableBackButton = exports.editBackButtonText = exports.editNextButtonText = exports.editQuestionPostText = exports.editQuestionText = exports.editQuestion = exports.editQuestionId = exports.editQuestionSetText = exports.editQuestionSetHeader = exports.editPageText = exports.editPageHeader = exports.editPageId = exports.editFormTitle = exports.saveJSON = exports.uploadJSON = exports.createForm = exports.clearErrorMessage = exports.updateErrorMessage = void 0;
 
 var _constants = require("../common/constants");
 
@@ -532,6 +532,18 @@ var deleteConditionalQuestion = function deleteConditionalQuestion(path) {
 };
 
 exports.deleteConditionalQuestion = deleteConditionalQuestion;
+
+var updateConditionalQuestionType = function updateConditionalQuestionType(path, type) {
+  return {
+    type: _constants.UPDATE_CONDITIONAL_QUESTION_TYPE_SUCCESS,
+    payload: {
+      path: path,
+      type: type
+    }
+  };
+};
+
+exports.updateConditionalQuestionType = updateConditionalQuestionType;
 
 var updateQuestionAnswers = function updateQuestionAnswers(questionAnswers) {
   return {

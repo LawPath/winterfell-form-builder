@@ -84,7 +84,7 @@ var ConditionalQuestionOptionEditor = /*#__PURE__*/function (_PureComponent) {
     key: "onOptionTextChange",
     value: function onOptionTextChange(event, index) {
       var path = this.props.path;
-      var questionInputOptions = Object.assign({}, this.state.questionInputOptions);
+      var questionInputOptions = (0, _toConsumableArray2["default"])(this.state.questionInputOptions);
       questionInputOptions[index].text = event.target.value;
       this.setState({
         questionInputOptions: questionInputOptions
@@ -95,7 +95,7 @@ var ConditionalQuestionOptionEditor = /*#__PURE__*/function (_PureComponent) {
     key: "onOptionValueChange",
     value: function onOptionValueChange(event, index) {
       var path = this.props.path;
-      var questionInputOptions = Object.assign({}, this.state.questionInputOptions);
+      var questionInputOptions = (0, _toConsumableArray2["default"])(this.state.questionInputOptions);
       questionInputOptions[index].value = event.target.value;
       this.setState({
         questionInputOptions: questionInputOptions
@@ -228,10 +228,10 @@ var ConditionalQuestionOptionEditor = /*#__PURE__*/function (_PureComponent) {
           className: "btn"
         }, _this2.state.showConditionalQuestions && !_this2.state.showConditionalQuestions[ix] && /*#__PURE__*/_react["default"].createElement("i", {
           className: "material-icons",
-          id: "showConditionalPage"
+          id: "showConditionalQuestion"
         }, "menu"), _this2.state.showConditionalQuestions && _this2.state.showConditionalQuestions[ix] && /*#__PURE__*/_react["default"].createElement("i", {
           className: "material-icons",
-          id: "showConditionalPage"
+          id: "showConditionalQuestion"
         }, "remove_circle"))), _this2.state.showConditionalPage[ix] && /*#__PURE__*/_react["default"].createElement(_ConditionalPageEditor["default"], {
           questionOptionIndex: ix,
           questionId: questionId,

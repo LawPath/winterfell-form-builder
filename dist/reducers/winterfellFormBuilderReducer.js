@@ -397,27 +397,35 @@ function winterfellFormBuilderReducer() {
         return state.setIn(_path4, (0, _immutable.fromJS)(_newConditionalQuestion));
       }
 
+    case _constants.UPDATE_CONDITIONAL_QUESTION_TYPE_SUCCESS:
+      {
+        var _action$payload25 = action.payload,
+            _path5 = _action$payload25.path,
+            _type = _action$payload25.type;
+        return state.setIn(_path5, _type);
+      }
+
     case _constants.DELETE_CONDITIONAL_QUESTION_SUCCESS:
       {
-        var _path5 = action.payload.path;
-        return state.deleteIn(_path5);
+        var _path6 = action.payload.path;
+        return state.deleteIn(_path6);
       }
 
     case _constants.UPDATE_QUESTION_SUCCESS:
       {
-        var _action$payload25 = action.payload,
-            questionSetIndex = _action$payload25.questionSetIndex,
-            questionIndex = _action$payload25.questionIndex,
-            _question2 = _action$payload25.question,
-            _questionText = _action$payload25.questionText;
+        var _action$payload26 = action.payload,
+            questionSetIndex = _action$payload26.questionSetIndex,
+            questionIndex = _action$payload26.questionIndex,
+            _question2 = _action$payload26.question,
+            _questionText = _action$payload26.questionText;
         return state.setIn(['schema', 'questionSets', questionSetIndex, 'questions', questionIndex, 'question'], _question2).setIn(['schema', 'questionSets', questionSetIndex, 'questions', questionIndex, 'text'], _questionText);
       }
 
     case _constants.MOVE_PAGE_SUCCESS:
       {
-        var _action$payload26 = action.payload,
-            oldIndex = _action$payload26.oldIndex,
-            newIndex = _action$payload26.newIndex;
+        var _action$payload27 = action.payload,
+            oldIndex = _action$payload27.oldIndex,
+            newIndex = _action$payload27.newIndex;
 
         if (oldIndex === newIndex) {
           return state;
